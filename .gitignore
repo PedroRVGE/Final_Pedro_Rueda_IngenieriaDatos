@@ -1,0 +1,10 @@
+*.tfstate*
+.terraform/
+*.tfplan
+.env
+.local/
+*accessKeys*.csv
+*credentials*.csv
+.build/
+__pycache__/
+*.pyc
