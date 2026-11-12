@@ -1,0 +1,45 @@
+{
+    "params": {
+        "skip.header.line.count": "1",
+        "projection.fecha.format": "yyyy-MM-dd",
+        "projection.fecha.interval.unit": "DAYS",
+        "EXTERNAL": "TRUE",
+        "projection.fecha.range": "2026-10-01,2026-10-03",
+        "classification": "csv",
+        "projection.enabled": "true",
+        "projection.fecha.interval": "1",
+        "projection.fecha.type": "date",
+        "storage.location.template": "s3://final-entregas-pedro-rueda-466494951615/entregas/fecha=${fecha}/"
+    },
+    "particion": [
+        {
+            "Name": "fecha",
+            "Type": "string",
+            "Comment": "Fecha tomada de la carpeta fecha=yyyy-MM-dd",
+            "Parameters": {}
+        }
+    ],
+    "cols": [
+        [
+            "id_envio",
+            "string"
+        ],
+        [
+            "ciudad",
+            "string"
+        ],
+        [
+            "transportadora",
+            "string"
+        ],
+        [
+            "estado",
+            "string"
+        ],
+        [
+            "duracion_minutos",
+            "int"
+        ]
+    ],
+    "serde": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe"
+}

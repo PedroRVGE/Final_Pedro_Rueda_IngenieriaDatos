@@ -1,0 +1,17 @@
+# Credenciales
+.env
+*.pem
+*accessKeys*.csv
+*credentials*.csv
+.aws/
+
+# Terraform: estado, planes y carpeta local
+*.tfstate
+*.tfstate.*
+*.tfplan
+.terraform/
+crash.log
+
+# Python
+__pycache__/
+*.pyc

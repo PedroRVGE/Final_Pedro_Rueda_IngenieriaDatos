@@ -1,0 +1,4 @@
+11:37:19.773927 [info ] [MainThread]: Running with dbt=1.9.4
+11:37:20.634402 [info ] [Thread-1 (]: 1 of 1 START freshness of ventas_raw.ventas .................................... [RUN]
+11:37:20.659212 [error] [Thread-1 (]: 1 of 1 ERROR STALE freshness of ventas_raw.ventas .............................. [ERROR STALE in 0.02s]
+11:37:20.701672 [info ] [MainThread]: Done.
