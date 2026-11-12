@@ -1,0 +1,343 @@
+# terraform destroy  |  2026-11-12 06:41:07 -05  |  región us-east-2  |  arn:aws:iam::466494951615:user/PedroRuedaNubeIngData
+# Evidencias ya guardadas y versionadas (commit b048ce5). force_destroy=true vacía el bucket (entregas/ y resultados-athena/).
+
+$ terraform destroy -auto-approve
+aws_glue_catalog_database.entregas: Refreshing state... [id=466494951615:final_entregas_db]
+aws_s3_bucket.entregas: Refreshing state... [id=final-entregas-pedro-rueda-466494951615]
+aws_s3_bucket_ownership_controls.entregas: Refreshing state... [id=final-entregas-pedro-rueda-466494951615]
+aws_s3_bucket_server_side_encryption_configuration.entregas: Refreshing state... [id=final-entregas-pedro-rueda-466494951615]
+aws_s3_bucket_public_access_block.entregas: Refreshing state... [id=final-entregas-pedro-rueda-466494951615]
+aws_athena_workgroup.entregas: Refreshing state... [id=final-entregas-wg]
+aws_glue_catalog_table.entregas: Refreshing state... [id=466494951615:final_entregas_db:entregas]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_athena_workgroup.entregas will be destroyed
+  - resource "aws_athena_workgroup" "entregas" {
+      - arn           = "arn:aws:athena:us-east-2:466494951615:workgroup/final-entregas-wg" -> null
+      - description   = "Consultas del ejercicio de entregas" -> null
+      - force_destroy = true -> null
+      - id            = "final-entregas-wg" -> null
+      - name          = "final-entregas-wg" -> null
+      - region        = "us-east-2" -> null
+      - state         = "ENABLED" -> null
+      - tags          = {} -> null
+      - tags_all      = {
+          - "Modulo"   = "punto1-entregas"
+          - "Owner"    = "pedro"
+          - "Proyecto" = "final"
+        } -> null
+
+      - configuration {
+          - bytes_scanned_cutoff_per_query          = 104857600 -> null
+          - enable_minimum_encryption_configuration = false -> null
+          - enforce_workgroup_configuration         = true -> null
+          - publish_cloudwatch_metrics_enabled      = false -> null
+          - requester_pays_enabled                  = false -> null
+            # (1 unchanged attribute hidden)
+
+          - engine_version {
+              - effective_engine_version = "Athena engine version 3" -> null
+              - selected_engine_version  = "AUTO" -> null
+            }
+
+          - result_configuration {
+              - output_location       = "s3://final-entregas-pedro-rueda-466494951615/resultados-athena/" -> null
+                # (1 unchanged attribute hidden)
+
+              - encryption_configuration {
+                  - encryption_option = "SSE_S3" -> null
+                    # (1 unchanged attribute hidden)
+                }
+            }
+        }
+    }
+
+  # aws_glue_catalog_database.entregas will be destroyed
+  - resource "aws_glue_catalog_database" "entregas" {
+      - arn          = "arn:aws:glue:us-east-2:466494951615:database/final_entregas_db" -> null
+      - catalog_id   = "466494951615" -> null
+      - description  = "Catalogo del ejercicio de intentos de entrega (examen final)" -> null
+      - id           = "466494951615:final_entregas_db" -> null
+      - name         = "final_entregas_db" -> null
+      - parameters   = {} -> null
+      - region       = "us-east-2" -> null
+      - tags         = {} -> null
+      - tags_all     = {
+          - "Modulo"   = "punto1-entregas"
+          - "Owner"    = "pedro"
+          - "Proyecto" = "final"
+        } -> null
+        # (1 unchanged attribute hidden)
+
+      - create_table_default_permission {
+          - permissions = [
+              - "ALL",
+            ] -> null
+
+          - principal {
+              - data_lake_principal_identifier = "IAM_ALLOWED_PRINCIPALS" -> null
+            }
+        }
+    }
+
+  # aws_glue_catalog_table.entregas will be destroyed
+  - resource "aws_glue_catalog_table" "entregas" {
+      - arn                = "arn:aws:glue:us-east-2:466494951615:table/final_entregas_db/entregas" -> null
+      - catalog_id         = "466494951615" -> null
+      - database_name      = "final_entregas_db" -> null
+      - description        = "Intentos de entrega en CSV, particionados por carpeta fecha=yyyy-MM-dd con partition projection" -> null
+      - id                 = "466494951615:final_entregas_db:entregas" -> null
+      - name               = "entregas" -> null
+      - parameters         = {
+          - "EXTERNAL"                       = "TRUE"
+          - "classification"                 = "csv"
+          - "projection.enabled"             = "true"
+          - "projection.fecha.format"        = "yyyy-MM-dd"
+          - "projection.fecha.interval"      = "1"
+          - "projection.fecha.interval.unit" = "DAYS"
+          - "projection.fecha.range"         = "2026-10-01,2026-10-03"
+          - "projection.fecha.type"          = "date"
+          - "skip.header.line.count"         = "1"
+          - "storage.location.template"      = "s3://final-entregas-pedro-rueda-466494951615/entregas/fecha=${fecha}/"
+        } -> null
+      - region             = "us-east-2" -> null
+      - retention          = 0 -> null
+      - table_type         = "EXTERNAL_TABLE" -> null
+        # (3 unchanged attributes hidden)
+
+      - partition_keys {
+          - comment    = "Fecha tomada de la carpeta fecha=yyyy-MM-dd" -> null
+          - name       = "fecha" -> null
+          - parameters = {} -> null
+          - type       = "string" -> null
+        }
+
+      - storage_descriptor {
+          - additional_locations      = [] -> null
+          - bucket_columns            = [] -> null
+          - compressed                = false -> null
+          - input_format              = "org.apache.hadoop.mapred.TextInputFormat" -> null
+          - location                  = "s3://final-entregas-pedro-rueda-466494951615/entregas/" -> null
+          - number_of_buckets         = 0 -> null
+          - output_format             = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat" -> null
+          - parameters                = {} -> null
+          - stored_as_sub_directories = false -> null
+
+          - columns {
+              - comment    = "Identificador unico del envio (texto)" -> null
+              - name       = "id_envio" -> null
+              - parameters = {} -> null
+              - type       = "string" -> null
+            }
+          - columns {
+              - comment    = "Ciudad del intento" -> null
+              - name       = "ciudad" -> null
+              - parameters = {} -> null
+              - type       = "string" -> null
+            }
+          - columns {
+              - comment    = "Transportadora responsable" -> null
+              - name       = "transportadora" -> null
+              - parameters = {} -> null
+              - type       = "string" -> null
+            }
+          - columns {
+              - comment    = "entregado | destinatario_ausente | direccion_incorrecta" -> null
+              - name       = "estado" -> null
+              - parameters = {} -> null
+              - type       = "string" -> null
+            }
+          - columns {
+              - comment    = "Positiva si entregado, 0 si fallido" -> null
+              - name       = "duracion_minutos" -> null
+              - parameters = {} -> null
+              - type       = "int" -> null
+            }
+
+          - ser_de_info {
+              - name                  = "csv-coma" -> null
+              - parameters            = {
+                  - "field.delim"          = ","
+                  - "serialization.format" = ","
+                } -> null
+              - serialization_library = "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe" -> null
+            }
+        }
+    }
+
+  # aws_s3_bucket.entregas will be destroyed
+  - resource "aws_s3_bucket" "entregas" {
+      - arn                         = "arn:aws:s3:::final-entregas-pedro-rueda-466494951615" -> null
+      - bucket                      = "final-entregas-pedro-rueda-466494951615" -> null
+      - bucket_domain_name          = "final-entregas-pedro-rueda-466494951615.s3.amazonaws.com" -> null
+      - bucket_namespace            = "global" -> null
+      - bucket_region               = "us-east-2" -> null
+      - bucket_regional_domain_name = "final-entregas-pedro-rueda-466494951615.s3.us-east-2.amazonaws.com" -> null
+      - force_destroy               = true -> null
+      - hosted_zone_id              = "Z2O1EMRO9K5GLX" -> null
+      - id                          = "final-entregas-pedro-rueda-466494951615" -> null
+      - object_lock_enabled         = false -> null
+      - region                      = "us-east-2" -> null
+      - request_payer               = "BucketOwner" -> null
+      - tags                        = {} -> null
+      - tags_all                    = {
+          - "Modulo"   = "punto1-entregas"
+          - "Owner"    = "pedro"
+          - "Proyecto" = "final"
+        } -> null
+        # (3 unchanged attributes hidden)
+
+      - grant {
+          - id          = "0b4dc3b09fcb9db7e55a6e18b943b2c9e5780dff6412493045dbd94e7fd37621" -> null
+          - permissions = [
+              - "FULL_CONTROL",
+            ] -> null
+          - type        = "CanonicalUser" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - server_side_encryption_configuration {
+          - rule {
+              - bucket_key_enabled = false -> null
+
+              - apply_server_side_encryption_by_default {
+                  - sse_algorithm     = "AES256" -> null
+                    # (1 unchanged attribute hidden)
+                }
+            }
+        }
+
+      - versioning {
+          - enabled    = false -> null
+          - mfa_delete = false -> null
+        }
+    }
+
+  # aws_s3_bucket_ownership_controls.entregas will be destroyed
+  - resource "aws_s3_bucket_ownership_controls" "entregas" {
+      - bucket = "final-entregas-pedro-rueda-466494951615" -> null
+      - id     = "final-entregas-pedro-rueda-466494951615" -> null
+      - region = "us-east-2" -> null
+
+      - rule {
+          - object_ownership = "BucketOwnerEnforced" -> null
+        }
+    }
+
+  # aws_s3_bucket_public_access_block.entregas will be destroyed
+  - resource "aws_s3_bucket_public_access_block" "entregas" {
+      - block_public_acls       = true -> null
+      - block_public_policy     = true -> null
+      - bucket                  = "final-entregas-pedro-rueda-466494951615" -> null
+      - id                      = "final-entregas-pedro-rueda-466494951615" -> null
+      - ignore_public_acls      = true -> null
+      - region                  = "us-east-2" -> null
+      - restrict_public_buckets = true -> null
+    }
+
+  # aws_s3_bucket_server_side_encryption_configuration.entregas will be destroyed
+  - resource "aws_s3_bucket_server_side_encryption_configuration" "entregas" {
+      - bucket                = "final-entregas-pedro-rueda-466494951615" -> null
+      - id                    = "final-entregas-pedro-rueda-466494951615" -> null
+      - region                = "us-east-2" -> null
+        # (1 unchanged attribute hidden)
+
+      - rule {
+          - blocked_encryption_types = [
+              - "SSE-C",
+            ] -> null
+          - bucket_key_enabled       = false -> null
+
+          - apply_server_side_encryption_by_default {
+              - sse_algorithm     = "AES256" -> null
+                # (1 unchanged attribute hidden)
+            }
+        }
+    }
+
+Plan: 0 to add, 0 to change, 7 to destroy.
+
+Changes to Outputs:
+  - base_datos_glue             = "final_entregas_db" -> null
+  - bucket                      = "final-entregas-pedro-rueda-466494951615" -> null
+  - bucket_arn                  = "arn:aws:s3:::final-entregas-pedro-rueda-466494951615" -> null
+  - region                      = "us-east-2" -> null
+  - tabla_glue                  = "entregas" -> null
+  - tabla_glue_arn              = "arn:aws:glue:us-east-2:466494951615:table/final_entregas_db/entregas" -> null
+  - ubicacion_datos             = "s3://final-entregas-pedro-rueda-466494951615/entregas/" -> null
+  - ubicacion_resultados_athena = "s3://final-entregas-pedro-rueda-466494951615/resultados-athena/" -> null
+  - workgroup_athena            = "final-entregas-wg" -> null
+aws_s3_bucket_public_access_block.entregas: Destroying... [id=final-entregas-pedro-rueda-466494951615]
+aws_s3_bucket_ownership_controls.entregas: Destroying... [id=final-entregas-pedro-rueda-466494951615]
+aws_s3_bucket_server_side_encryption_configuration.entregas: Destroying... [id=final-entregas-pedro-rueda-466494951615]
+aws_athena_workgroup.entregas: Destroying... [id=final-entregas-wg]
+aws_glue_catalog_table.entregas: Destroying... [id=466494951615:final_entregas_db:entregas]
+aws_athena_workgroup.entregas: Destruction complete after 0s
+aws_s3_bucket_server_side_encryption_configuration.entregas: Destruction complete after 0s
+aws_glue_catalog_table.entregas: Destruction complete after 0s
+aws_glue_catalog_database.entregas: Destroying... [id=466494951615:final_entregas_db]
+aws_s3_bucket_ownership_controls.entregas: Destruction complete after 1s
+aws_glue_catalog_database.entregas: Destruction complete after 1s
+aws_s3_bucket_public_access_block.entregas: Destruction complete after 1s
+aws_s3_bucket.entregas: Destroying... [id=final-entregas-pedro-rueda-466494951615]
+aws_s3_bucket.entregas: Destruction complete after 1s
+
+Destroy complete! Resources: 7 destroyed.
+
+# ---- Verificación posterior con AWS CLI ----
+$ aws s3api head-bucket --bucket final-entregas-pedro-rueda-466494951615
+
+aws: [ERROR]: An error occurred (404) when calling the HeadBucket operation: Not Found
+$ aws glue get-database --name final_entregas_db
+aws: [ERROR]: An error occurred (EntityNotFoundException) when calling the GetDatabase operation: Database final_entregas_db not found.
+$ aws athena get-work-group --work-group final-entregas-wg
+AthenaErrorCode: INVALID_INPUT
+$ terraform state list
+(estado vacío)
+
+# ---- Inventario general de la cuenta (scripts/verificar_cuenta_limpia.sh) ----
+Identidad: arn:aws:iam::466494951615:user/PedroRuedaNubeIngData  | región us-east-2 | prefijo 'final' | 2026-11-12 06:43:04 -05
+
+✓ EC2 no terminadas (todas)
+✓ Volúmenes EBS
+✓ Snapshots EBS propios
+✓ IP elásticas
+✓ NAT Gateways
+✓ VPC endpoints de interfaz
+✓ VPC no default
+✓ Security groups 'final-*'
+✓ RDS/DocDB/Neptune instancias
+✓ RDS/DocDB/Neptune clústeres
+✓ Snapshots manuales RDS
+✓ Snapshots manuales de clúster
+✓ Redshift Serverless workgroups
+✓ Redshift Serverless namespaces
+✓ Redshift provisionado
+✓ ElastiCache
+✓ DynamoDB tablas
+✓ Lambda funciones
+    (preexistente) taller-aws-fastapi-lambda
+    (preexistente) test
+    (preexistente) lambda-final-fastapi
+    (preexistente) test-fastapi
+✓ Glue jobs
+✓ Glue crawlers
+✓ Glue bases (salvo default)
+✓ Athena workgroups (salvo primary)
+✓ Kinesis streams
+✓ EMR clústeres activos
+✓ MWAA (Airflow administrado)
+✓ Secrets Manager (incluye borrado programado)
+✓ Buckets S3 'final-*' (globales)
+✓ Roles IAM 'final-*' (globales)
+✓ Log groups con 'final'
+    (preexistente) /aws/lambda/lambda-final-fastapi
+✓ Cualquier recurso con tag Proyecto=final
+✓ QuickSight (suscripción)
+
+CUENTA LIMPIA (0 categorías con recursos)
