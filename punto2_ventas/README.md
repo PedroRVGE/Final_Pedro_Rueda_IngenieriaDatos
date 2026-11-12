@@ -84,7 +84,7 @@ contenedor y en `dbt.log`, no en el log de la tarea; ambos se guardaron (`dbt_fr
 
 | Archivo | Qué demuestra |
 |---|---|
-| `capturas/01..08-*.png` | Grafo, grilla y logs de las dos ejecuciones obligatorias (ver índice en `capturas/CAPTURAS.md`) |
+| `capturas/01..08-*.jpg` | Grafo, grilla y logs de las dos ejecuciones obligatorias (ver índice en `capturas/CAPTURAS.md`) |
 | `escenario_*.json` | Salida de `scenario` (filas y `max_loaded_at`) |
 | `estados_*.txt` | `airflow tasks states-for-dag-run` de cada ejecución |
 | `log_actualizada_*.log`, `log_desactualizada_comprobar_frescura.log` | Logs de Airflow de las tareas |
