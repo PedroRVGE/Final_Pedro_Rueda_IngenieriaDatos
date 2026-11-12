@@ -80,6 +80,20 @@ Nota: `run_dbt` lanza dbt como subproceso sin capturar su salida, así que el de
 contenedor y en `dbt.log`, no en el log de la tarea; ambos se guardaron (`dbt_freshness_desactualizada_stdout.txt`,
 `dbt_log_desactualizada.txt`).
 
+### Escenario opcional — `advertencia` (run `manual__2026-11-12T12:03:56+00:00`)
+
+`bash scripts/examen.sh scenario advertencia` → `max_loaded_at = 2026-11-11T18:03:52Z` (~18 h). Ejecución manual nueva
+(disparada sin `--run-id`, con el identificador por defecto `manual__<fecha>` que asigna Airflow, igual que el botón Trigger DAG).
+
+| Tarea | Estado | Inicio → fin (UTC) |
+|---|---|---|
+| `comprobar_frescura` | success | 12:03:59 → 12:04:02 |
+| `construir_resumen` | success | 12:04:05 → 12:04:08 |
+
+dbt informó `1 of 1 WARN freshness of ventas_raw.ventas ... [WARN]` y la tarea siguió con salida exitosa (sin `--warn-error`);
+el build corrió (`INICIO dbt ['build']`, `Done. PASS=19 WARN=0 ERROR=0`). El resumen sigue igual (`resumen_tras_advertencia.txt`).
+Evidencias: `escenario_advertencia.json`, `estados_advertencia.txt`, `log_advertencia_*.log`, `dbt_freshness_advertencia_stdout.txt`.
+
 ## Evidencias (`evidencias/`)
 
 | Archivo | Qué demuestra |
@@ -88,7 +102,8 @@ contenedor y en `dbt.log`, no en el log de la tarea; ambos se guardaron (`dbt_fr
 | `escenario_*.json` | Salida de `scenario` (filas y `max_loaded_at`) |
 | `estados_*.txt` | `airflow tasks states-for-dag-run` de cada ejecución |
 | `log_actualizada_*.log`, `log_desactualizada_comprobar_frescura.log` | Logs de Airflow de las tareas |
-| `dbt_freshness_desactualizada_stdout.txt`, `dbt_log_desactualizada.txt` | Motivo del fallo según dbt (`ERROR STALE`) |
+| `dbt_freshness_desactualizada_stdout.txt`, `dbt_log_desactualizada.txt`, `motivo_error_freshness.txt` | Motivo del fallo según dbt (`ERROR STALE`, 30 h > 24 h) |
+| `capturas/07-ventas-desactualizada-motivo-dbt_parte3.png` | Ese motivo renderizado como imagen (**salida de CLI, no captura de la UI**): el log de la tarea en Airflow solo muestra `exit status 1` porque `run_dbt` no captura la salida de dbt |
 | `artifacts_tras_desactualizada.txt` | `sources.json` (status error, 30 h) y `run_results.json` (último build = escenario 1) |
 | `intentos_desactualizada.txt` | try_number de cada tarea en la ejecución bloqueada |
 | `resumen_antes_bloqueo.txt`, `resumen_despues_bloqueo.txt` | El resumen se conserva tras el bloqueo |

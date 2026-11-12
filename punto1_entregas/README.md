@@ -93,6 +93,11 @@ diff resultados/inicial/duracion_promedio_2026-10-02.csv resultados_esperados/du
 Resultado: **12 registros** (2 fechas con datos, 0 del 2026-10-03 aunque ya está en el rango) y los tres `diff` vacíos:
 los resultados son idénticos a las referencias.
 
+> **Rutas relativas.** El repositorio de entrega contiene los dos puntos del examen; `punto1_entregas/` es la raíz de la
+> estructura de entrega de este punto (la del árbol del enunciado). Por eso las rutas de `evidencias/ejecuciones_athena.csv`
+> (`consultas/...`, `resultados/...`) son relativas a `punto1_entregas/`, y todos los comandos se ejecutan desde ahí.
+> Desde la raíz del repositorio la ruta completa es `punto1_entregas/<ruta>`.
+
 ### 4. Etapa final: incorporar el día 3 (solo subir y consultar)
 
 ```bash
