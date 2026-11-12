@@ -2558,3 +2558,1318 @@ code 0)
      nombra así) y hago el último push.
 
 ✻ Baked for 56s · done 6:48 AM
+
+❯ /export SesionClaudeCodeWSL                                                   
+  ⎿  Conversation exported to:
+     /home/pedrolinux/ing_datos/Final/entrega/SesionClaudeCodeWSL.txt
+
+❯ Link cowork: https://claude.ai/share/7d220164-2bf0-4403-8943-dbdcab8e1e74     
+
+● Antes de publicar el export lo muevo a chat_ia/ y lo reviso, porque el repo es
+  público:
+
+● Bash(cd ~/ing_datos/Final/entrega && mv SesionClaudeCodeWSL.txt
+      chat_ia/claude_code_wsl.txt && F=chat_ia/claude_code_wsl.txt && wc -c -l
+      $F && echo "== búsqueda de s…)
+  ⎿    2559 143147 chat_ia/claude_code_wsl.txt
+     == búsqueda de secretos
+     == datos personales
+     0
+  ⎿  2 files changed (binary, mode only or too large to show)
+
+● No hay secretos a la vista (ni llaves AWS, ni tokens de GitHub, ni claves
+  privadas ni correos). Ahora actualizo el índice con el nombre real del archivo
+  y el enlace de Cowork, y luego hago el push final. · summary
+
+● Bash(cd ~/ing_datos/Final/entrega && cat > chat_ia/README.md <<'EOF'
+      # Uso de IA en el examen…)
+  ⎿  M  chat_ia/README.md
+     A  chat_ia/claude_code_wsl.txt
+     ## main...origin/main
+     … +12 lines (ctrl+o to expand)
+  ⎿  Updated chat_ia/README.md (+6 -4)
+       2  
+       3  El enunciado pide adjuntar los chats o hilos usados. Se usaron 
+          dos sesiones de Claude:
+       4  
+       5 -| Sesión | Herramienta | Rol | Export |                        
+       5 +| Sesión | Herramienta | Rol | Hilo adjunto |                  
+       6  |---|---|---|---|
+       7 -| WSL | Claude Code (terminal en WSL, Remote Control) | Todo el
+         - código, Terraform, AWS CLI, Python, dbt/Airflow y git | `claud
+         -e_code_wsl.*` (pendiente: `/export` al final) · enlace: https:/
+         -/claude.ai/code/session_01EycHxF1W36KqrAdeHc6xPS |             
+       8 -| Windows | Claude Cowork + extensión de Chrome | Solo capturas
+         - de la consola de AWS y de Airflow (lectura) | `cowork_capturas
+         -.*` (pendiente) |                                              
+       7 +| WSL | Claude Code (terminal en WSL, con Remote Control) | Tod
+         +o el código, Terraform, AWS CLI, Python, dbt/Airflow y git | [`
+         +claude_code_wsl.txt`](claude_code_wsl.txt) (export con `/export
+         +`) · sesión: https://claude.ai/code/session_01EycHxF1W36KqrAdeH
+         +c6xPS |                                                        
+       8 +| Windows | Claude Cowork + extensión de Chrome | Solo capturas
+         + de la consola de AWS y de Airflow (lectura, sin crear ni borra
+         +r nada) | https://claude.ai/share/7d220164-2bf0-4403-8943-dbdca
+         +b8e1e74 |                                                      
+       9  
+      10 -La sesión de WSL incluye también la preparación previa (FASE 1:
+         - entorno, plantillas, scripts) y la verificación del entorno Do
+         -cker del docente.                                              
+      10 +La sesión de WSL incluye también la preparación previa al exame
+         +n (entorno, plantillas, scripts) y la verificación del         
+      11 +entorno Docker del docente. Las dos sesiones se coordinaron con
+         + archivos compartidos: `CAPTURAS.md` (qué capturar) y          
+      12 +`ESTADO_COWORK.md` (dónde quedaron las capturas).              
+● La entrega quedó completa y subida a GitHub:
+  https://github.com/PedroRVGE/Final_Pedro_Rueda_IngenieriaDatos
+
+  Chats de IA (evita la penalización de −0.5):
+  - chat_ia/claude_code_wsl.txt: el export de esta sesión. Antes de publicarlo
+    lo revisé y no tiene llaves AWS, tokens, claves privadas ni correos.
+  - chat_ia/README.md: índice con el enlace de la sesión de Claude Code y el
+    enlace compartido de Cowork.
+
+  Cómo quedó todo:
+  - Punto 1 (3.0): carpeta punto1_entregas/ con la estructura exacta del
+    enunciado. Los resultados de las dos etapas coinciden con las referencias.
+    Los recursos se eliminaron con Terraform y la cuenta quedó limpia; el gasto
+    va en unos 0.02 USD.
+  - Punto 2 (2.0): carpeta punto2_ventas/ con los 3 archivos modificados, las 8
+    capturas de Airflow, el log del fallo de freshness, el resumen antes y
+    después del bloqueo y las respuestas.
+  - Docker está detenido sin borrar datos. En AWS no quedó nada creado.
+
+  Para entregar, solo falta que mandes el enlace del repo. Es público, así que
+  el profesor puede abrirlo sin que le des acceso.
+
+✻ Sautéed for 29s · done 6:52 AM
+
+❯ Y el de esta sesion SesionClaudeCodeWSL                                       
+    ⎿  Conversation exported to:                                                
+  /home/pedrolinux/ing_datos/Final/entrega/SesionClaudeCodeWSL.txt              
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Sí, ese es el mismo archivo y ya está en GitHub. No aparece con su nombre
+  original porque lo moví a la carpeta de chats y lo renombré:
+
+  SesionClaudeCodeWSL.txt → chat_ia/claude_code_wsl.txt (143 KB)
+
+  Comprobé que está en el repo remoto junto con chat_ia/README.md.
+
+  El export es de las 06:48, así que no incluye los últimos mensajes: la copia
+  del archivo, el enlace de Cowork y esta respuesta. Si quieres el hilo
+  completo:
+  1. Corre otra vez /export SesionClaudeCodeWSL cuando ya no vayamos a hacer
+     nada más.
+  2. Dime "listo" y reemplazo chat_ia/claude_code_wsl.txt con la versión nueva.
+     Antes de subirla vuelvo a buscar secretos.
+
+  También le puedo volver a poner el nombre SesionClaudeCodeWSL.txt si prefieres
+  ese.
+
+✻ Crunched for 11s · done 6:53 AM
+
+❯ Sabes que tambien agreguemos una carpeta PromptsPreparativosFinal, donde      
+  cargaras los .md con los que empezamos INSTRUCCIONES_WSL.md e                 
+  INSTRUCCIONES_COWORK.md para que mi profesor pueda ver como lo prepare si     
+  algo                                                                          
+
+● Bash(cd ~/ing_datos/Final && W="/mnt/c/Users/pedro/Universidad EIA/Semestre
+      6/Ingenieria De Datos/Final" && D=entrega/PromptsPreparativosFinal &&
+      mkdir -p $D && cp I…)
+  ⎿  total 24
+     drwxr-xr-x 2 pedrolinux pedrolinux  4096 Nov 12 06:56 .
+     drwxr-xr-x 7 pedrolinux pedrolinux  4096 Nov 12 06:56 ..
+     … +13 lines (ctrl+o to expand)
+  ⎿  Created PromptsPreparativosFinal/INSTRUCCIONES_COWORK.md (+45 -0)
+       1 +# INSTRUCCIONES — Sesión Cowork + extensión de Chrome (carpeta 
+         +`Final\` de Windows)                                           
+       2 +                                                               
+       3 +> Pedro abre Cowork con esta carpeta y te dice: "lee INSTRUCCIO
+         +NES_COWORK.md y ejecútalo".                                    
+       4 +> Ejecuta la **FASE 1** ahora y quédate esperando. Pedro pondrá
+         + el enunciado en `enunciado\` (hoy vacía)                      
+       5 +> y te avisará: ahí empieza la **FASE 2**.                     
+       6 +                                                               
+       7 +## Contexto                                                    
+       8 +- Examen final de Ingeniería de Datos (EIA 2026-2), AWS + Terra
+         +form. Se permite usar Claude.                                  
+       9 +- Tu ÚNICO rol: tomar capturas de evidencia en la consola de AW
+         +S con Chrome.                                                  
+      10 +  **Nunca crees, modifiques ni borres nada** y no hagas clic en
+         + eliminar, detener, modificar ni en asistentes de creación.    
+      11 +  Todo el código y los recursos los maneja otra sesión: Claude 
+         +Code en WSL.                                                   
+      12 +- Región: **us-east-2 (Ohio)**. Pedro deja iniciada la consola 
+         +de AWS con su usuario IAM (no root).                           
+      13 +- La sesión de WSL te deja en esta carpeta `CAPTURAS.md` (lista
+         + de capturas con URL, clics, qué debe verse y nombre de archivo
+         +).                                                             
+      14 +  Tú escribes aquí `ESTADO_COWORK.md`, que la sesión de WSL lee
+         + para saber dónde quedan tus capturas.                         
+      15 +- Todo lo que necesites debería estar instalado ya; en el exame
+         +n se puede descargar algo si hace falta, pero la idea es no nec
+         +esitarlo.                                                      
+      16 +                                                               
+      17 +---                                                            
+      18 +                                                               
+      19 +## FASE 1 — Preparación (ejecutar ya)                          
+      20 +                                                               
+      21 +1. Verifica que la extensión de Chrome responde: lista las pest
+         +añas y abre una nueva.                                         
+      22 +2. Abre https://us-east-2.console.aws.amazon.com/console/home?r
+         +egion=us-east-2 y confirma que hay sesión iniciada, con qué usu
+         +ario                                                           
+      23 +   y en qué región. Si no hay sesión, pídele a Pedro que inicie
+         + sesión (tú no escribes contraseñas).                          
+      24 +3. Prueba capturar 3 páginas de solo lectura de la consola: la 
+         +lista de buckets de S3, el panel de IAM y Billing/Cost Explorer
+         +.                                                              
+      25 +   Para cada una, averigua y anota **dónde queda guardado el ar
+         +chivo en Windows** (carpeta exacta y nombre que le pone).      
+      26 +   Si alguna no se puede capturar, anota cuál y por qué.       
+      27 +4. Escribe `ESTADO_COWORK.md` con: usuario y región de la conso
+         +la, carpeta exacta donde caen las capturas,                    
+      28 +   cómo se llaman los archivos, qué páginas no se pudieron capt
+         +urar.                                                          
+      29 +5. Cuando la sesión de WSL deje un `CAPTURAS.md` de prueba (FAS
+         +E 1, paso 11 de la otra sesión), ejecútalo como en la FASE 2   
+      30 +   y avísale a Pedro para que diga "listo" a la otra sesión.   
+      31 +6. Dile a Pedro: "FASE 1 lista, esperando el enunciado" con un 
+         +resumen de 3 líneas.                                           
+      32 +                                                               
+      33 +---                                                            
+      34 +                                                               
+      35 +## FASE 2 — Examen (cuando Pedro avise que el enunciado está en
+         + `enunciado\`)                                                 
+      36 +                                                               
+      37 +0. Lee el enunciado completo y anota qué evidencias pide (es la
+         + única fuente de verdad). Espera a que aparezca `CAPTURAS.md`  
+      38 +   (lo escribe la sesión de WSL con los nombres exactos de los 
+         +recursos); si el enunciado pide algo que no está en la lista, d
+         +íselo a Pedro.                                                 
+      39 +1. Lee `CAPTURAS.md`. Para cada captura sin marcar: pestaña nue
+         +va → URL (us-east-2) → clics indicados → comprueba que se vea l
+         +o que dice                                                     
+      40 +   "Qué TIENE que verse" → toma la captura.                    
+     … 5 more lines (ctrl+o to expand)
+  ⎿  Created PromptsPreparativosFinal/INSTRUCCIONES_WSL.md (+127 -0)
+        1 +# INSTRUCCIONES — Sesión Claude Code en WSL (`~/ing_datos/Fina
+          +l`)                                                           
+        2 +                                                              
+        3 +> Pedro copia este archivo a `~/ing_datos/Final` y te dice: "l
+          +ee INSTRUCCIONES_WSL.md y ejecútalo".                         
+        4 +> Ejecuta la **FASE 1** completa ahora y quédate esperando. Pe
+          +dro pondrá el enunciado en `./enunciado/` (hoy vacía)         
+        5 +> y te avisará: ahí empieza la **FASE 2**.                    
+        6 +                                                              
+        7 +## Contexto                                                   
+        8 +- Examen final de Ingeniería de Datos (EIA 2026-2), AWS + Terr
+          +aform. Se permite usar Claude.                                
+        9 +- Tu rol: TODO el código, Terraform, AWS CLI, Python, git. La 
+          +otra sesión (Cowork + extensión de Chrome, en Windows)        
+       10 +  solo toma capturas de la consola de AWS; nunca crea ni borra
+          + recursos.                                                    
+       11 +- Pedro te maneja por Remote Control desde el navegador. La te
+          +rminal queda abierta: si se cae la conexión, sigue ahí.       
+       12 +- Región: **us-east-2**. Perfil AWS: **taller** (usuario IAM P
+          +edroRuedaNubeIngData; su región por defecto es us-east-1, así 
+          +que SIEMPRE forzar AWS_REGION=us-east-2). Tope de gasto: **5 U
+          +SD**. Toda prueba en la nube termina con destroy + verificació
+          +n.                                                            
+       13 +- Internet de la universidad: hablar con AWS sí funciona, desc
+          +argar (pip, npm, conda, terraform init) puede fallar.         
+       14 +  **En el examen se puede descargar si hace falta, pero la met
+          +a es no necesitarlo**: todo se descarga en la FASE 1.         
+       15 +- Carpeta de Windows de la otra sesión:                       
+       16 +  `WIN="/mnt/c/Users/pedro/Universidad EIA/Semestre 6/Ingenier
+          +ia De Datos/Final"`                                           
+       17 +  Ahí solo escribes `CAPTURAS.md` (copia) y lees `ESTADO_COWOR
+          +K.md`. El enunciado NO lo tomas de ahí: lo lees de tu `./enunc
+          +iado/`.                                                       
+       18 +- `Tips-Terraform-AWS.md`: errores que otro Claude cometió en 
+          +el taller anterior. Úsalo SOLO para reconocerlos y evitarlos. 
+       19 +  No es requisito ni fuente de verdad. La única fuente de verd
+          +ad es el enunciado del examen.                                
+       20 +                                                              
+       21 +---                                                           
+       22 +                                                              
+       23 +## FASE 1 — Preparación (ejecutar ya, con buen internet)      
+       24 +                                                              
+       25 +1. **Archivos base.** Crea `./enunciado/` vacía si no existe. 
+          +Si no está `./Tips-Terraform-AWS.md`, cópialo desde           
+       26 +   `"$WIN/Tips-Terraform-AWS.md"` y léelo.                    
+       27 +                                                              
+       28 +2. **Herramientas** (sin sudo si se puede; Terraform ya estaba
+          + en `~/.local/bin`). Verifica/instala y reporta versiones:    
+       29 +   terraform, aws cli v2, session-manager-plugin, gh, git, mak
+          +e, jq, zip/unzip, conda, docker.                              
+       30 +   Comprueba `aws sts get-caller-identity --profile taller`. S
+          +i no existe el perfil, PARA y pídele a Pedro que corra        
+       31 +   `aws configure --profile taller` (región us-east-2). Nunca 
+          +escribas llaves en archivos.                                  
+       32 +   (Si es AWS Academy, las credenciales vencen por sesión de l
+          +ab: deja anotado cómo renovarlas.)                            
+       33 +                                                              
+       34 +3. **Entorno conda `final` (Python 3.12)** — todas las librerí
+          +as del examen viven aquí:                                     
+       35 +   - pip dentro del entorno: boto3, pandas, pyarrow, duckdb, p
+          +sycopg2-binary, redshift_connector, sqlalchemy, pymongo,      
+       36 +     gremlinpython, redis, neo4j, requests, feedparser, python
+          +-dotenv, pyspark, awswrangler, pytest, moto[all],             
+       37 +     jupyter, ipykernel, pillow, matplotlib, dbt-core, dbt-red
+          +shift, dbt-duckdb.                                            
+       38 +   - `conda env config vars set AWS_PROFILE=taller AWS_REGION=
+          +us-east-2 AWS_DEFAULT_REGION=us-east-2 TF_PLUGIN_CACHE_DIR=$HO
+          +ME/.terraform.d/plugin-cache`                                 
+       39 +   - Guarda `requirements.txt` (pip freeze) y `environment.yml
+          +`.                                                            
+       40 +   - Respaldo offline: `pip download -r requirements.txt -d .l
+          +ocal/wheelhouse` y PRUEBA en un entorno temporal              
+     … 87 more lines (ctrl+o to expand)
+
+● Los dos archivos están limpios: solo mencionan la palabra "contraseña" en las
+  reglas, no hay ninguna real. Agrego un README breve a la carpeta y la enlazo
+  desde el README principal:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● La carpeta PromptsPreparativosFinal/ ya está en el repo, con un README corto y
+  enlazada desde el README principal. Lleva los dos archivos con los que
+  arrancamos:
+  - INSTRUCCIONES_WSL.md, la que preparó esta sesión.
+  - INSTRUCCIONES_COWORK.md, la de capturas. La tomé de tu carpeta de Windows.
+
+  Antes de subirlos los revisé y no tienen contraseñas, llaves ni correos. En el
+  README de la carpeta dejé anotado que INSTRUCCIONES_WSL.md no es exactamente
+  el original: el perfil de AWS dice taller y no final, porque lo cambié durante
+  la preparación.
+
+  Repo: https://github.com/PedroRVGE/Final_Pedro_Rueda_IngenieriaDatos
+
+  Si después quieres el hilo completo de esta sesión, corre /export 
+  SesionClaudeCodeWSL y te reemplazo el de chat_ia/.
+
+✻ Worked for 23s · done 6:57 AM
+
+❯ y en las capturas no quedo nada que sea peligroso? Apenas me respondas        
+  revisamos bien enunciado vs lo que nosotros hicimos para asegurarnos que no   
+  falte nada, hasta lo que he visto esta bien pero no te confies, arma una      
+  tabla enunciado vs entregado                                                  
+
+● Las reviso una por una. Son 21 imágenes: 10 de la consola de AWS y 11 de
+  Airflow.
+
+  Read 16 files (ctrl+o to expand)
+
+● Revisé las 21 capturas: no contienen llaves, tokens, contraseñas ni sesiones,
+  solo el ID de cuenta AWS y un nombre parcial de bucket, que no permiten
+  acceder. Ahora reviso los textos de evidencias y hago las verificaciones de la
+  tabla. · summary
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+● Tampoco hay credenciales reales en los textos. Lo único que aparece son claves
+  de demostración que ya son públicas: estudiante / examen-local, que publica
+  el profe en su README, y mysql_root_local y la fernet AAAA…, que vienen en el
+  env_file público de DE-DW. No hay que tocar nada.
+
+  Punto 1: Entregas (3.0)
+
+  #: 1
+  Exige el enunciado: Repo con README de prerrequisitos y pasos, más .gitignore
+    (credenciales, tfstate, .terraform/)
+  Entregado: punto1_entregas/README.md y .gitignore; en el repo no hay tfstate,
+    planes ni .env
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 2
+  Exige el enunciado: principal.tf con configuración de Terraform, proveedor y
+    recursos, incluida la proyección
+  Entregado: Sí, aws 6.72.0 fijado y todos los recursos
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 3
+  Exige el enunciado: variables.tf y salidas.tf
+  Entregado: 10 variables; outputs de bucket, base, tabla y workgroup (más ARN y
+
+    ubicaciones)
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 4
+  Exige el enunciado: Bucket privado con bloqueo de acceso público
+  Entregado: Bloqueo público, sin ACL, SSE-S3
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 5
+  Exige el enunciado: Prefijos entregas/ y resultados-athena/
+  Entregado: Sí, sin "carpetas" creadas a mano
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 6
+  Exige el enunciado: Base de Glue
+  Entregado: final_entregas_db
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 7
+  Exige el enunciado: Tabla: 5 columnas en orden y con tipos; coma; omitir
+    encabezado
+  Entregado: id_envio … duracion_minutos int, LazySimpleSerDe,
+    skip.header.line.count=1 (captura p1_05)
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 8
+  Exige el enunciado: fecha como partición string, separada de las columnas
+  Entregado: Sí
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 9
+  Exige el enunciado: Proyección date, yyyy-MM-dd, intervalo 1 día, rango 01→03
+    desde el inicio
+  Entregado: Sí (tabla_glue.json, capturas p1_04)
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 10
+  Exige el enunciado: Ruta s3://<bucket>/entregas/fecha=<fecha>/entregas.csv,
+    plantilla terminada en /
+  Entregado: storage.location.template = …/entregas/fecha=${fecha}/
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 11
+  Exige el enunciado: Workgroup con resultados en resultados-athena/
+  Entregado: final-entregas-wg, configuración forzada (p1_06)
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 12
+  Exige el enunciado: Sin particiones individuales ni ajustes hechos solo en
+    consola
+  Entregado: 0 particiones en el catálogo antes y después
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 13
+  Exige el enunciado: aplicacion_terraform.txt y outputs.json
+  Entregado: Plan y apply completos; outputs en JSON
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 14
+  Exige el enunciado: Cargar solo días 1 y 2, sin subida recursiva
+  Entregado: aws s3 cp archivo por archivo
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 15
+  Exige el enunciado: 12 registros consultables en la etapa inicial
+  Entregado: verificacion_etapa_inicial.csv: 12 registros, 0 del día 3
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 16
+  Exige el enunciado: 3 consultas .sql con los nombres de columna pedidos
+  Entregado: Sí, 4 decimales y división no entera resueltos
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 17
+  Exige el enunciado: resultados/inicial/*.csv comparados con las referencias
+  Entregado: 6, 4 y 1 filas; diff vacío en los 3
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 18
+  Exige el enunciado: ejecuciones_athena.csv con columnas, etapa y rutas
+    relativas
+  Entregado: 4 inicial + 5 final; todos los archivos citados existen
+  Estado: ⚠️ ver A
+  ────────────────────────────────────────
+  #: 19
+  Exige el enunciado: Día 3 sin tocar infraestructura (sin crawler, MSCK, ADD
+    PARTITION ni cambio de rango)
+  Entregado: terraform plan sin cambios; solo aws s3 cp
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 20
+  Exige el enunciado: 6 registros del día 3, total de 18 y conteos por estado
+  Entregado: verificacion_tercer_dia*.csv (6 / 3 / 1 filas)
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 21
+  Exige el enunciado: Repetir intentos y porcentaje; resultados/final comparado
+  Entregado: 9 y 6 filas, diff vacío
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 22
+  Exige el enunciado: verificacion_tercer_dia.sql; resultados extra en CSV
+    separados
+  Entregado: Sí: 3 consultas y 3 CSV
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 23
+  Exige el enunciado: No subir resultados_esperados/ a S3; datos sin modificar
+  Entregado: Nunca se subieron; data/ y resultados_esperados/ idénticos al
+    enunciado; CSV en LF sin BOM
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 24
+  Exige el enunciado: respuestas.md con las 2 preguntas, en palabras propias y
+    con evidencia
+  Entregado: Sí; la 2 se comprobó en Athena (fecha fuera de rango → 0 filas)
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 25
+  Exige el enunciado: Guardar evidencias antes del destroy y vaciar el bucket
+  Entregado: Commit b048ce5 antes del destroy; force_destroy
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 26
+  Exige el enunciado: eliminacion_terraform.txt y limpieza documentada en el
+    README
+  Entregado: 7 recursos destruidos, verificación por CLI y
+    verificar_cuenta_limpia
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 27
+  Exige el enunciado: Enlace del repo con acceso para el docente
+  Entregado: Repo público
+  Estado: ✅
+
+  Punto 2: Ventas (2.0)
+
+  #: 1
+  Exige el enunciado: Modificar solo los 3 archivos
+  Entregado: git status del repo del profe muestra solo esos 3; los de la
+  entrega
+    son idénticos
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 2
+  Exige el enunciado: Conservar .env y no hacer down -v
+  Entregado: Copiado del ZIP; solo stop
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 3
+  Exige el enunciado: ventas_diarias con una fila por fecha, 4 columnas,
+    ref('stg_ventas'), precisión decimal
+  Entregado: 46.00 / 51.25 / 12.40
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 4
+  Exige el enunciado: dbt build con todas las pruebas en verde
+  Entregado: PASS=19, ERROR=0
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 5
+  Exige el enunciado: Freshness con _loaded_at: 12 h aviso, 24 h error; sintaxis
+
+    1.9 fuera de config
+  Entregado: Sí
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 6
+  Exige el enunciado: Tarea nueva con run_dbt antes de construir_resumen,
+    all_success, sin --warn-error
+  Entregado: comprobar_frescura >> construir_resumen
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 7
+  Exige el enunciado: Escenario actualizada: Trigger, las dos tareas en success,
+
+    freshness primero, logs revisados
+  Entregado: Capturas 01–04 y logs .log
+  Estado: ⚠️ ver C
+  ────────────────────────────────────────
+  #: 8
+  Exige el enunciado: Captura con Run ID y estados
+  Entregado: Captura 02: manual__actualizada_…, success
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 9
+  Exige el enunciado: Resumen consultado y guardado
+  Entregado: resumen_antes_bloqueo.txt
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 10
+  Exige el enunciado: Escenario desactualizada en una ejecución nueva, sin Clear
+  Entregado: Ejecución nueva manual__desactualizada_…
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 11
+  Exige el enunciado: freshness failed, build upstream_failed
+  Entregado: Capturas 05 y 06
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 12
+  Exige el enunciado: Log de freshness que muestra el motivo
+  Entregado: Captura 07: CalledProcessError … exit status 1. El texto ERROR 
+  STALE
+    (30 h) está solo en .txt
+  Estado: ⚠️ ver B
+  ────────────────────────────────────────
+  #: 13
+  Exige el enunciado: Build sin intento nuevo ni INICIO dbt
+  Entregado: Captura 08 (3 partes): duración 0 y log vacío; try_number 0; el
+    último build en run_results es del escenario 1
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 14
+  Exige el enunciado: Resumen igual después del bloqueo, más estados de Airflow
+    como evidencia
+  Entregado: diff vacío y estados_*.txt
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 15
+  Exige el enunciado: Escenario advertencia
+  Entregado: No se hizo (es opcional)
+  Estado: ➖
+  ────────────────────────────────────────
+  #: 16
+  Exige el enunciado: Documento con las 2 respuestas
+  Entregado: respuestas.md
+  Estado: ✅
+  ────────────────────────────────────────
+  #: 17
+  Exige el enunciado: No incluir imágenes Docker, volúmenes ni credenciales
+  Entregado: Ninguna
+  Estado: ✅
+
+  General
+
+  ┌──────────────────┬─────────────────────────────────────────────┬────────┐
+  │      Exige       │                  Entregado                  │ Estado │
+  ├──────────────────┼─────────────────────────────────────────────┼────────┤
+  │ Adjuntar los     │ chat_ia/claude_code_wsl.txt, enlace de      │ ⚠️ ver │
+  │ chats (−0.5 si   │ Cowork y prompts de preparación             │  D     │
+  │ no)              │                                             │        │
+  └──────────────────┴─────────────────────────────────────────────┴────────┘
+
+  Puntos a decidir
+
+  - A. Rutas relativas: el enunciado pide rutas "relativas a la raíz del
+    repositorio". Las nuestras son relativas a punto1_entregas/, que es la raíz
+    de la estructura de entrega, porque el repo tiene 2 carpetas. Propongo
+    agregar una línea en el README que lo aclare, en vez de cambiar las rutas,
+    porque así siguen coincidiendo con el árbol del enunciado.
+  - B. Motivo del fallo en imagen: el log de Airflow solo dice "exit status 1";
+    el motivo (ERROR STALE, 30 h > 24 h) no sale ahí porque la función del profe
+    no captura la salida de dbt. Lo tenemos en texto. Propongo agregar una
+    imagen hecha con salida_a_imagen.sh a partir de esa salida, marcada como
+    salida de CLI.
+  - C. Trigger: disparé las ejecuciones por CLI (airflow dags trigger), no con
+    el botón, aunque el tipo de ejecución es el mismo ("manual") y está
+    documentado. Riesgo bajo.
+  - D. Export del chat: el actual llega hasta las 06:48. Hay que repetir /export
+    al final.
+  - Opcional: el escenario advertencia toma unos 3 minutos con Docker y no se
+    exige evidencia.
+
+  ¿Aplico A y B? Del escenario advertencia, dime si lo quieres.
+
+✻ Worked for 1m 39s · done 7:01 AM
+
+❯ sí aplica A y B, y haz también el de advertencia. C lo entederemos mas a      
+  profundidad y pues D no importa porque lo entregaremos al final               
+
+● Arranco por A y B, que no necesitan Docker:
+
+● Bash(cd ~/ing_datos/Final/entrega && python3 - <<'EOF'
+      p='punto1_entregas/README.md'; s=open(p).read()…)
+  ⎿  96:> **Rutas relativas.** El repositorio de entrega contiene los dos p
+     untos del examen; `punto1_entregas/` es la raíz de la
+     PNG: punto2_ventas/evidencias/capturas/07-ventas-desactualizada-motivo
+     -dbt_parte3.png (2016, 336)
+  ⎿  Updated punto1_entregas/README.md (+5 -0)
+       93  Resultado: **12 registros** (2 fechas con datos, 0 del 2026-10
+           -03 aunque ya está en el rango) y los tres `diff` vacíos:
+       94  los resultados son idénticos a las referencias.
+       95  
+       96 +> **Rutas relativas.** El repositorio de entrega contiene los 
+          +dos puntos del examen; `punto1_entregas/` es la raíz de la    
+       97 +> estructura de entrega de este punto (la del árbol del enunci
+          +ado). Por eso las rutas de `evidencias/ejecuciones_athena.csv`
+       98 +> (`consultas/...`, `resultados/...`) son relativas a `punto1_
+          +entregas/`, y todos los comandos se ejecutan desde ahí.       
+       99 +> Desde la raíz del repositorio la ruta completa es `punto1_en
+          +tregas/<ruta>`.                                               
+      100 +                                                              
+      101  ### 4. Etapa final: incorporar el día 3 (solo subir y consulta
+           r)
+      102  
+      103  ```bash
+  ⎿  Created punto2_ventas/evidencias/motivo_error_freshness.txt (+13 -0)
+       1 +Salida de dbt durante la tarea comprobar_frescura (run manual__
+         +desactualizada_20261112T113710)                                
+       2 +Fuente: docker compose logs airflow (stdout del contenedor) — r
+         +un_dbt no captura la salida de dbt en el log de la tarea       
+       3 +                                                               
+       4 +11:37:19  Running with dbt=1.9.4                               
+       5 +11:37:20  Found 2 models, 17 data tests, 1 source, 426 macros  
+       6 +11:37:20  1 of 1 START freshness of ventas_raw.ventas .........
+         +........................... [RUN]                              
+       7 +11:37:20  1 of 1 ERROR STALE freshness of ventas_raw.ventas ...
+         +........................... [ERROR STALE in 0.02s]             
+       8 +11:37:20  Done.                                                
+       9 +[2026-11-12T11:37:21.814+0000] {dagrun.py:823} ERROR - Marking 
+         +run <DagRun examen_ventas @ 2026-11-12 11:37:13+00:00: manual__
+         +desactualizada_20261112T113710, state:running, queued_at: 2026-
+         +11-12 11:37:13.999160+00:00. externally triggered: True> failed
+      10 +                                                               
+      11 +Detalle de sources.json (bash scripts/examen.sh artifacts):    
+      12 +  source.examen_ventas.ventas_raw.ventas  status=error         
+      13 +  max_loaded_at=2026-11-11T05:37:09Z  antigüedad=30.0 h  (warn_
+         +after 12 h, error_after 24 h)                                  
+  ⎿  … 1 more file changed
+
+  Read 1 file (ctrl+o to expand)
+
+● Ahora dispararé el escenario de advertencia sin --run-id, para que Airflow
+  asigne el mismo tipo de identificador que el botón. · summary
+
+● Bash(cd ~/ing_datos/Final/enunciado/DE-Final-Ventas &&
+      EV=~/ing_datos/Final/entrega/punto2_ventas/evidencias && docker compose up
+      -d --wait airflow 2>&1 | tail -1 &&…)
+  ⎿   Container examen-ventas-airflow-1 Healthy
+     {
+       "scenario": "advertencia",
+     … +13 lines (ctrl+o to expand)
+  ⎿  Created punto2_ventas/evidencias/estados_advertencia.txt (+0 -0)
+  ⎿  Created punto2_ventas/evidencias/dbt_freshness_advertencia_stdout.txt
+     (+6 -0)
+      1 +12:04:01  Running with dbt=1.9.4                                
+      2 +12:04:02  1 of 1 START freshness of ventas_raw.ventas ..........
+        +.......................... [RUN]                                
+      3 +12:04:02  1 of 1 WARN freshness of ventas_raw.ventas ...........
+        +.......................... [WARN in 0.02s]                      
+      4 +12:04:02  Done.                                                 
+      5 +12:04:07  Running with dbt=1.9.4                                
+      6 +12:04:08  Done. PASS=19 WARN=0 ERROR=0 SKIP=0 TOTAL=19          
+  ⎿  Created punto2_ventas/evidencias/escenario_advertencia.json (+1 -0)
+      1 +{"scenario": "advertencia", "rows": 6, "max_loaded_at": "2026-11
+        +-11T18:03:52.508327+00:00"}                                     
+  ⎿  (timeout 10m)
+
+● dbt ya muestra el resultado esperado, WARN freshness y luego PASS=19, pero el
+  Run ID se me cortó en la tabla de la CLI. Lo voy a sacar directo de la base de
+  Airflow y a volver a revisar los estados. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● El escenario de advertencia funcionó como esperaba, con el Run ID
+  manual__2026-11-12T12:03:56+00:00. Ahora agrego esto al README del punto 2 y
+  subo los cambios. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Listo: apliqué A y B, corrí el escenario de advertencia y ya está todo subido
+  al repo.
+
+  A, rutas relativas: agregué una nota en el README del punto 1, en la sección
+  de la etapa final. Dice que las rutas de ejecuciones_athena.csv son relativas
+  a punto1_entregas/, que es la raíz de la estructura de entrega de ese punto.
+  Desde la raíz del repo, la ruta completa es punto1_entregas/<ruta>.
+
+  B, motivo del fallo en imagen: agregué
+  07-ventas-desactualizada-motivo-dbt_parte3.png. Muestra ERROR STALE freshness 
+  of ventas_raw.ventas y la antigüedad de 30 h frente al límite de 24 h. En la
+  imagen y en el README está marcado como salida de consola convertida a imagen,
+  no como captura de Airflow. El texto original está en
+  motivo_error_freshness.txt.
+
+  Escenario de advertencia (opcional):
+  - Run ID manual__2026-11-12T12:03:56+00:00. Esta vez Airflow le puso el
+    identificador por defecto, el mismo formato que deja el botón Trigger DAG.
+  - Carga de hace unas 18 h, así que dbt dio WARN freshness y aun así terminó
+    bien.
+  - La revisión de frescura y la construcción del resumen quedaron en success, y
+    el build corrió con PASS=19.
+  - El resumen no cambió.
+  - Las evidencias (estados, logs, salida de dbt y resumen) están en
+    punto2_ventas/evidencias/, con su sección en el README.
+  - No hice capturas de este escenario, porque el enunciado no las pide.
+
+  Docker quedó detenido con stop y los datos se conservan. En AWS no hay nada
+  creado.
+
+  Quedan dos cosas:
+  - C: lo vemos cuando quieras.
+  - D: al final corres /export SesionClaudeCodeWSL y reemplazo el archivo en
+    chat_ia/.
+
+✻ Brewed for 8m 25s · done 7:11 AM
+
+❯ Decisión sobre C: repetimos los 2 escenarios con el botón Trigger DAG, como   
+  dice el README. No borres nada de la entrega actual hasta que lo nuevo esté   
+  completo; si algo falla, se entrega como está.                                
+  Cowork propone, tu que propones?                                              
+  1. Confirma que no hay tareas en ejecución y corre: bash scripts/examen.sh    
+  scenario actualizada                                                          
+  2. Avísame "listo para Trigger 1". Yo pulso Trigger DAG en la interfaz. NO    
+  dispares nada por CLI.                                                        
+  3. Cuando termine (2 en success), anota el Run ID nuevo (será                 
+  manual__2026-11-12T...), guarda logs, estados y la consulta del resumen.      
+  4. Corre: bash scripts/examen.sh scenario desactualizada. Sin build manual en 
+  medio. Avísame "listo para Trigger 2" y yo pulso el botón.                    
+  5. Cuando termine (freshness failed, build upstream_failed), guarda el log de 
+  freshness, los intentos de build, los estados y el resumen después (debe ser  
+  igual al anterior).                                                           
+  6. Reescribe CAPTURAS.md con los Run ID nuevos y los mismos 8 ítems. Al final 
+  del README del punto 2, deja claro cuáles son las ejecuciones oficiales (las  
+  del botón) y que las 2 primeras (CLI, run_id                                  
+  manual__actualizada_/desactualizada_) fueron una prueba previa equivalente.   
+  7. Cuando reemplaces las evidencias del punto 2, deja las de la prueba CLI en 
+  una subcarpeta (ej. evidencias/prueba_cli/) o bórralas. Que no queden         
+  mezcladas. Yo propongo dejarlas y documentar en el readme que fue lo que paso 
+  con un comentario corto.                                                      
+
+● El plan de Cowork me parece bien y lo sigo tal cual. Le agrego cinco cosas:
+
+  1. Carpeta aparte para lo nuevo. Las evidencias nuevas se guardan primero en
+     evidencias/_oficial_tmp/. Solo cuando todo esté completo muevo lo actual a
+     evidencias/prueba_cli/ y lo nuevo pasa a evidencias/. Si algo falla en el
+     camino, la entrega queda como está.
+  2. Detecto la ejecución del botón, no la adivino. Antes de cada Trigger anoto
+     qué ejecuciones existen. Después espero la que sea nueva, de tipo manual, y
+     verifico que no la haya disparado yo.
+  3. Artifacts de cada escenario. Guardo los artifacts (sources.json /
+     run_results.json) antes de preparar el siguiente escenario, porque se
+     sobrescriben. También regenero la imagen del motivo ERROR STALE con el Run
+     ID nuevo.
+  4. El escenario advertencia también se hizo por CLI. Propongo pasarlo a
+     prueba_cli/, y si quieres hacemos un Trigger 3 opcional con el botón. Son
+     unos 2 minutos.
+  5. En el README dejo una nota corta, como propones: las ejecuciones oficiales
+     son las del botón, y las de CLI fueron una prueba previa equivalente que se
+     conserva en prueba_cli/.
+
+  Paso 1: levanto Airflow, confirmo que no hay nada corriendo y preparo el
+  escenario actualizada:
+
+● Bash(cd ~/ing_datos/Final/enunciado/DE-Final-Ventas && mkdir -p
+      ~/ing_datos/Final/entrega/punto2_ventas/evidencias/_oficial_tmp && docker
+      compose up -d --wait airflo…)
+  ⎿   Container examen-ventas-airflow-1 Healthy
+     DAG pausado: False
+     runs activos: 0
+     … +9 lines (ctrl+o to expand)
+  ⎿  Created
+     punto2_ventas/evidencias/_oficial_tmp/escenario_actualizada.json (+1 
+     -0)
+      1 +{"scenario": "actualizada", "rows": 6, "max_loaded_at": "2026-11
+        +-12T10:12:45.743556+00:00"}                                     
+  ⎿  (timeout 5m)
+
+● No hay nada corriendo y el DAG está activo con 3 ejecuciones previas; el
+  escenario actualizada se cargó hace 2 h. Dejo un vigilante en segundo plano
+  que avisará cuando termine la ejecución nueva que lances con el botón. 
+  · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+● Listo para Trigger 1.
+
+  Abre http://localhost:8080 y entra con estudiante / examen-local. En el DAG
+  examen_ventas, pulsa el ▶ Trigger DAG. Si te pide configuración, deja todo
+  como está y confirma. Espera a que las dos tareas queden en verde.
+
+  Yo no disparo nada: solo estoy esperando a que aparezca tu ejecución, y apenas
+  termine guardo las evidencias.
+
+✻ Sautéed for 47s · done 7:12 AM
+
+● Background command "cd ~/ing_datos/Final/enunciado/DE-Final-Ventas && for i in
+$(seq 1 180); do out=$(docker compose exec -T airflow python -c " from
+airflow.models import DagRun; from airflow.settings import Session
+viejos={'manual__desactualizada_20261112T113710','manual__actualizada_20261112T1
+13547','manual__2026-11-12T12:03:56+00:00'} n=[r for r in
+Session().query(DagRun).filter(DagRun.dag_id=='examen_ventas') if r.run_id not
+in viejos] print('
+'.join(f'{r.run_id}|{r.run_type}|{r.state}|{r.external_trigger}' for r in n))"
+2>/dev/null | tail -1); case "$out" in *"|success|"*|*"|failed|"*) echo "NUEVO
+RUN: $out"; break;; esac; sleep 5; done; [ -z "$out" ] && echo "sin run nuevo
+tras 15 min"" failed with exit code 1
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● El vigilante sí encontró tu ejecución: la de disparo manual en success,
+  distinguida por sus microsegundos. Guardo estados, logs, resumen y artifacts a
+  continuación. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● El primer trigger terminó bien: freshness PASS y build con PASS=19, disparado
+  desde la interfaz y con el resumen guardado. Ahora preparo desactualizada sin
+  build previo y vuelvo a dejar el vigilante activo. · summary
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Listo para Trigger 2.
+
+  La fuente quedó desactualizada: última carga el 11/11 a las 06:14 UTC, hace
+  unas 30 h. No hay tareas corriendo y no ejecuté ningún build en medio.
+
+  Pulsa otra vez ▶ Trigger DAG en examen_ventas para crear una ejecución nueva.
+  No uses Clear sobre la anterior. Debería quedar comprobar_frescura en rojo
+  (failed) y construir_resumen en naranja (upstream_failed). El vigilante ya
+  está esperando.
+
+✻ Brewed for 41s · done 7:14 AM
+
+● Background command "cd ~/ing_datos/Final/enunciado/DE-Final-Ventas && out="";
+for i in $(seq 1 180); do out=$(docker compose exec -T airflow python -c " from
+airflow.models import DagRun; from airflow.settings import Session viejos={'manu
+al__desactualizada_20261112T113710','manual__actualizada_20261112T113547','manua
+l__2026-11-12T12:03:56+00:00','manual__2026-11-12T12:13:27.061735+00:00'} n=[r
+for r in Session().query(DagRun).filter(DagRun.dag_id=='examen_ventas') if
+r.run_id not in viejos] print('
+'.join(f'{r.run_id}|{r.run_type}|{r.state}|{r.external_trigger}' for r in n))"
+2>/dev/null | tail -1); case "$out" in *"|success|"*|*"|failed|"*) echo "NUEVO
+RUN: $out"; exit 0;; esac; sleep 5; done; echo "sin run nuevo tras 15 min:
+$out"" completed (exit code 0)
+
+  Read 1 file (ctrl+o to expand)
+
+● Llegó Trigger 2: manual__2026-11-12T12:15:02.076887+00:00 → failed. Guardo
+  todas sus evidencias: estados, intentos, log de freshness, motivo según dbt,
+  artifacts y el resumen después:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Trigger 2 salió como pedía el enunciado: freshness quedó failed por ERROR
+  STALE y build quedó upstream_failed sin ejecutarse, con el resumen intacto.
+  Ahora regenero la imagen del motivo y reescribo CAPTURAS.md con los Run ID
+  nuevos. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Las dos ejecuciones oficiales están listas. Ya dejé en Windows el CAPTURAS.md
+  nuevo:
+  - Las 8 casillas están desmarcadas y apuntan a los Run ID oficiales.
+  - Las URLs llevan el Run ID codificado, porque los : y el + romperían el
+    enlace. Comprobé que responden (302, que es la redirección al login).
+  - Al inicio hay una nota para Cowork: guardar las nuevas en
+    capturas_cowork\oficial\, así no se mezclan con las de la prueba por CLI.
+    Ahí la grilla tiene 5 columnas y las oficiales son las dos últimas.
+
+  Todo lo nuevo está en evidencias/_oficial_tmp/; las evidencias de la entrega
+  siguen intactas. También regeneré la imagen del motivo ERROR STALE con el Run
+  ID oficial.
+
+  Ahora te toca:
+  1. Pídele a Cowork que relea CAPTURAS.md y tome las 8. Docker queda encendido.
+  2. Trigger 3 (advertencia), opcional: ¿lo hacemos con el botón para que el
+     escenario advertencia también sea oficial? Si me dices que sí, preparo el
+     escenario y te aviso "listo para Trigger 3". Si no, la versión por CLI
+     queda en prueba_cli/ como referencia.
+
+  Cuando Cowork termine, dime "mueve las capturas". Ahí hago el cambio:
+  - lo actual pasa a evidencias/prueba_cli/;
+  - lo oficial pasa a evidencias/;
+  - el README queda con la nota corta sobre las ejecuciones.
+
+✻ Sautéed for 48s · done 7:16 AM
+
+※ recap: Estamos rehaciendo el punto 2 del examen con ejecuciones oficiales lanzadas desde el botón Trigger DAG, y ambas ya quedaron bien. Ahora falta que Cowork tome las 8 capturas nuevas según CAPTURAS.md y que decidas si hacemos el Trigger 3 de advertencia. (disable recaps in /config)
+
+❯ mueve las capturas, el trigger 3 no es necesario. Quiero que dejemos todo     
+  listo para entregar, tambien asegurate de que el gitignore este bien y al     
+  gitignore agregale un comentario pequeño "se crea para dejar la entrega       
+  limpia". Luego revisamos bien que todo haya quedado listo para la entrega, no 
+  vi instrucciones para el nombre del repo entonces entregamos con este nombre  
+  que opinas? queda algo pendiente?                                             
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Las 11 imágenes de las 8 capturas oficiales están en oficial/. Antes de
+  moverlas verifico que muestren los Run ID nuevos, no los de la prueba por CLI:
+
+  Read 6 files (ctrl+o to expand)
+
+● Las 8 capturas oficiales están bien: muestran los Run ID de success y
+  failed/upstream_failed, con try 0 y duración 0. Ahora muevo la prueba con git 
+  mv para que el historial registre el movimiento. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Quedó un detalle: el directorio capturas/ vacío seguía existiendo, así que la
+  imagen del motivo terminó en capturas/capturas/. Lo corrijo:
+
+● Bash(cd ~/ing_datos/Final/entrega/punto2_ventas/evidencias && ls
+      capturas/capturas && mv capturas/capturas/* capturas/ && rmdir
+      capturas/capturas && ls capturas | tr…)
+  ⎿  07-ventas-desactualizada-motivo-dbt_parte3.png
+     01-ventas-actualizada-grafo.jpg 02-ventas-actualizada-grilla.jpg 03-ve
+     ntas-actualizada-log-freshness.jpg 04-ventas-actualizada-log-build.jpg
+     … +7 lines (ctrl+o to expand)
+  ⎿  2 files changed (binary, mode only or too large to show)
+
+● Ahora reescribo el README del punto 2 con las ejecuciones oficiales y la nota
+  sobre la prueba por CLI:
+
+● Write(punto2_ventas/README.md)
+  ⎿  Error writing file
+
+  Read 1 file (ctrl+o to expand)
+
+● Write(punto2_ventas/README.md)
+  ⎿  Added 45 lines, removed 44 lines
+      26  bash scripts/examen.sh dbt build         # Done. PASS=19 WARN=0
+           ERROR=0 SKIP=0 TOTAL=19
+      27  bash scripts/examen.sh query 'select * from analytics.ventas_di
+          arias order by fecha_venta'
+      28  
+      29 -# Escenario 1 (obligatorio): fuente actualizada  -> ejecución m
+         -anual del DAG                                                  
+      29 +# Escenario 1 (obligatorio): sin tareas en ejecución           
+      30  bash scripts/examen.sh scenario actualizada
+      31 -#   Trigger DAG examen_ventas (run manual__actualizada_20261112
+         -T113547)                                                       
+      31 +#   Interfaz de Airflow: botón Trigger DAG en examen_ventas -> 
+         +esperar a que termine                                          
+      32  
+      33 -# Escenario 2 (obligatorio): fuente desactualizada -> NUEVA eje
+         -cución, sin limpiar la anterior ni correr build a mano         
+      33 +# Escenario 2 (obligatorio): sin build manual en medio, sin lim
+         +piar la ejecución anterior                                     
+      34  bash scripts/examen.sh scenario desactualizada
+      35 -#   Trigger DAG examen_ventas (run manual__desactualizada_20261
+         -112T113710)                                                    
+      35 +#   Interfaz de Airflow: botón Trigger DAG -> NUEVA ejecución  
+      36  
+      37  docker compose stop                      # nunca docker compose
+           down -v
+      38  ```
+      39  
+      40 -Los disparos se hicieron como ejecuciones manuales (`airflow da
+         -gs trigger examen_ventas --run-id ...`, equivalente al botón   
+      41 -**Trigger DAG**; `run_type = manual`).                         
+      42 -                                                               
+      40  ## Resultados
+      41  
+      42  ### Resumen (`analytics.ventas_diarias`)
+     ...
+       49  
+       50  Coincide con los resultados esperados del enunciado.
+       51  
+       55 -### Escenario 1 — `actualizada` (run `manual__actualizada_2026
+          -1112T113547`)                                                 
+       52 +### Escenario 1 — `actualizada` (run oficial `manual__2026-11-
+          +12T12:13:27.061735+00:00`)                                    
+       53  
+       57 -| Tarea | Estado | Inicio (UTC) | Fin (UTC) |                 
+       54 +`scenario actualizada` → `max_loaded_at = 2026-11-12T10:12:45Z
+          +` (~2 h). Ejecución creada con el botón **Trigger DAG**       
+       55 +(`run_type = manual`, `external_trigger = True`).             
+       56 +                                                              
+       57 +| Tarea | Estado | try_number | Inicio → fin (UTC) |          
+       58  |---|---|---|---|
+       59 -| `comprobar_frescura` | success | 11:36:01 | 11:36:10 |      
+       60 -| `construir_resumen` | success | 11:36:16 | 11:36:24 |       
+       59 +| `comprobar_frescura` | success | 1 | 12:13:31 → 12:13:34 |  
+       60 +| `construir_resumen` | success | 1 | 12:13:38 → 12:13:42 |   
+       61  
+       62 -Freshness antes de build; ambos logs con `INICIO dbt` / `FIN d
+          -bt`.                                                          
+       63 -Evidencias: `estados_actualizada.txt`, `log_actualizada_*.log`
+          -, `resumen_antes_bloqueo.txt`, capturas 01–04.                
+       62 +Freshness antes de build. dbt: `1 of 1 PASS freshness of venta
+          +s_raw.ventas` y luego `Done. PASS=19 WARN=0 ERROR=0`.         
+       63 +Ambos logs con `INICIO dbt` / `FIN dbt`. Resumen guardado en `
+          +resumen_antes_bloqueo.txt`.                                   
+       64 +Evidencias: `estados_actualizada.txt`, `log_actualizada_*.log`
+          +, `dbt_actualizada_stdout.txt`, `artifacts_tras_actualizada.tx
+          +t`,                                                           
+       65 +capturas 01–04.                                               
+       66  
+       65 -### Escenario 2 — `desactualizada` (run `manual__desactualizad
+          -a_20261112T113710`)                                           
+       67 +### Escenario 2 — `desactualizada` (run oficial `manual__2026-
+          +11-12T12:15:02.076887+00:00`)                                 
+       68  
+       67 -| Tarea | Estado | try_number |                               
+       68 -|---|---|---|                                                 
+       69 -| `comprobar_frescura` | **failed** | 1 |                     
+       70 -| `construir_resumen` | **upstream_failed** (no se ejecutó) | 
+          -0 |                                                           
+       69 +`scenario desactualizada` → `max_loaded_at = 2026-11-11T06:14:
+          +20Z`. Nueva ejecución con el botón **Trigger DAG**, sin limpia
+          +r                                                             
+       70 +ni reutilizar la anterior y sin build manual entre la preparac
+          +ión y las evidencias.                                         
+       71  
+       72 -- Motivo (salida de dbt): `1 of 1 ERROR STALE freshness of ven
+          -tas_raw.ventas ... [ERROR STALE]`; `max_loaded_at = 2026-11-11
+          -T05:37:09Z`,                                                  
+       73 -  **30.0 h** de antigüedad frente a `error_after` de 24 h (`so
+          -urces.json`). En Airflow la tarea falla con                   
+       72 +| Tarea | Estado | try_number | Duración |                    
+       73 +|---|---|---|---|                                             
+       74 +| `comprobar_frescura` | **failed** | 1 | 2.97 s |            
+       75 +| `construir_resumen` | **upstream_failed** (no se ejecutó) | 
+          +0 | 0 s |                                                     
+       76 +                                                              
+       77 +- Motivo (salida de dbt): `1 of 1 ERROR STALE freshness of ven
+          +tas_raw.ventas ... [ERROR STALE]`; según `sources.json`,      
+       78 +  `status = error`, **30.0 h** de antigüedad frente a `error_a
+          +fter` de 24 h. En Airflow la tarea falla con                  
+       79    `CalledProcessError: ... dbt source freshness ... returned n
+           on-zero exit status 1` (lo propaga `run_dbt`).
+       75 -- Build no corrió: sin intento (try_number 0), sin carpeta de 
+          -log ni `INICIO dbt` para esa ejecución, y el último `build`   
+       76 -  registrado en `run_results.json` es el del escenario 1 (`gen
+          -erated_at 2026-11-12T11:36:23Z`).                             
+       80 +- Build no corrió: try_number 0, duración 0, sin carpeta de lo
+          +g ni `INICIO dbt` para esa ejecución (solo existe             
+       81 +  `task_id=comprobar_frescura`), y el último `build` en `run_r
+          +esults.json` es el del escenario 1 (`generated_at 2026-11-12T1
+          +2:13:41Z`).                                                   
+       82  - **Resumen conservado:** `resumen_antes_bloqueo.txt` y `resum
+           en_despues_bloqueo.txt` son idénticos (diff vacío).
+       83  
+       84  Nota: `run_dbt` lanza dbt como subproceso sin capturar su sali
+           da, así que el detalle `ERROR STALE` aparece en la salida del
+       85  contenedor y en `dbt.log`, no en el log de la tarea; ambos se 
+           guardaron (`dbt_freshness_desactualizada_stdout.txt`,
+       81 -`dbt_log_desactualizada.txt`).                                
+       86 +`dbt_log_desactualizada.txt`) y además se renderizó como image
+          +n (`capturas/07-…-motivo-dbt_parte3.png`, marcada como salida 
+          +de CLI).                                                      
+       87  
+       83 -### Escenario opcional — `advertencia` (run `manual__2026-11-1
+          -2T12:03:56+00:00`)                                            
+       88 +## Evidencias (`evidencias/`) — ejecuciones oficiales         
+       89  
+       85 -`bash scripts/examen.sh scenario advertencia` → `max_loaded_at
+          - = 2026-11-11T18:03:52Z` (~18 h). Ejecución manual nueva      
+       86 -(disparada sin `--run-id`, con el identificador por defecto `m
+          -anual__<fecha>` que asigna Airflow, igual que el botón Trigger
+          - DAG).                                                        
+       87 -                                                              
+       88 -| Tarea | Estado | Inicio → fin (UTC) |                       
+       89 -|---|---|---|                                                 
+       90 -| `comprobar_frescura` | success | 12:03:59 → 12:04:02 |      
+       91 -| `construir_resumen` | success | 12:04:05 → 12:04:08 |       
+       92 -                                                              
+       93 -dbt informó `1 of 1 WARN freshness of ventas_raw.ventas ... [W
+          -ARN]` y la tarea siguió con salida exitosa (sin `--warn-error`
+          -);                                                            
+       94 -el build corrió (`INICIO dbt ['build']`, `Done. PASS=19 WARN=0
+          - ERROR=0`). El resumen sigue igual (`resumen_tras_advertencia.
+          -txt`).                                                        
+       95 -Evidencias: `escenario_advertencia.json`, `estados_advertencia
+          -.txt`, `log_advertencia_*.log`, `dbt_freshness_advertencia_std
+          -out.txt`.                                                     
+       96 -                                                              
+       97 -## Evidencias (`evidencias/`)                                 
+       98 -                                                              
+       90  | Archivo | Qué demuestra |
+       91  |---|---|
+      101 -| `capturas/01..08-*.jpg` | Grafo, grilla y logs de las dos ej
+          -ecuciones obligatorias (ver índice en `capturas/CAPTURAS.md`) 
+          -|                                                             
+       92 +| `capturas/01..08-*.jpg` | Grafo, grilla (Run ID y estados) y
+          + logs de las dos ejecuciones oficiales; índice en `capturas/CA
+          +PTURAS.md` |                                                  
+       93 +| `capturas/07-ventas-desactualizada-motivo-dbt_parte3.png` | 
+          +Motivo `ERROR STALE` (30 h > 24 h) renderizado como imagen (**
+          +salida de CLI, no captura de la UI**) |                       
+       94  | `escenario_*.json` | Salida de `scenario` (filas y `max_load
+           ed_at`) |
+      103 -| `estados_*.txt` | `airflow tasks states-for-dag-run` de cada
+          - ejecución |                                                  
+       95 +| `estados_*.txt`, `intentos_desactualizada.txt` | Run ID, `ru
+          +n_type`, `external_trigger`, estado, try_number y horas de cad
+          +a tarea; carpetas de log existentes |                         
+       96  | `log_actualizada_*.log`, `log_desactualizada_comprobar_fresc
+           ura.log` | Logs de Airflow de las tareas |
+      105 -| `dbt_freshness_desactualizada_stdout.txt`, `dbt_log_desactua
+          -lizada.txt`, `motivo_error_freshness.txt` | Motivo del fallo s
+          -egún dbt (`ERROR STALE`, 30 h > 24 h) |                       
+      106 -| `capturas/07-ventas-desactualizada-motivo-dbt_parte3.png` | 
+          -Ese motivo renderizado como imagen (**salida de CLI, no captur
+          -a de la UI**): el log de la tarea en Airflow solo muestra `exi
+          -t status 1` porque `run_dbt` no captura la salida de dbt |    
+      107 -| `artifacts_tras_desactualizada.txt` | `sources.json` (status
+          - error, 30 h) y `run_results.json` (último build = escenario 1
+          -) |                                                           
+      108 -| `intentos_desactualizada.txt` | try_number de cada tarea en 
+          -la ejecución bloqueada |                                      
+       97 +| `dbt_actualizada_stdout.txt`, `dbt_freshness_desactualizada_
+          +stdout.txt`, `dbt_log_desactualizada.txt`, `motivo_error_fresh
+          +ness.txt` | Salida de dbt (`PASS` / `ERROR STALE`) |          
+       98 +| `artifacts_tras_actualizada.txt`, `artifacts_tras_desactuali
+          +zada.txt` | `sources.json` y `run_results.json` después de cad
+          +a escenario |                                                 
+       99  | `resumen_antes_bloqueo.txt`, `resumen_despues_bloqueo.txt` |
+            El resumen se conserva tras el bloqueo |
+      100  
+      101  Respuestas conceptuales: [`respuestas.md`](respuestas.md).
+      102 +                                                              
+      103 +## Ejecuciones oficiales y prueba previa                      
+      104 +                                                              
+      105 +- **Oficiales** (las que se evalúan, creadas con el botón **Tr
+          +igger DAG** como indica el enunciado):                        
+      106 +  `manual__2026-11-12T12:13:27.061735+00:00` (actualizada) y `
+          +manual__2026-11-12T12:15:02.076887+00:00` (desactualizada).   
+      107 +  Son las de `evidencias/`.                                   
+      108 +- **Prueba previa equivalente** (`evidencias/prueba_cli/`): an
+          +tes se dispararon las mismas dos ejecuciones por CLI          
+      109 +  (`airflow dags trigger`), con run_id `manual__actualizada_20
+          +261112T113547` y `manual__desactualizada_20261112T113710`, y u
+          +n                                                             
+      110 +  escenario opcional `advertencia` (`manual__2026-11-12T12:03:
+          +56+00:00`: WARN por ~18 h, freshness y build en success).     
+      111 +  Dieron los mismos estados y resultados; se repitieron con el
+          + botón para seguir el README al pie de la letra. Se conservan 
+      112 +  como referencia y aparecen en la grilla de Airflow como las 
+          +tres primeras columnas.                                       
+
+● respuestas.md del punto 2 cita la marca de carga de la prueba por CLI. La
+  actualizo a la ejecución oficial y después arreglo los .gitignore:
+
+● Bash(cd ~/ing_datos/Final/entrega && grep -n "05:37\|11:3\|manual__"
+      punto2_ventas/respuestas.md; sed -i 's/`2026-11-11T05:37:09Z`, 30.0 h
+      antes de la comprobación/`…)
+  ⎿  13:`2026-11-11T05:37:09Z`, 30.0 h antes de la comprobación (`evidencia
+     s/artifacts_tras_desactualizada.txt`), y dbt reportó
+     13:`2026-11-11T06:14:20Z`, 30.0 h antes de la comprobación (ejecución
+     … +30 lines (ctrl+o to expand)
+  ⎿  Updated punto2_ventas/respuestas.md (+1 -1)
+      10  `_loaded_at` es el instante (UTC) en que el registro llegó a `r
+          aw`, así que `max(_loaded_at)` responde a la pregunta
+      11  "¿cuándo fue la última vez que llegaron datos?". Es justo lo qu
+          e cambió entre escenarios con los mismos datos de negocio:
+      12  en la ejecución `actualizada` el máximo era de hace unas 2 h y 
+          freshness pasó; en `desactualizada` era
+      13 -`2026-11-11T05:37:09Z`, 30.0 h antes de la comprobación (`evide
+         -ncias/artifacts_tras_desactualizada.txt`), y dbt reportó       
+      13 +`2026-11-11T06:14:20Z`, 30.0 h antes de la comprobación (ejecuc
+         +ión oficial `manual__2026-11-12T12:15:02.076887+00:00`) (`evide
+         +ncias/artifacts_tras_desactualizada.txt`), y dbt reportó       
+      14  `ERROR STALE freshness of ventas_raw.ventas` (`evidencias/dbt_f
+          reshness_desactualizada_stdout.txt`).
+      15  
+      16  Aun así, este control mira solo la carga más reciente: no demue
+          stra que hayan llegado **todas** las ventas esperadas.
+
+● Respuestas actualizadas. Ahora los dos .gitignore, con el comentario que
+  pediste. Al de la raíz le agrego también lo que puede aparecer en Windows o
+  con DuckDB/dbt:
+
+● Write(.gitignore)
+  ⎿  Added 32 lines, removed 4 lines
+       1 -*.tfstate*                                                     
+       2 -.terraform/                                                    
+       3 -*.tfplan                                                       
+       1 +# Se crea para dejar la entrega limpia: fuera credenciales, est
+         +ado de Terraform y archivos locales o temporales.              
+       2 +                                                               
+       3 +# Credenciales (nunca se versionan)                            
+       4  .env
+       5 -.local/                                                        
+       5 +.env.*                                                         
+       6 +*.pem                                                          
+       7 +*.key                                                          
+       8 +.aws/                                                          
+       9  *accessKeys*.csv
+      10  *credentials*.csv
+      11 +                                                               
+      12 +# Terraform: estado, planes y carpeta local de proveedores     
+      13 +*.tfstate                                                      
+      14 +*.tfstate.*                                                    
+      15 +*.tfplan                                                       
+      16 +.terraform/                                                    
+      17 +crash.log                                                      
+      18 +crash.*.log                                                    
+      19 +                                                               
+      20 +# Locales y temporales                                         
+      21 +.local/                                                        
+      22  .build/
+      23  __pycache__/
+      24  *.pyc
+      25 +                                                               
+      26 +# Bases y artefactos locales (DuckDB / dbt)                    
+      27 +*.duckdb                                                       
+      28 +*.duckdb.wal                                                   
+      29 +dbt/target/                                                    
+      30 +dbt/logs/                                                      
+      31 +                                                               
+      32 +# Sistema operativo y editores                                 
+      33 +.DS_Store                                                      
+      34 +Thumbs.db                                                      
+      35 +desktop.ini                                                    
+      36 +*Zone.Identifier                                               
+      37 +.vscode/                                                       
+      38 +.idea/                                                         
+● Write(punto1_entregas/.gitignore)
+  ⎿  Added 7 lines, removed 2 lines
+       1 +# Se crea para dejar la entrega limpia: fuera credenciales, est
+         +ado de Terraform y archivos locales.                           
+       2 +                                                               
+       3  # Credenciales
+       4  .env
+       5 +.env.*                                                         
+       6  *.pem
+       7 +*.key                                                          
+       8 +.aws/                                                          
+       9  *accessKeys*.csv
+      10  *credentials*.csv
+       6 -.aws/                                                          
+      11  
+       8 -# Terraform: estado, planes y carpeta local                    
+      12 +# Terraform: estado, planes y carpeta local (.terraform/)      
+      13  *.tfstate
+      14  *.tfstate.*
+      15  *.tfplan
+      16  .terraform/
+      17  crash.log
+      18 +crash.*.log                                                    
+      19  
+      20  # Python
+      21  __pycache__/
+
+● Verifico que los .gitignore funcionen y no excluyan nada que sí deba
+  entregarse. Después hago commit, push y apago Docker:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Push hecho y Docker apagado. Para cerrar, reviso lo que el profesor va a ver
+  de verdad, que es el repo remoto en GitHub:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● La entrega quedó lista en GitHub. Solo falta reemplazar el export del chat de
+  esta sesión.
+
+  Capturas oficiales: las revisé antes de moverlas y muestran los Run ID del
+  botón:
+  - …12:13:27.061735…: las dos tareas en success.
+  - …12:15:02.076887…: comprobar_frescura en failed y construir_resumen en
+    upstream_failed, con 0 intentos.
+
+  Lo que cambió en la entrega:
+  - punto2_ventas/evidencias/ ahora tiene las ejecuciones oficiales del botón:
+    12 capturas, estados, logs, artifacts y los dos resúmenes, que son
+    idénticos. Regeneré la imagen del motivo ERROR STALE con el Run ID oficial.
+  - La prueba por CLI, incluido el escenario de advertencia, quedó en
+    evidencias/prueba_cli/. La moví con git mv, así que no se borró nada. Al
+    final del README del punto 2 hay una nota que explica qué es oficial y qué
+    fue la prueba previa.
+  - respuestas.md del punto 2 ahora cita la ejecución oficial.
+  - .gitignore: los dos tienen el comentario "Se crea para dejar la entrega
+    limpia". Comprobé que excluyen tfstate, backup, .terraform/, planes, .env,
+    .pem, csv de credenciales, .duckdb y los Zone.Identifier de Windows. Ninguno
+    excluye algo que sí deba entregarse.
+  - El tfstate (vacío, del destroy) y el plan siguen en disco, pero no se suben.
+
+  Revisión del repo en GitHub: es público, tiene 119 archivos, no hay nada
+  sensible, están los 20 archivos que exige el punto 1, los 3 archivos y las
+  respuestas del punto 2, y las carpetas chat_ia/ y PromptsPreparativosFinal/.
+  Docker está detenido sin borrar datos y en AWS no queda nada.
+
+  Nombre del repo: ninguno de los dos enunciados pide un nombre.
+  Final_Pedro_Rueda_IngenieriaDatos es claro: dice qué es, de quién y de qué
+  materia. Yo lo dejaría así. Cambiarlo ahora solo agrega riesgo, porque el
+  enlace cambiaría.
+
+  Lo único pendiente: el export del chat. El que está en el repo llega hasta las
+  06:48 y no incluye la repetición con el botón ni esta revisión. Corre /export
+  SesionClaudeCodeWSL como último paso y avísame. Lo reviso por secretos,
+  reemplazo chat_ia/claude_code_wsl.txt y hago el push final. Después solo
+  entregas el enlace:
+  https://github.com/PedroRVGE/Final_Pedro_Rueda_IngenieriaDatos
+
+✻ Cogitated for 2m 10s · done 7:24 AM
