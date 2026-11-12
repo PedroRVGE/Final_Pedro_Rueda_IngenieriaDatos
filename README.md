@@ -12,6 +12,7 @@ Cada carpeta tiene su `README.md` con prerrequisitos, pasos reproducibles, evide
 
 ## Uso de IA
 
-El examen se desarrolló con Claude Code (Anthropic). El hilo completo se adjunta en [`chat_ia/`](chat_ia/).
+El examen se desarrolló con Claude Code (Anthropic) y Claude Cowork. Los hilos se adjuntan en [`chat_ia/`](chat_ia/) y las
+instrucciones con las que se prepararon ambas sesiones en [`PromptsPreparativosFinal/`](PromptsPreparativosFinal/).
 
 No se versionan credenciales, estado de Terraform (`*.tfstate`), planes ni la carpeta `.terraform/`.
