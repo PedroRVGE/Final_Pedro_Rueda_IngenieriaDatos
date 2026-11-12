@@ -147,3 +147,10 @@ Después se verifica con la CLI que no quedan bucket, base, tabla ni workgroup (
 | `evidencias/eliminacion_terraform.txt` | Destroy y verificación de limpieza |
 | `scripts/ejecutar_athena.py` | Ejecutor de consultas y registro de ejecuciones |
 | `respuestas.md` | Respuestas conceptuales |
+
+## Capturas de respaldo (opcionales)
+
+Tomadas en la consola de AWS (us-east-2) después de la etapa final y antes del destroy, en `evidencias/capturas/`:
+bucket y prefijos `entregas/fecha=...` (`p1_01`, `p1_02`), tabla de Glue con detalle, propiedades de proyección y esquema
+(`p1_03` a `p1_05`), workgroup de Athena con su ubicación de resultados (`p1_06`) e historial de consultas con los mismos
+IDs de `evidencias/ejecuciones_athena.csv` (`p1_07`). La evidencia exigida por el enunciado son los archivos de texto.
