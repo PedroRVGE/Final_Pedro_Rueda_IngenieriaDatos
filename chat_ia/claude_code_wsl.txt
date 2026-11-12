@@ -1,0 +1,2560 @@
+ ▐▛███▛█   Claude Code v2.1.322
+▝▜██████▀  Opus 5.5 · Claude Pro
+ ▝▝   ▝▝   ~/ing_datos/Final/entrega
+
+
+❯ /login                                                                        
+  ⎿  Login successful
+
+❯ lee INSTRUCCIONES_WSL.md y ejecutalo                                          
+
+  Listed 1 directory (ctrl+o to expand)
+
+● Es una FASE 1 larga; voy paso a paso. Empiezo con archivos base y
+  herramientas.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Paso 1 listo (enunciado/ existe, Tips-Terraform-AWS.md copiado y leído). Me
+  detuve en el paso 2, como pide el archivo.
+
+  El perfil AWS final no existe. En ~/.aws/config solo están default y taller.
+  Córrelo tú (así las llaves no pasan por mí):
+
+  ! aws configure --profile final
+  Región: us-east-2, formato: json. Si es AWS Academy, en cambio pega las
+  credenciales temporales en ~/.aws/credentials bajo [final], junto con
+  aws_session_token.
+
+  Herramientas:
+
+  ┌────────────────────────┬─────────────────────────────────────────────────┐
+  │      Herramienta       │                     Estado                      │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ terraform              │ ✅ v1.9.8 (~/.local/bin)                        │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ aws cli v2             │ ✅ 2.34.30                                      │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ gh                     │ ✅ 2.62.0                                       │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ git                    │ ✅ 2.43.0                                       │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ make                   │ ✅ 4.3                                          │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ zip/unzip              │ ✅                                              │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ conda                  │ ✅ 26.1.1 (~/miniconda3)                        │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ jq                     │ ❌ falta (lo instalo sin sudo en ~/.local/bin)  │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ session-manager-plugin │ ❌ falta (lo extraigo del .deb sin sudo)        │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │                        │ ❌ hay que activar en Docker Desktop: Settings  │
+  │ docker                 │ → Resources → WSL Integration, encender esta    │
+  │                        │ distro                                          │
+  └────────────────────────┴─────────────────────────────────────────────────┘
+
+  Avísame cuando el perfil esté configurado y sigo con el resto de la FASE 1.
+
+✻ Sautéed for 29s · done Monday 4:41 PM
+
+❯ el usuario se llama PedroRuedaNubeIngData no? creo que ya lo tenia            
+  configurado, simplemente cambia el .md al usuario que tenga esos accesos,     
+  creo que depronto aca se llama taller y ese ya tiene full acceso de todo      
+  (creo)                                                                        
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● taller y default son el usuario IAM PedroRuedaNubeIngData, pero taller está en
+  us-east-1, así que fijaré AWS_REGION=us-east-2 por variable de entorno. Ahora
+  cambio el perfil en el .md y reviso los permisos. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Confirmé que taller tiene AdministratorAccess como usuario IAM normal, así que
+  las credenciales no vencen; ya actualicé INSTRUCCIONES_WSL.md y ahora instalo
+  jq y session-manager-plugin sin sudo. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Ahora el entorno conda (corre en segundo plano porque tarda).
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Mientras tanto: Terraform offline (paso 4).
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+● Terraform offline funciona. Ahora las descargas (paso 5) y clonar la
+  referencia (paso 6).
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Docker no está disponible en WSL, así que me salto el pull opcional. Ahora
+  reviso la referencia para armar el INDICE.
+
+  Searched for 1 pattern, ran 4 shell commands (ctrl+o to expand)
+
+● Escribo referencia/INDICE.md.
+
+● Write(~/ing_datos/Final/referencia/INDICE.md)
+  ⎿  Wrote 62 lines to ~/ing_datos/Final/referencia/INDICE.md
+       1 # Índice de referencia (solo lectura)
+       2 
+       3 Patrones reutilizables → archivo. Rutas relativas a `referencia/
+         `.
+       4 Abreviaturas: `AA` = `Actividad_Aws`, `TA` = `Taller-Arquitectur
+         as-de-Datos/de-aws`, `T3` = `Taller3_ingData`, `T2` = `taller2-i
+         ng.Datos-Pedro-rueda-y-pablo-Gil`.
+       5 
+       6 ## Infraestructura (Terraform)
+       7 | Patrón | Archivo |
+     … +55 lines (ctrl+o to expand)
+
+● Ahora las plantillas (paso 7). Primero reviso los detalles de Redshift y DocDB
+  en la referencia para no repetir errores.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Escribo las 8 plantillas. Primero las partes comunes:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● a) s3_datalake
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Limpio ese bloque de DuckDB, que quedó feo:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● b) redshift_serverless
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● c) dynamodb y d) rds_postgres
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● e) documentdb y f) ec2_basico
+  Ran 1 shell command (ctrl+o to expand)
+
+● Background command "cd /home/pedrolinux/ing_datos/Final && source
+~/miniconda3/etc/profile.d/conda.sh && conda env list && (conda create -y -n
+final python=3.12 > .local/conda_create.log 2>&1; echo exit=$?) && conda
+activate final && pip install boto3 pandas pyarrow duckdb psycopg2-binary
+redshift_connector sqlalchemy pymongo gremlinpython redis neo4j requests
+feedparser python-dotenv pyspark awswrangler pytest "moto[all]" jupyter
+ipykernel pillow matplotlib dbt-core dbt-redshift dbt-duckdb > .local/pip.log
+2>&1; echo pip=$?; tail -3 .local/pip.log" completed (exit code 0)
+
+  Read 1 file (ctrl+o to expand)
+
+● Entorno conda listo. Configuro variables, freeze, la extensión httpfs de
+  DuckDB y lanzo el wheelhouse en segundo plano.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● g) glue_spark_job y h) lambda_s3_trigger
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Valido las 8 plantillas con init offline + fmt + validate:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Terraform carga todos los *.tfrc de ~/.terraform.d/, así que offline.tfrc
+  chocaba con ~/.terraformrc; lo estoy sacando de esa carpeta. · summary
+
+● Background command "source ~/miniconda3/etc/profile.d/conda.sh && conda
+activate final && pip download -q -r requirements.txt -d .local/wheelhouse >
+.local/wheel_dl.log 2>&1; echo dl=$?; conda create -y -q -p .local/venv_test
+python=3.12 >/dev/null 2>&1 && .local/venv_test/bin/pip install -q --no-index
+--find-links .local/wheelhouse -r requirements.txt > .local/wheel_test.log 2>&1;
+echo test=$?; .local/venv_test/bin/python -c "import
+boto3,duckdb,pandas,pymongo,psycopg2,pyspark,dbt;print('imports ok')"; du -sh
+.local/wheelhouse; tail -3 .local/wheel_test.log" completed (exit code 0)
+
+● Stop Task
+  ⎿  cd /home/pedrolinux/ing_datos/Final/plantillas && for d in s3_datalake
+     redshift_serverless dynamodb rds_postgres documentdb ec2_basico
+     glue_spark_job lambda_s3_… · stopped
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● El wheelhouse offline ya se instaló bien (693 MB, con --no-index y los imports
+  correctos). Ahora borro el entorno temporal, reviso la nueva sintaxis
+  key_schema de DynamoDB y vuelvo a validar sin TF_PLUGIN_CACHE. · summary
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+● Las 8 plantillas pasan init offline y validate. Reviso el espacio en disco
+  (cada .terraform copia el proveedor aws):
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Hay espacio de sobra. Paso 8, los scripts. Antes leo cómo la sesión Cowork
+  reporta su carpeta de capturas:
+
+  Read 1 file (ctrl+o to expand)
+
+● Escribo los scripts:
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+● Pruebo evidencia.sh, salida_a_imagen.sh y verificar_cuenta_limpia.sh para ver
+  cómo está la cuenta hoy:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Tres correcciones: 4 Lambdas y un log group anteriores al examen (de otros
+  proyectos) los pongo en scripts/preexistentes.txt sin tocarlos; el chequeo de
+  QuickSight confunde el error de "no suscrito" con un recurso; y
+  salida_a_imagen.sh usaba el Python de conda base, así que lo fuerzo al entorno
+  final. · summary
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Los scripts funcionan. Paso 9, archivos del proyecto:
+
+  Ran 1 shell command (ctrl+o to expand)
+  ⎿  Blocked by auto mode
+     │ Auto mode: [Self-Modification]
+
+● El modo automático bloqueó mi escritura en .claude/settings.json, y eso frenó
+  todo el comando. Sigo con el resto por separado y dejo la propuesta de
+  configuración en un archivo para que la copies tú. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Ahora CLAUDE.md:
+
+● Write(~/ing_datos/Final/CLAUDE.md)
+  ⎿  Wrote 46 lines to ~/ing_datos/Final/CLAUDE.md
+       1 # Examen final Ingeniería de Datos (EIA 2026-2) — AWS + Terrafor
+         m
+       2 
+       3 ## Reglas
+       4 - **Fuente de verdad: el enunciado en `./enunciado/`.** Si choca
+          con plantillas, referencia o tips, manda el enunciado.
+       5 - `Tips-Terraform-AWS.md` solo sirve para reconocer y evitar err
+         ores del taller anterior; no es un requisito.
+       6 - Antes de desplegar: plan corto (punto → servicios → plantilla 
+         → entregable → evidencias), señalar ambigüedades y **esperar el 
+     … +41 lines (~4 KB) (ctrl+o to expand)
+
+● Paso 10, el repo de entrega. Reviso el login de gh:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● gh ya tiene sesión con la cuenta PedroRVGE. Antes del primer commit necesito
+  tu respuesta sobre la atribución, porque quitarla después obliga a un force
+  push:
+
+● User answered Claude's questions:
+  ⎿  · Los commits del repo de entrega (Final_Pedro_Rueda_IngenieriaDatos): 
+     ¿llevan la línea 'Co-Authored-By: Claude'? → Sin atribución
+
+  Ran 1 shell command (ctrl+o to expand)
+● Creo el repo público, lo clono en entrega/ y hago el primer commit con
+  .gitignore y README:
+
+  Ran 1 shell command (ctrl+o to expand)
+  ⎿  Blocked by auto mode
+     │ Auto mode: [Create Public Surface]
+
+● El modo automático bloqueó crear el repo público, porque publicar hacia afuera
+  lo tiene que lanzar Pedro. Mientras tanto dejo entrega/ lista en local para
+  que solo falte crear el remoto y hacer push. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Commit local hecho a tu nombre, sin atribución. Paso 11: la prueba real.
+  Despliego plantillas/s3_datalake y tomo el tiempo:
+
+  Ran 1 shell command (ctrl+o to expand)
+  ⎿  Blocked by auto mode
+     │ Auto mode: No reason provided
+
+● También quedó bloqueado el apply -auto-approve, así que solo corro el plan,
+  que no crea nada, y preparo CAPTURAS.md de prueba para que esté listo cuando
+  lo autorices. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Ahora CAPTURAS.md de prueba (con los nombres exactos que tendrán los recursos)
+  y su copia en Windows:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● La sesión Cowork ya escribió ESTADO_COWORK.md. Lo leo y pruebo que
+  mover_capturas.sh encuentre la carpeta (vista previa, no mueve nada):
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Cowork ya guarda cada captura con el nombre de CAPTURAS.md en .jpg, así que
+  cambio el script para emparejar por nombre (el orden queda solo como opción
+  --orden). Además, Cowork advierte que la consola podría estar abierta como
+  root y no con el IAM; te pregunto al final por eso. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● La vista previa ya ignora las 3 capturas viejas de prueba, como debe ser.
+  Llegué al punto donde necesito tu intervención, así que me detengo aquí.
+
+  Avance de la FASE 1
+
+  Paso: 1. Archivos base
+  Estado: ✅
+  ────────────────────────────────────────
+  Paso: 2. Herramientas
+  Estado: ✅ terraform 1.9.8, aws 2.34.30, gh 2.62.0, git, make, zip/unzip,
+  conda
+    26.1.1, jq 1.7.1 y session-manager-plugin 1.2.896.0 instalados sin  sudo ·
+  ❌
+     docker: hay que activar WSL Integration en Docker Desktop · perfil taller =
+
+    PedroRuedaNubeIngData con AdministratorAccess. No es AWS Academy, las llaves
+
+    no vencen
+  ────────────────────────────────────────
+  Paso: 3. Conda final
+  Estado: ✅ Py 3.12, todas las librerías, variables AWS/TF fijadas,
+    requirements.txt, environment.yml, wheelhouse de 693 MB probado  offline,
+    httpfs de DuckDB preinstalado
+  ────────────────────────────────────────
+  Paso: 4. Terraform offline
+  Estado: ✅ versiones exactas (aws 6.72.0…), mirror, ~/.terraformrc; init
+    offline probado
+  ────────────────────────────────────────
+  Paso: 5. Descargas
+  Estado: ✅ global-bundle.pem, instalador de Miniconda (docker pull omitido: no
+
+    hay docker)
+  ────────────────────────────────────────
+  Paso: 6. Referencia
+  Estado: ✅ 4 repos clonados + referencia/INDICE.md
+  ────────────────────────────────────────
+  Paso: 7. Plantillas
+  Estado: ✅ las 8 pasan init offline + validate
+  ────────────────────────────────────────
+  Paso: 8. Scripts
+  Estado: ✅ los 5; verificar_cuenta_limpia.sh dice CUENTA LIMPIA hoy
+  ────────────────────────────────────────
+  Paso: 9. Proyecto
+  Estado: ✅ CLAUDE.md, .gitignore, .env · ⚠️ settings.json (ver abajo)
+  ────────────────────────────────────────
+  Paso: 10. Repo
+  Estado: ⚠️ commit local listo, falta crear el remoto
+  ────────────────────────────────────────
+  Paso: 11. Prueba real
+  Estado: ⚠️ plan listo (11 recursos, solo S3/Glue/Athena), CAPTURAS.md de
+  prueba
+    ya copiado a Windows
+
+  Algunas cosas no estaban en el plan:
+  - En la cuenta hay 4 Lambdas de otros proyectos (fastapi). No las toqué.
+    Quedaron en scripts/preexistentes.txt para que el chequeo de limpieza no las
+    cuente.
+  - Terraform carga cualquier *.tfrc de ~/.terraform.d/, así que el rc offline
+    quedó en ~/.terraform-offline.rc.
+
+  El modo automático bloqueó 3 acciones (las tienes que correr o aprobar tú)
+
+  1. Crear el repo público (cuenta como publicación hacia afuera). Desde
+     entrega/ corre:
+  ! cd entrega && gh repo create Final_Pedro_Rueda_IngenieriaDatos --public 
+  --source . --push
+  2. .claude/settings.json: no puedo darme permisos a mí mismo. La propuesta
+     está en .local/settings_propuesto.json. Si te parece bien:
+  ! mkdir -p .claude && cp .local/settings_propuesto.json .claude/settings.json
+  3. terraform apply de la prueba. Dime "aplica" y lo lanzo sin -auto-approve
+     sobre el plan guardado. Si vuelve a bloquearse, córrelo tú:
+  ! cd plantillas/s3_datalake && terraform apply prueba.tfplan
+
+  Una pregunta: Cowork dice que la consola de AWS parece abierta con el usuario 
+  root, no con el IAM. ¿Me confirmas cuál es? Si el examen exige usuario IAM,
+  entra por https://466494951615.signin.aws.amazon.com/console.
+
+✻ Baked for 18m 16s · done Monday 5:04 PM
+
+❯ Listo pero docker si esta funcionando no, ten cuidado porque en el final      
+  tendre alrededor de 2 horas para hacerlo. Ademas nada deberia quedar creado   
+  con en aws todavia, y la consola esta abierta con root y no con el de IAM no  
+  hay problema porque lo que importa es crear y tomar evidencias                
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Docker ya funciona (29.9.2). Bajo en segundo plano las imágenes opcionales del
+  paso 5, para tenerlas offline:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● User answered Claude's questions:
+  ⎿  · Ahora mismo no hay nada creado en AWS. La prueba del paso 11 crea solo S3
+     + Glue + Athena (unos centavos, ~15 min), toma evidencias y al final hace 
+     destroy y verifica que todo quede limpio. Sirve para ensayar el flujo y no 
+     perder tiempo en tus 2 horas del examen. ¿La hago? → No, nada en AWS
+
+● Entendido, omito la prueba real en AWS y pruebo mover_capturas.sh --si en
+  local con imágenes falsas, sin tocar la carpeta de Cowork. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Empareja bien por nombre, incluido _parte2, e ignora lo que no corresponde.
+  Deshago la prueba y dejo en Windows un CAPTURAS.md que indica que todavía no
+  hay nada que capturar. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Guardo en memoria lo que importa para la próxima sesión:
+
+  Ran 1 shell command, wrote 1 memory (ctrl+o to expand)
+
+● Como las plantillas no se despliegan antes del examen, ejecuto terraform plan
+  en las 8: no crea nada, pero detecta errores que validate no ve, como
+  subredes, AMIs o nombres. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Background command "for i in mongo:7 redis:7 neo4j:5; do docker pull -q $i;
+done; docker images --format '{{.Repository}}:{{.Tag}} {{.Size}}' | grep -E
+"mongo|redis|neo4j"" completed (exit code 0)
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Imágenes de Docker listas (mongo:7, redis:7, neo4j:5, además de las que ya
+  tenías). Cierro con ESTADO_WSL.md:
+
+● Write(~/ing_datos/Final/ESTADO_WSL.md)
+  ⎿  Wrote 39 lines to ~/ing_datos/Final/ESTADO_WSL.md
+      1 # ESTADO_WSL — FASE 1 (2026-11-09)
+      2 
+      3 ## Listo
+      4 - [x] Herramientas: terraform 1.9.8, aws-cli 2.34.30, gh 2.62.0 (
+        sesión PedroRVGE), git 2.43, make 4.3, jq 1.7.1, zip/unzip,
+      5       session-manager-plugin 1.2.896.0, conda 26.1.1, docker 29.9
+        .2 (imágenes mongo:7/8.0, redis:7, neo4j:5)
+      6 - [x] AWS: perfil `taller` = IAM `PedroRuedaNubeIngData` (Adminis
+        tratorAccess), cuenta 466494951615, us-east-2 forzada en conda
+      7 - [x] Conda `final` (Py 3.12) + `requirements.txt` + `environment
+     … +33 lines (~2 KB) (ctrl+o to expand)
+
+● FASE 1 lista, esperando el enunciado. No se creó nada en AWS: no hay ningún
+  tfstate y la cuenta está limpia.
+
+  - Docker: sí funciona (29.9.2). Ya están descargadas las imágenes mongo:7,
+    redis:7 y neo4j:5, además de mongo:8.0 y neo4j:5-community que ya tenías.
+  - Prueba en AWS: no la hice, como pediste. Las 8 plantillas pasan terraform 
+    plan contra tu cuenta real. Eso detecta errores de subredes, AMIs o nombres
+    sin crear nada, pero el apply y el destroy en sí no están probados.
+  - Capturas: el script mover_capturas.sh empareja por nombre, como guarda
+    Cowork (01-x.jpg, 01-x_parte2.jpg). Lo probé con imágenes falsas. En la
+    carpeta de Windows dejé un CAPTURAS.md que dice que todavía no hay nada que
+    capturar.
+  - Consola con root: queda anotado que no importa.
+
+  Para que el examen no se te vaya en esperas:
+  - DocumentDB tarda 10–15 min en crearse y RDS 5–8 min. Los lanzo primero y en
+    paralelo.
+  - El modo automático bloqueó apply -auto-approve. En el examen haré plan -out
+    y luego apply del plan. Si eso también se bloquea, lo corres tú con !.
+
+  Te falta una cosa: crear el repo, porque no me dejan publicarlo. El primer
+  commit ya está hecho, a tu nombre y sin atribución:
+  ! cd entrega && gh repo create Final_Pedro_Rueda_IngenieriaDatos --public 
+  --source . --push
+  Es opcional, pero ahorra aprobaciones en el examen:
+  ! mkdir -p .claude && cp .local/settings_propuesto.json .claude/settings.json
+
+  Todo el detalle está en ESTADO_WSL.md.
+
+✻ Brewed for 1m 39s · done Monday 5:09 PM
+
+※ recap: Estamos preparando tu examen final de AWS y Terraform: la FASE 1 está lista sin nada creado en AWS, y el siguiente paso es que corras el comando gh repo create desde entrega/ para publicar el repo. (disable recaps in /config)
+
+❯ deja un .md listo con el estado ya hice lo que pediste                        
+
+  Ran 1 shell command (ctrl+o to expand)
+● Verificado: el repo es público, el push está sincronizado y settings.json
+  quedó instalado. Actualizo ESTADO_WSL.md:
+
+● Update(~/ing_datos/Final/ESTADO_WSL.md)
+  ⎿  Added 7 lines, removed 4 lines
+      15  - [x] CLAUDE.md, .gitignore, .env/.env.example, memoria
+      16  - [x] Cuenta limpia verificada: `evidencias/00-cuenta-inicial.t
+          xt` (preexistentes ajenas al examen en `scripts/preexistentes.t
+          xt`)
+      17  
+      18 -## Pendiente (lo hace Pedro)                                   
+      19 -- [ ] Repo público: `! cd entrega && gh repo create Final_Pedro
+         -_Rueda_IngenieriaDatos --public --source . --push`             
+      20 -      (el modo automático no deja que Claude publique repos). `
+         -entrega/` ya tiene el primer commit sin atribución.            
+      21 -- [ ] Opcional: `! mkdir -p .claude && cp .local/settings_propu
+         -esto.json .claude/settings.json` (menos aprobaciones en el exam
+         -en)                                                            
+      18 +- [x] Repo público https://github.com/PedroRVGE/Final_Pedro_Rue
+         +da_IngenieriaDatos (lo creó Pedro). `entrega/` = clon con      
+      19 +      `origin` configurado, rama `main` sincronizada, commit `8
+         +0e9784` sin atribución. Push normal ya funciona.               
+      20 +- [x] `.claude/settings.json` instalado (allow: terraform init/
+         +plan/validate/fmt/output/show/apply, aws, python, pytest,      
+      21 +      ls/cat/cp/mv/mkdir, jq, bash scripts/, git; ask: destroy,
+         + rm, aws delete*, s3 rm/rb, push --force)                      
+      22  
+      23 +## Pendiente                                                   
+      24 +- Nada. **FASE 1 lista, esperando el enunciado en `./enunciado/
+         +`.**                                                           
+      25 +                                                               
+      26  ## Omitido por decisión de Pedro
+      27  - Prueba real en AWS (paso 11): no se creó nada. El apply, Athe
+          na/DuckDB contra AWS reales, el flujo de capturas con
+      28    Cowork y el destroy quedan sin ensayar. CAPTURAS.md de prueba
+           guardado en `.local/CAPTURAS_prueba_fase1.md` como ejemplo.
+
+● Actualicé ESTADO_WSL.md y comprobé que lo que hiciste quedó bien:
+
+  - Repo: https://github.com/PedroRVGE/Final_Pedro_Rueda_IngenieriaDatos es
+    público. entrega/ está sincronizado con GitHub, con el primer commit a tu
+    nombre y sin atribución.
+  - Permisos: .claude/settings.json está instalado. En el examen deberían salir
+    menos pedidos de aprobación, aunque el modo automático igual puede bloquear
+    algún apply; si pasa, lo corres tú con !. Siguen pidiendo confirmación el
+    destroy, rm, los aws ... delete* y el push --force.
+  - AWS: no hay nada creado.
+
+  No queda nada pendiente de la FASE 1. Cuando pongas el enunciado en
+  ./enunciado/, empiezo la FASE 2.
+
+✻ Brewed for 14s · done Monday 5:23 PM
+
+※ recap: Estás preparando el examen final de AWS y Terraform, y la FASE 1 está completa: herramientas, plantillas, scripts y repo público, sin nada creado en AWS. Lo siguiente es que pongas el enunciado en ./enunciado/ para arrancar la FASE 2. (disable recaps in /config)
+
+❯ “Clona en referencia/ https://github.com/smm-0216/DE-DW,                      
+  https://github.com/smm-0216/DE-AWS y https://github.com/smm-0216/DE-NoSQL. En 
+  DE-DW corre configure_environment.sh y run_pipeline.sh completo para que se   
+  construya la imagen de Airflow, verifica que el DAG ecommerce_pipeline        
+  termine y que dbt test pase, y luego detén todo con stop_infrastructure.sh    
+  (sin reset). Agrega los 3 repos a referencia/INDICE.md y a CLAUDE.md como     
+  material del curso.”                                                          
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Los scripts son locales y no tienen nada raro. Reviso el compose, el
+  Dockerfile y que los puertos estén libres antes de levantar:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Docker/.env.example no existe en el repo, así que configure_environment.sh
+  fallaría; usaré env_file como plantilla. El puerto 5433 ya lo usa
+  manejo-alcanza-bd-pruebas, así que le asigno otro puerto al Postgres de
+  Airflow mediante POSTGRES_HOST_PORT. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Además, los scripts no tienen permiso de ejecución y el repo no trae
+  .gitignore. Los corro con bash:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Falló como se esperaba, así que creo docker/.env.example con el puerto
+  POSTGRES_HOST_PORT=5434 y doy permisos de ejecución a los scripts; luego corro
+  configure_environment.sh tal cual. · summary
+
+● Bash({ cat env_file; printf '\n# Añadido localmente: 5433 lo usa otro
+      contenedor de Pedro\nPOSTGRES_HOST_PORT=5434\n'; } > docker/.env.example
+      && chmod +x scripts/*.…)
+  ⎿  Created .env from docker/.env.example. Review local credentials before
+      exposing services.
+     16
+     POSTGRES_HOST_PORT=5434
+  ⎿  Created ~/ing_datos/Final/referencia/DE-DW/.env (+21 -0)
+       1 +AIRFLOW_UID=1000                                               
+       2 +AIRFLOW_UI_PORT=8080                                           
+       3 +AIRFLOW_FERNET_KEY=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+       4 +AIRFLOW_SECRET_KEY=local-only-change-this-secret-key           
+       5 +AIRFLOW_ADMIN_USERNAME=airflow                                 
+       6 +AIRFLOW_ADMIN_PASSWORD=airflow                                 
+       7 +                                                               
+       8 +POSTGRES_USER=airflow                                          
+       9 +POSTGRES_PASSWORD=airflow_local                                
+      10 +                                                               
+      11 +MYSQL_ROOT_PASSWORD=mysql_root_local                           
+      12 +MYSQL_DATABASE=ecommerce                                       
+      13 +MYSQL_USER=etl                                                 
+      14 +MYSQL_PASSWORD=mysql_etl_local                                 
+      15 +                                                               
+      16 +MONGO_ROOT_USERNAME=root                                       
+      17 +MONGO_ROOT_PASSWORD=mongo_local                                
+      18 +MONGO_DATABASE=ecommerce                                       
+      19 +                                                               
+      20 +# Añadido localmente: 5433 lo usa otro contenedor de Pedro     
+      21 +POSTGRES_HOST_PORT=5434                                        
+  ⎿  Created ~/ing_datos/Final/referencia/DE-DW/docker/.env.example (+21 
+     -0)
+       1 +AIRFLOW_UID=1000                                               
+       2 +AIRFLOW_UI_PORT=8080                                           
+       3 +AIRFLOW_FERNET_KEY=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+       4 +AIRFLOW_SECRET_KEY=local-only-change-this-secret-key           
+       5 +AIRFLOW_ADMIN_USERNAME=airflow                                 
+       6 +AIRFLOW_ADMIN_PASSWORD=airflow                                 
+       7 +                                                               
+       8 +POSTGRES_USER=airflow                                          
+       9 +POSTGRES_PASSWORD=airflow_local                                
+      10 +                                                               
+      11 +MYSQL_ROOT_PASSWORD=mysql_root_local                           
+      12 +MYSQL_DATABASE=ecommerce                                       
+      13 +MYSQL_USER=etl                                                 
+      14 +MYSQL_PASSWORD=mysql_etl_local                                 
+      15 +                                                               
+      16 +MONGO_ROOT_USERNAME=root                                       
+      17 +MONGO_ROOT_PASSWORD=mongo_local                                
+      18 +MONGO_DATABASE=ecommerce                                       
+      19 +                                                               
+      20 +# Añadido localmente: 5433 lo usa otro contenedor de Pedro     
+      21 +POSTGRES_HOST_PORT=5434                                        
+  ⎿  … 12 more files changed
+
+● Ahora lanzo el run_pipeline.sh completo en segundo plano: construye la imagen
+  de Airflow, crea las fuentes, genera los datos y dispara el DAG. Lo dejo
+  registrado en un log:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Mientras construye, reviso DE-AWS y DE-NoSQL para el índice:
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● DE-AWS usa psycopg (v3) y sqlalchemy-redshift, que no estaban en la lista del
+  entorno final. Lo reviso:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Faltan los dos. Pruebo en seco si se pueden instalar sin romper el entorno
+  (SQLAlchemy está en 2.1):
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Quedaron instalados y en el wheelhouse. Mientras sigue el pipeline, reviso la
+  estructura de DE-DW para el índice:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● La imagen ya se construyó y el pipeline va por la generación de datos.
+  Mientras tanto confirmo si el DAG corre dbt test:
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+● dbt_test es la última tarea del DAG hijo transform_warehouse. Cuando termine,
+  verifico su estado puntual (no solo el del DAG padre). Mientras tanto
+  actualizo INDICE.md y CLAUDE.md:
+
+● Update(~/ing_datos/Final/referencia/INDICE.md)
+  ⎿  Added 41 lines, removed 1 line
+       1  # Índice de referencia (solo lectura)
+       2  
+       3  Patrones reutilizables → archivo. Rutas relativas a `referencia
+          /`.
+       4 -Abreviaturas: `AA` = `Actividad_Aws`, `TA` = `Taller-Arquitectu
+         -ras-de-Datos/de-aws`, `T3` = `Taller3_ingData`, `T2` = `taller2
+         --ing.Datos-Pedro-rueda-y-pablo-Gil`.                           
+       4 +Abreviaturas: `AA` = `Actividad_Aws`, `TA` = `Taller-Arquitectu
+         +ras-de-Datos/de-aws`, `T3` = `Taller3_ingData`, `T2` = `taller2
+         +-ing.Datos-Pedro-rueda-y-pablo-Gil`,                           
+       5 +`DW` = `DE-DW`, `DA` = `DE-AWS`, `DN` = `DE-NoSQL`.            
+       6  
+       7 +## Material del curso (repos del profesor, smm-0216)           
+       8 +Son la base de la que salieron los talleres: **el estilo y las 
+         +convenciones del curso están aquí**. Si el enunciado se parece 
+         +a algo de esto, partir de aquí.                                
+       9 +                                                               
+      10 +### DE-DW — data warehouse local (Docker: Airflow 2.11.2 + MySQ
+         +L 8.4 + MongoDB 8.0 + DuckDB + dbt 1.9.4)                      
+      11 +Ejecutado completo el 2026-11-11 (ver "Estado local" abajo).   
+      12 +| Patrón | Archivo |                                           
+      13 +|---|---|                                                      
+      14 +| Índice y ruta de aprendizaje (9 etapas con comandos y conteos
+         + esperados) | `DW/README.md`, `DW/docs/etapas/01..09_*.md` |   
+      15 +| Arquitectura, modelo (estrella, SCD2, llaves subrogadas), Air
+         +flow, conexiones DBeaver/Compass | `DW/docs/{architecture,data_
+         +model,airflow,connections}.md` |                               
+      16 +| Consultas analíticas de ejemplo | `DW/docs/analytical_queries
+         +.sql` |                                                        
+      17 +| docker-compose (postgres, mysql, mongodb, airflow webserver/s
+         +cheduler) y Dockerfile (Airflow + venv dbt aparte) | `DW/docker
+         +/` |                                                           
+      18 +| Scripts de operación (configure, start/stop, run_pipeline, ru
+         +n_dbt, reset, append_batch, simulate_changes, verify_incrementa
+         +l_load) | `DW/scripts/*.sh` (`common.sh`: `compose`, `run_airfl
+         +ow_image`, `dbt_command`) |                                    
+      19 +| DAG padre que dispara DAGs hijos (TriggerDagRunOperator) | `D
+         +W/src/airflow/dags/ecommerce_pipeline.py` |                    
+      20 +| DAG de extracción MySQL/Mongo → raw (DuckDB) + verificación d
+         +e conteos | `DW/src/airflow/dags/extract_to_raw.py`, `DW/src/ec
+         +ommerce_dw/ingestion/` |                                       
+      21 +| DAG de dbt (deps → seed → intermediate → quarantine → snapsho
+         +t → marts → test) | `DW/src/airflow/dags/transform_warehouse.py
+         +`, `DW/src/ecommerce_dw/transformations/dbt_runner.py` |       
+      22 +| Generador de datos sintéticos con defectos inyectados, lotes 
+         +incrementales, cambios SCD2 | `DW/src/ecommerce_dw/sources/{gen
+         +erate_data,append_batch,simulate_changes}.py` |                
+      23 +| dbt: staging/intermediate (valid/qa), cuarentena con motivo, 
+         +marts (dims + 3 hechos), SCD2, incremental | `DW/src/dbt/models
+         +/`, `DW/src/dbt/macros/{scd2,incremental}.sql`, `DW/src/dbt/sna
+         +pshots/` |                                                     
+      24 +| dbt tests singulares (fechas, totales, festivos) y seeds (fes
+         +tivos y municipios de Colombia) | `DW/src/dbt/tests/`, `DW/src/
+         +dbt/seeds/` |                                                  
+      25 +                                                               
+      26 +### DE-AWS — ejercicios de servicios de datos de AWS (Python 3.
+         +12, conda env `aws` en el original; aquí todo vive en `final`) 
+      27 +| Patrón | Archivo |                                           
+      28 +|---|---|                                                      
+      29 +| S3: subir archivos/imagen; descargar y consultar Parquet part
+         +icionado (hive) con DuckDB `PROVIDER credential_chain` | `DA/S3
+         +/upload_files.py`, `DA/S3/download_and_query.py` |             
+      30 +| Athena: `CREATE EXTERNAL TABLE ... STORED AS PARQUET LOCATION
+         +` + agregación | `DA/Athena/query.sql` |                       
+      31 +| RDS PostgreSQL con SQLAlchemy (`postgresql+psycopg`, psycopg 
+         +3) | `DA/RDS/load_data.py` |                                   
+      32 +| Redshift con SQLAlchemy (sqlalchemy-redshift) cargando Parque
+         +t leído con DuckDB | `DA/Redshift/create_table.py`, `DA/Redshif
+         +t/query_table.py` |                                            
+      33 +| DynamoDB con boto3 | `DA/DynamoDB/load_data.py` |            
+      34 +| DocumentDB con pymongo (load_id por carga) | `DA/DocumentDB/l
+         +oad_data.py` |                                                 
+      35 +| Datos de ejemplo: customers.json y Parquet particionado por `
+         +city=` | `DA/files/` |                                         
+      36 +| Variables `.env` esperadas por cada script (DB_*, DDB_*, DOCD
+         +B_*, S3_BUCKET, REDSHIFT_*) | `DA/README.md` |                 
+      37 +                                                               
+      38 +### DE-NoSQL — MongoDB, Redis y Neo4j en Docker                
+      39 +Mismo contenido que `T3` (Taller3_ingData es la entrega basada 
+         +en este repo).                                                 
+      40 +| Patrón | Archivo |                                           
+      41 +|---|---|                                                      
+      42 +| Levantar mongo:7, neo4j:5-community, redis:7 con volúmenes (i
+         +dempotente) | `DN/create_databases.sh` |                       
+      43 +| Ejemplos pymongo / redis-py / neo4j driver + explicación de e
+         +structuras | `DN/{mongo,redis,neo4j}/test.py`, `DN/redis/ESTRUC
+         +TURAS.md`, `DN/neo4j/ESTRUCTURAS.md` |                         
+      44 +| ⚠️ `create_databases.sh` usa los puertos 27017 (mongo), igual
+         + que DE-DW: no correr ambos a la vez | — |                     
+      45 +                                                               
+      46  ## Infraestructura (Terraform)
+      47  | Patrón | Archivo |
+      48  |---|---|
+
+● Update(~/ing_datos/Final/CLAUDE.md)
+  ⎿  Added 9 lines
+      28  s3_datalake · redshift_serverless · dynamodb · rds_postgres · d
+          ocumentdb (+bastión SSM) · ec2_basico · glue_spark_job · lambda
+          _s3_trigger.
+      29  Cada una: versions.tf, provider.tf, variables.tf, main.tf, outp
+          uts.tf, `prueba_*.py`, README. Índice de la referencia: `refere
+          ncia/INDICE.md`.
+      30  
+      31 +## Material del curso (repos del profesor, en `referencia/`, so
+         +lo lectura)                                                    
+      32 +- `DE-DW` (smm-0216/DE-DW): DW local con Docker — Airflow 2.11 
+         ++ MySQL + MongoDB → DuckDB, dbt (cuarentena, SCD2, incremental,
+         + tests).                                                       
+      33 +  Imagen `local/ecommerce-airflow:2.11.2` ya construida. Su `.e
+         +nv` usa `POSTGRES_HOST_PORT=5434` (5433 es de otro contenedor d
+         +e Pedro).                                                      
+      34 +  Parar con `bash scripts/stop_infrastructure.sh` (conserva dat
+         +os); **no** usar `reset_environment.sh` sin que Pedro lo pida. 
+      35 +- `DE-AWS` (smm-0216/DE-AWS): ejercicios S3/DuckDB, Athena, RDS
+         + (SQLAlchemy+psycopg3), Redshift (sqlalchemy-redshift), DynamoD
+         +B, DocumentDB.                                                 
+      36 +  Sus dependencias ya están en el entorno `final`.             
+      37 +- `DE-NoSQL` (smm-0216/DE-NoSQL): MongoDB/Redis/Neo4j en Docker
+         + (base del Taller3).                                           
+      38 +- Son la referencia de **estilo y convenciones del curso**: si 
+         +el enunciado se parece a uno de estos, partir de él (el enuncia
+         +do sigue mandando).                                            
+      39 +                                                               
+      40  ## Errores a evitar (Tips)
+      41  fileset sobre todo el módulo (usar archivos/carpetas explícitos
+          ) · filtros que excluyen carpetas sin avisar · cachés en /tmp ·
+      42  DAGs activos durante el destroy · destroy sin verificar · Quick
+          Sight sin cancelar · escenarios sin parámetro de simulación ·
+
+● Ya actualicé INDICE.md y CLAUDE.md. run_pipeline.sh sigue corriendo en segundo
+  plano (la imagen de Airflow ya se construyó y está generando datos); cuando
+  termine verifico el DAG y dbt_test.
+
+✻ Cogitated for 3m 57s · done Wednesday 8:03 PM
+
+❯ /auto-mode-setup 
+  ⎿  Gathering data and drafting your auto-mode setup; back soon
+
+● Background command "date && time bash scripts/run_pipeline.sh >
+/home/pedrolinux/ing_datos/Final/.local/dedw_run_pipeline.log 2>&1; echo
+"exit=$?"; tail -15
+/home/pedrolinux/ing_datos/Final/.local/dedw_run_pipeline.log" completed (exit
+code 0)
+
+● Saved to /home/pedrolinux/.claude/settings.json (environment, 
+  soft_deny). Run `claude auto-mode config` to see the effective result.
+  Searched for 1 pattern (ctrl+o to expand)
+
+● El DAG falló. Busco qué tarea:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Esa salida no sirve, es puro log. Consulto los estados directo en la base de
+  metadatos de Airflow:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Airflow's metadata database has October runs because the Docker volumes were
+  shared with an earlier copy of DE-DW (compose names them after the folder,
+  de-dw), so your old data is still there. Now mysql.extract and mongodb.extract
+  are failing, and I'm looking up the error. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● La causa es esta: ./warehouse no viene en el repo, así que Docker la creó como
+  root al montarla, y Airflow (UID 1000) no puede escribir ahí. Lo confirmo:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Confirmado: warehouse/ es de root y está vacía. Le cambio el dueño a UID 1000
+  sin sudo, usando la misma imagen de Airflow como root solo para el chown:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Ahora espero a que termine la corrida programada que quedó en reintentos
+  (evita dos escritores sobre DuckDB) y relanzo el run_pipeline.sh completo:
+
+● Bash(source scripts/common.sh && for i in $(seq 1 60); do n=$(compose exec -T
+      airflow-scheduler python -c "
+      from airflow.settings import Session; from airflow.models…)
+  ⎿  corridas activas: 0
+     transform_warehouse manual__2026-11-12T01:06:49.699660+00:00 success
+     extract_to_raw manual__2026-11-12T01:05:37.069327+00:00 success
+     … +2 lines (ctrl+o to expand)
+  ⎿  Created ~/ing_datos/Final/referencia/DE-DW/src/dbt/dbt_packages/dbt_ut
+     ils/integration_tests/data/.gitkeep (+0 -0)
+  ⎿  Created ~/ing_datos/Final/referencia/DE-DW/src/dbt/dbt_packages/dbt_ut
+     ils/integration_tests/macros/.gitkeep (+0 -0)
+  ⎿  Created ~/ing_datos/Final/referencia/DE-DW/warehouse/warehouse.lock
+     (+0 -0)
+  ⎿  Created ~/ing_datos/Final/referencia/DE-DW/src/dbt/.user.yml (+1 -0)
+      1 +id: 4bd402d7-4aa0-467b-b746-ebe513a3d638                        
+  ⎿  Created ~/ing_datos/Final/referencia/DE-DW/src/dbt/dbt_packages/dbt_ut
+     ils/.circleci/config.yml (+104 -0)
+        1 +                                                              
+        2 +version: 2.1                                                  
+        3 +                                                              
+        4 +jobs:                                                         
+        5 +                                                              
+        6 +  integration-postgres:                                       
+        7 +    docker:                                                   
+        8 +      - image: cimg/python:3.9                                
+        9 +      - image: cimg/postgres:9.6                              
+       10 +        environment:                                          
+       11 +          POSTGRES_USER: root                                 
+       12 +    environment:                                              
+       13 +      POSTGRES_HOST: localhost                                
+       14 +      POSTGRES_USER: root                                     
+       15 +      DBT_ENV_SECRET_POSTGRES_PASS: ''                        
+       16 +      POSTGRES_PORT: 5432                                     
+       17 +      POSTGRES_DATABASE: circle_test                          
+       18 +      POSTGRES_SCHEMA: dbt_utils_integration_tests_postgres   
+       19 +                                                              
+       20 +    steps:                                                    
+       21 +      - checkout                                              
+       22 +      - run: pip install --pre dbt-postgres -r dev-requirement
+          +s.txt                                                         
+       23 +      - run:                                                  
+       24 +          name: "Run OG Tests - Postgres"                     
+       25 +          command: ./run_test.sh postgres                     
+       26 +      - store_artifacts:                                      
+       27 +          path: integration_tests/logs                        
+       28 +      - store_artifacts:                                      
+       29 +          path: integration_tests/target                      
+       30 +                                                              
+       31 +    # The resource_class feature allows configuring CPU and RA
+          +M resources for each job. Different resource classes are avail
+          +able for different executors. https://circleci.com/docs/2.0/co
+          +nfiguration-reference/#resourceclass                          
+       32 +    resource_class: large                                     
+       33 +                                                              
+       34 +  integration-redshift:                                       
+       35 +    docker:                                                   
+       36 +      - image: cimg/python:3.9                                
+       37 +    steps:                                                    
+       38 +      - checkout                                              
+       39 +      - run: pip install --pre dbt-redshift -r dev-requirement
+          +s.txt                                                         
+       40 +      - run:                                                  
+     … 64 more lines (ctrl+o to expand)
+  ⎿  … 493 more files changed
+
+● Con el permiso arreglado, la corrida programada ya terminó en success. Relanzo
+  el run_pipeline.sh completo para tener una corrida limpia, que es lo que
+  pediste:
+
+● Bash(SECONDS=0; bash scripts/run_pipeline.sh >
+      /home/pedrolinux/ing_datos/Final/.local/dedw_run_pipeline2.log 2>&1;
+      rc=$?; echo "exit=$rc en ${SECONDS}s"; grep -vE "…)
+  ⎿  exit=0 en 125s
+     Infrastructure is running.
+     MySQL tables and MongoDB collections are ready.
+     … +2 lines (ctrl+o to expand)
+  ⎿  Updated ~/ing_datos/Final/referencia/DE-DW/src/dbt/target/compiled/eco
+     mmerce_dw/models/marts/fct_navigation_events.sql (+23 -0)
+       82  from resolved_events as candidate
+       83  
+       84  
+       85 +where candidate.navigation_event_sk not in (                  
+       86 +    select existing.navigation_event_sk from "warehouse"."mart
+          +s"."fct_navigation_events" as existing                        
+       87 +)                                                             
+       88 +or candidate.business_date >= (                               
+       89 +    select max(dates.date) - 7                                
+       90 +    from "warehouse"."marts"."fct_navigation_events" as existi
+          +ng                                                            
+       91 +    inner join "warehouse"."marts"."dim_date" as dates on date
+          +s.date_sk = existing.date_sk                                  
+       92 +)                                                             
+       93 +                                                              
+       94 +or exists (                                                   
+       95 +    select 1                                                  
+       96 +    from "warehouse"."marts"."fct_navigation_events" as existi
+          +ng                                                            
+       97 +    where existing.navigation_event_sk = candidate.navigation_
+          +event_sk                                                      
+       98 +    and (                                                     
+       99 +                                                              
+      100 +        existing.customer_sk is distinct from candidate.custom
+          +er_sk or                                                      
+      101 +                                                              
+      102 +        existing.product_sk is distinct from candidate.product
+          +_sk                                                           
+      103 +                                                              
+      104 +    )                                                         
+      105 +)                                                             
+      106 +                                                              
+      107 +                                                              
+  ⎿  Updated ~/ing_datos/Final/referencia/DE-DW/src/dbt/target/compiled/eco
+     mmerce_dw/models/marts/fct_reviews.sql (+23 -0)
+       78  from resolved_reviews as candidate
+       79  
+       80  
+       81 +where candidate.review_sk not in (                            
+       82 +    select existing.review_sk from "warehouse"."marts"."fct_re
+          +views" as existing                                            
+       83 +)                                                             
+       84 +or candidate.business_date >= (                               
+       85 +    select max(dates.date) - 7                                
+       86 +    from "warehouse"."marts"."fct_reviews" as existing        
+       87 +    inner join "warehouse"."marts"."dim_date" as dates on date
+          +s.date_sk = existing.date_sk                                  
+       88 +)                                                             
+       89 +                                                              
+       90 +or exists (                                                   
+       91 +    select 1                                                  
+       92 +    from "warehouse"."marts"."fct_reviews" as existing        
+       93 +    where existing.review_sk = candidate.review_sk            
+       94 +    and (                                                     
+       95 +                                                              
+       96 +        existing.customer_sk is distinct from candidate.custom
+          +er_sk or                                                      
+       97 +                                                              
+       98 +        existing.product_sk is distinct from candidate.product
+          +_sk                                                           
+       99 +                                                              
+      100 +    )                                                         
+      101 +)                                                             
+      102 +                                                              
+      103 +                                                              
+  ⎿  Updated ~/ing_datos/Final/referencia/DE-DW/src/dbt/target/compiled/eco
+     mmerce_dw/models/marts/fct_sales.sql (+25 -0)
+       94  from resolved_sales as candidate
+       95  
+       96  
+       97 +where candidate.sale_sk not in (                              
+       98 +    select existing.sale_sk from "warehouse"."marts"."fct_sale
+          +s" as existing                                                
+       99 +)                                                             
+      100 +or candidate.business_date >= (                               
+      101 +    select max(dates.date) - 7                                
+      102 +    from "warehouse"."marts"."fct_sales" as existing          
+      103 +    inner join "warehouse"."marts"."dim_date" as dates on date
+          +s.date_sk = existing.date_sk                                  
+      104 +)                                                             
+      105 +                                                              
+      106 +or exists (                                                   
+      107 +    select 1                                                  
+      108 +    from "warehouse"."marts"."fct_sales" as existing          
+      109 +    where existing.sale_sk = candidate.sale_sk                
+      110 +    and (                                                     
+      111 +                                                              
+      112 +        existing.customer_sk is distinct from candidate.custom
+          +er_sk or                                                      
+      113 +                                                              
+      114 +        existing.product_sk is distinct from candidate.product
+          +_sk or                                                        
+      115 +                                                              
+      116 +        existing.geography_sk is distinct from candidate.geogr
+          +aphy_sk                                                       
+      117 +                                                              
+      118 +    )                                                         
+      119 +)                                                             
+      120 +                                                              
+      121 +                                                              
+  ⎿  Updated
+     ~/ing_datos/Final/referencia/DE-DW/src/dbt/target/graph_summary.json
+     (+1 -1)
+      1 -{"_invocation_id": "165e16be-6033-4af0-9555-899801c8dc24", "link
+        -ed": {"0": {"name": "source.ecommerce_dw.mysql_raw.mysql_custome
+        -rs", "type": "source", "succ": [35]}, "1": {"name": "source.ecom
+        -merce_dw.mysql_raw.mysql_products", "type": "source", "succ": [2
+        -7]}, "2": {"name": "source.ecommerce_dw.mysql_raw.mysql_orders",
+        - "type": "source", "succ": [33, 44]}, "3": {"name": "source.ecom
+        -merce_dw.mysql_raw.mysql_order_items", "type": "source", "succ":
+        - [23]}, "4": {"name": "source.ecommerce_dw.mongodb_raw.mongo_rev
+        -iews", "type": "source", "succ": [32]}, "5": {"name": "source.ec
+        -ommerce_dw.mongodb_raw.mongo_navigation_events", "type": "source
+        -", "succ": [25]}, "6": {"name": "model.ecommerce_dw.dim_date", "
+        -type": "model", "succ": [17, 19, 21, 43, 44, 45, 46, 47, 62, 63,
+        - 81, 91, 100]}, "7": {"name": "seed.ecommerce_dw.colombia_holida
+        -ys", "type": "seed", "succ": [6, 51, 52, 53]}, "8": {"name": "mo
+        -del.ecommerce_dw.dim_customer", "type": "model", "succ": [17, 19
+        -, 21, 54, 55, 56, 57, 75, 87, 96]}, "9": {"name": "snapshot.ecom
+        -merce_dw.snap_dim_customer", "type": "snapshot", "succ": [8]}, "
+        -10": {"name": "model.ecommerce_dw.dim_sales_channel", "type": "m
+        -odel", "succ": [19, 21, 66, 67, 79, 102]}, "11": {"name": "model
+        -.ecommerce_dw.int_mysql__orders__valid", "type": "model", "succ"
+        -: [10, 21, 36, 47, 127, 128]}, "12": {"name": "model.ecommerce_d
+        -w.int_mongodb__navigation_events__valid", "type": "model", "succ
+        -": [10, 19, 20, 46, 133, 134]}, "13": {"name": "model.ecommerce_
+        -dw.dim_geography", "type": "model", "succ": [21, 64, 65, 83]}, "
+        -14": {"name": "seed.ecommerce_dw.colombia_municipalities", "type
+        -": "seed", "succ": [13, 48, 49, 50]}, "15": {"name": "model.ecom
+        -merce_dw.dim_product", "type": "model", "succ": [17, 19, 21, 58,
+        - 59, 60, 61, 77, 89, 98]}, "16": {"name": "snapshot.ecommerce_dw
+        -.snap_dim_product", "type": "snapshot", "succ": [15]}, "17": {"n
+        -ame": "model.ecommerce_dw.fct_reviews", "type": "model", "succ":
+        - [46, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93]}, "18": {"name": "
+        -model.ecommerce_ … [+12932 chars]                               
+      1 +{"_invocation_id": "a2ff6627-1c71-4a11-80d0-5ee7a3c07af6", "link
+        +ed": {"0": {"name": "source.ecommerce_dw.mysql_raw.mysql_custome
+        +rs", "type": "source", "succ": [35]}, "1": {"name": "source.ecom
+        +merce_dw.mysql_raw.mysql_products", "type": "source", "succ": [2
+        +7]}, "2": {"name": "source.ecommerce_dw.mysql_raw.mysql_orders",
+        + "type": "source", "succ": [33, 44]}, "3": {"name": "source.ecom
+        +merce_dw.mysql_raw.mysql_order_items", "type": "source", "succ":
+        + [23]}, "4": {"name": "source.ecommerce_dw.mongodb_raw.mongo_rev
+        +iews", "type": "source", "succ": [32]}, "5": {"name": "source.ec
+        +ommerce_dw.mongodb_raw.mongo_navigation_events", "type": "source
+        +", "succ": [25]}, "6": {"name": "model.ecommerce_dw.dim_date", "
+        +type": "model", "succ": [17, 19, 21, 43, 44, 45, 46, 47, 62, 63,
+        + 81, 91, 100]}, "7": {"name": "seed.ecommerce_dw.colombia_holida
+        +ys", "type": "seed", "succ": [6, 51, 52, 53]}, "8": {"name": "mo
+        +del.ecommerce_dw.dim_customer", "type": "model", "succ": [17, 19
+        +, 21, 54, 55, 56, 57, 75, 87, 96]}, "9": {"name": "snapshot.ecom
+        +merce_dw.snap_dim_customer", "type": "snapshot", "succ": [8]}, "
+        +10": {"name": "model.ecommerce_dw.dim_sales_channel", "type": "m
+        +odel", "succ": [19, 21, 66, 67, 79, 102]}, "11": {"name": "model
+        +.ecommerce_dw.int_mysql__orders__valid", "type": "model", "succ"
+        +: [10, 21, 36, 47, 127, 128]}, "12": {"name": "model.ecommerce_d
+        +w.int_mongodb__navigation_events__valid", "type": "model", "succ
+        +": [10, 19, 20, 46, 133, 134]}, "13": {"name": "model.ecommerce_
+        +dw.dim_geography", "type": "model", "succ": [21, 64, 65, 83]}, "
+        +14": {"name": "seed.ecommerce_dw.colombia_municipalities", "type
+        +": "seed", "succ": [13, 48, 49, 50]}, "15": {"name": "model.ecom
+        +merce_dw.dim_product", "type": "model", "succ": [17, 19, 21, 58,
+        + 59, 60, 61, 77, 89, 98]}, "16": {"name": "snapshot.ecommerce_dw
+        +.snap_dim_product", "type": "snapshot", "succ": [15]}, "17": {"n
+        +ame": "model.ecommerce_dw.fct_reviews", "type": "model", "succ":
+        + [46, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93]}, "18": {"name": "
+        +model.ecommerce_ … [+12932 chars]                               
+  ⎿  Updated ~/ing_datos/Final/referencia/DE-DW/src/dbt/target/run/ecommerc
+     e_dw/models/marts/fct_navigation_events.sql (+12 -92)
+       1  
+       2 -                                                               
+       2 +                                                               
+       3 +            delete from "warehouse"."marts"."fct_navigation_eve
+         +nts"                                                           
+       4 +            where (                                            
+       5 +                navigation_event_sk) in (                      
+       6 +                select (navigation_event_sk)                   
+       7 +                from "fct_navigation_events__dbt_tmp20261112010
+         +943951019"                                                     
+       8 +            );                                                 
+       9 +                                                               
+      10 +                                                               
+      11      
+       4 -                                                               
+       5 -                                                               
+       6 -    create  table                                              
+       7 -      "warehouse"."marts"."fct_navigation_events"              
+       8 -                                                               
+       9 -    as (                                                       
+      10 -                                                               
+      11 -                                                               
+      12 -with events as (                                               
+      13 -    select                                                     
+      14 -        event_id,                                              
+      15 -        event_type,                                            
+      16 -        customer_id,                                           
+      17 -        product_id,                                            
+      18 -        sales_channel,                                         
+      19 -        timezone('America/Bogota', occurred_at) as occurred_loc
+         -al_at                                                          
+      20 -    from "warehouse"."intermediate"."int_mongodb__navigation_ev
+         -ents__valid"                                                   
+      21 -),                                                             
+      22 -customers_versioned as (                                       
+      23 -                                                               
+      24 -select                                                         
+      25 -    *,                                                         
+      26 -    min(valid_from) over (partition by customer_id) as first_va
+         -lid_from                                                       
+      27 -from "warehouse"."marts"."dim_customer"                        
+      28 -                                                               
+      29 -),                                                             
+      30 -products_versioned as (                                        
+      31 -                                                               
+     … 70 more lines (ctrl+o to expand)
+  ⎿  … 16 more files changed
+
+● ecommerce_pipeline completed successfully (exit 0, 125 s). Verifico la corrida
+  tarea por tarea, incluido dbt_test:
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● El log de Airflow no muestra el resumen de dbt, así que lo saco del dbt.log
+  propio (montado en src/dbt/logs):
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+● dbt test: PASS=92, WARN=0, ERROR=0. Detengo todo con stop_infrastructure.sh,
+  sin reset:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Todo quedó detenido: volúmenes y warehouse.duckdb (10 MB) se conservan.
+  Completo la sección "Estado local" que había anunciado en el INDICE, con los
+  arreglos que hicieron falta:
+
+● Update(~/ing_datos/Final/referencia/INDICE.md)
+  ⎿  Added 11 lines
+      23  | dbt: staging/intermediate (valid/qa), cuarentena con motivo, 
+          marts (dims + 3 hechos), SCD2, incremental | `DW/src/dbt/models
+          /`, `DW/src/dbt/macros/{scd2,incremental}.sql`, `DW/src/dbt/sna
+          pshots/` |
+      24  | dbt tests singulares (fechas, totales, festivos) y seeds (fes
+          tivos y municipios de Colombia) | `DW/src/dbt/tests/`, `DW/src/
+          dbt/seeds/` |
+      25  
+      26 +**Estado local (2026-11-11):** `run_pipeline.sh` completo OK en
+         + 125 s (corrida `manual__2026-11-12T01:08:40`): `extract_to_raw
+         +` 5/5 y                                                        
+      27 +`transform_warehouse` 7/7 en success, **dbt test PASS=92 WARN=0
+         + ERROR=0** (`src/dbt/logs/dbt.log`). Detenido con `stop_infrast
+         +ructure.sh`                                                    
+      28 +(volúmenes `de-dw_*` y `warehouse/warehouse.duckdb` conservados
+         +). Logs: `.local/dedw_run_pipeline*.log`.                      
+      29 +Arreglos locales necesarios (no están en el repo original):    
+      30 +- `docker/.env.example` no existe en el repo → creado desde `en
+         +v_file` + `POSTGRES_HOST_PORT=5434` (5433 ocupado por `manejo-a
+         +lcanza-bd-pruebas`).                                           
+      31 +- Scripts sin bit de ejecución → `chmod +x scripts/*.sh` (`run_
+         +pipeline.sh` llama a los otros directamente).                  
+      32 +- `warehouse/` no viene en el repo; Docker la crea como root y 
+         +las tareas `extract` fallan con `PermissionError: /opt/warehous
+         +e/extracts`                                                    
+      33 +  → `docker run --rm --user root --entrypoint chown -v $PWD/war
+         +ehouse:/w local/ecommerce-airflow:2.11.2 1000:0 /w`.           
+      34 +- Los volúmenes `de-dw_*` ya existían (corridas de octubre de o
+         +tra copia de DE-DW): el proyecto compose se llama por la carpet
+         +a. Al despausar,                                               
+      35 +  el scheduler lanza la corrida programada pendiente (catchup) 
+         +además de la manual.                                           
+      36 +                                                               
+      37  ### DE-AWS — ejercicios de servicios de datos de AWS (Python 3.
+          12, conda env `aws` en el original; aquí todo vive en `final`)
+      38  | Patrón | Archivo |
+      39  |---|---|
+
+● Ya está todo lo que pediste. El DAG ecommerce_pipeline terminó bien, dbt test
+  pasó y quedó todo detenido sin reset. Para que funcionara tuve que hacer tres
+  arreglos locales al repo.
+
+  Repos: DE-DW, DE-AWS y DE-NoSQL están clonados en referencia/. Los agregué a
+  referencia/INDICE.md (con abreviaturas DW, DA y DN) y a CLAUDE.md como
+  material del curso.
+
+  Corrida de DE-DW:
+  - run_pipeline.sh completo terminó en 125 s y la imagen de Airflow
+    (local/ecommerce-airflow:2.11.2) quedó construida.
+  - ecommerce_pipeline terminó en success; extract_to_raw pasó sus 5 tareas y
+    transform_warehouse sus 7.
+  - dbt test: PASS=92, WARN=0, ERROR=0.
+  - stop_infrastructure.sh sin reset: no queda ningún contenedor corriendo, y
+    los volúmenes y warehouse/warehouse.duckdb se conservan.
+
+  Arreglos que necesitó el repo (anotados en el INDICE):
+  1. configure_environment.sh fallaba porque no existe docker/.env.example. Lo
+     creé a partir de env_file.
+  2. El puerto 5433 lo ocupa tu contenedor manejo-alcanza-bd-pruebas, que no
+     toqué. Le di al Postgres de Airflow el puerto 5434.
+  3. Los scripts no tenían permiso de ejecución y la carpeta warehouse/ la
+     creaba Docker como root. Por eso las tareas extract fallaron en el primer
+     intento con PermissionError. Le cambié el dueño a tu usuario usando la
+     misma imagen, sin sudo, y la segunda corrida completa salió bien.
+
+  Algo que debes saber: los volúmenes de Docker de-dw_* ya existían, con
+  corridas de octubre de otra copia de DE-DW. Docker los nombra según la
+  carpeta, así que esta copia reutilizó y modificó tus datos anteriores: la
+  segunda corrida regeneró las fuentes en MySQL y MongoDB.
+
+  Extra: DE-AWS usa psycopg (v3) y sqlalchemy-redshift, que no estaban en el
+  entorno final. Los instalé sin conflictos y actualicé requirements.txt,
+  environment.yml y el wheelhouse offline.
+
+✻ Cooked for 5m 10s · done Wednesday 8:10 PM
+
+※ recap: Te estás preparando para el examen final de AWS: la FASE 1 está lista, DE-DW corrió completo con dbt test en 92/92 y quedó detenido. Lo siguiente es que pongas el enunciado en ./enunciado/ para empezar la FASE 2. (disable recaps in /config)
+
+❯ El profe mandó el entorno del examen. Déjalo listo sin cambiar CLAUDE.md ni   
+  las instrucciones:                                                            
+                                                                                
+  1. Descomprime "/mnt/c/Users/pedro/Universidad EIA/Semestre 6/Ingenieria De   
+  Datos/Final/examen-ventas-entorno.zip"                                        
+     en ~/ing_datos/Final/ (queda ~/ing_datos/Final/entorno-estudiantes).       
+  2. Lee su README.md y ejecuta exactamente sus pasos: bash                     
+  scripts/preparar.sh, docker compose pull,                                     
+     docker compose up -d --wait airflow, bash scripts/examen.sh check.         
+     Confirma que Airflow abre en http://localhost:8080 (estudiante /           
+  examen-local).                                                                
+  3. Luego docker compose stop. NUNCA docker compose down -v.                   
+  4. Si ya lo hicisite (no recuerdo) clona en referencia/ los repos del curso:  
+  https://github.com/smm-0216/DE-DW,                                            
+     https://github.com/smm-0216/DE-AWS y https://github.com/smm-0216/DE-NoSQL, 
+  y agrégalos a referencia/INDICE.md.                                           
+     No escribas modelos ni DAGs todavía: eso es cuando llegue el enunciado.    
+
+● El punto 4 ya está hecho desde la sesión anterior (los tres repos están en
+  referencia/ y en el INDICE). Empiezo por revisar el zip antes de extraerlo:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Está limpio (sin rutas absolutas ni ..). Lo extraigo y leo todo antes de
+  ejecutar nada:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Todo es local y benigno: como root solo hace chown dentro de sus volúmenes y
+  monta el proyecto en solo lectura. Falta la carpeta data/ que necesita
+  scenario, probablemente llegue con el enunciado, y ejecutaré los pasos del
+  README en orden. · summary
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+● El check pasa sin errores. Confirmo que Airflow responde en el puerto 8080 y
+  que el login con estudiante / examen-local funciona:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Airflow está operativo: /health responde healthy y el login con estudiante / 
+  examen-local funciona, pero la API REST devuelve 401 aunque la clave sea
+  correcta, así que los DAGs habrá que operarlos desde la CLI del contenedor.
+  Antes de detenerlo, anoto las versiones de la imagen para el examen. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+● Ahora docker compose stop, sin down -v:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Detenido y con los volúmenes intactos. Guardo en memoria los datos del entorno
+  para la FASE 2 (sin tocar CLAUDE.md ni las instrucciones):
+
+  Ran 1 shell command, wrote 1 memory (ctrl+o to expand)
+
+● El entorno del examen quedó listo: los pasos del README pasaron sin errores,
+  Airflow abre en http://localhost:8080 con estudiante / examen-local y ya está
+  detenido. No cambié CLAUDE.md ni las instrucciones, y no escribí modelos ni
+  DAGs.
+
+  1. Descompresión: quedó en ~/ing_datos/Final/entorno-estudiantes. Antes de
+     ejecutar nada revisé todos los scripts y no hacen nada raro.
+  2. Pasos del README, en orden:
+     - bash scripts/preparar.sh creó el .env con tu usuario (UID 1000).
+     - docker compose pull descargó la imagen del profe,
+       smendezm/examen-ventas:1.0.
+     - docker compose up -d --wait airflow lo dejó funcionando en 39 s.
+     - bash scripts/examen.sh check salió con todos los OK: proyecto legible y
+       de solo lectura, escritura en /data y /state, y DuckDB crea y reabre la
+       base.
+     - Airflow: el login redirige a /home y carga bien.
+  3. docker compose stop: contenedores detenidos y volúmenes
+     examen-ventas_warehouse y examen-ventas_state intactos. No usé down -v.
+  4. Repos del curso: ya estaban de la sesión anterior. DE-DW, DE-AWS y DE-NoSQL
+     están en referencia/ y en referencia/INDICE.md, así que no cloné nada de
+     nuevo.
+
+  Para el examen:
+  - Falta la carpeta data/. El comando scenario necesita data/ventas.csv, así
+    que seguramente llega con el enunciado.
+  - Los escenarios actualizada, advertencia y desactualizada cargan las ventas
+    con una hora de carga de hace 2, 18 o 30 horas. Eso apunta a que el examen
+    pedirá que dbt revise qué tan recientes son los datos y avise o falle según
+    la antigüedad.
+  - La API REST de Airflow responde 401 incluso con la clave correcta. Para
+    manejar los DAGs usaré la CLI dentro del contenedor (docker compose exec 
+    airflow airflow ...).
+  - Esta versión trae Airflow 2.10.5 y dbt 1.9.4 con DuckDB, que no son las
+    mismas de DE-DW.
+  - DE-DW también usa el puerto 8080, así que no se pueden tener los dos
+    encendidos a la vez.
+
+  Guardé estos datos en mi memoria para la FASE 2.
+
+✻ Baked for 3m 0s · done Wednesday 9:00 PM
+
+❯ Antes de que te mande el enunciado revisa que la imagen de docker haya        
+  quedado bien porque me sale que smendezm/examen-ventas fue creada hace 3 dias 
+  hoy es 11/11/2026 si ya esta instalado, te enviare el enunciado mañana 12     
+
+● Lo reviso: fecha de creación, digest local contra Docker Hub y que la imagen
+  funcione.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Comparo con lo que hay publicado ahora en Docker Hub:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● La imagen quedó bien. "Creada hace 3 días" es normal: Docker muestra la fecha
+  en que el profesor construyó la imagen, no la fecha en que la descargaste.
+
+  ┌────────────────────────┬────────────────────────────────────────────────┐
+  │          Dato          │                     Valor                      │
+  ├────────────────────────┼────────────────────────────────────────────────┤
+  │ Construida por el      │ 2026-11-08 23:40 UTC, por eso "3 days ago"     │
+  │ profe (Created)        │                                                │
+  ├────────────────────────┼────────────────────────────────────────────────┤
+  │ Subida a Docker Hub    │ 2026-11-12 01:11 UTC = 11/11, 20:11 hora       │
+  │ (last_pushed)          │ Colombia                                       │
+  ├────────────────────────┼────────────────────────────────────────────────┤
+  │ Descargada por         │ 2026-11-12 01:57 UTC = 11/11, 20:57 hora       │
+  │ nosotros               │ Colombia, después de que la subió              │
+  ├────────────────────────┼────────────────────────────────────────────────┤
+  │ Digest local           │ sha256:c57ddf51…6842c77                        │
+  ├────────────────────────┼────────────────────────────────────────────────┤
+  │ Digest actual en       │ sha256:c57ddf51…6842c77, idéntico              │
+  │ Docker Hub             │                                                │
+  ├────────────────────────┼────────────────────────────────────────────────┤
+  │ Tags publicados        │ solo 1.0, para amd64 y arm64. Tu equipo usa    │
+  │                        │ amd64                                          │
+  └────────────────────────┴────────────────────────────────────────────────┘
+
+  Tienes exactamente la versión que está publicada hoy. Además ya funcionó:
+  Airflow arrancó en estado healthy, examen.sh check pasó completo y el login
+  entró.
+
+  Para mañana: si el profe vuelve a subir la imagen con el mismo tag 1.0, Docker
+  no la actualiza solo. El compose.yaml del entorno solo la descarga cuando no
+  la tienes. Cuando me mandes el enunciado, lo primero que hago es comparar el
+  digest otra vez con Docker Hub y, si cambió, corro docker compose pull antes
+  de levantar el entorno. Toma un par de minutos, porque solo baja las capas
+  nuevas.
+
+  Quedo esperando el enunciado el 12.
+
+✻ Churned for 23s · done Wednesday 9:07 PM
+
+❯ actualiza ESTADO_WSL.md con lo del entorno del examen, te aviso cuando cargue 
+  el enunciado                                                                  
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Actualicé ESTADO_WSL.md con lo del entorno del examen; no toqué CLAUDE.md ni
+  las instrucciones. Agregué:
+
+  - Nueva sección "Entorno del examen":
+    - los pasos del README, que salieron todos bien;
+    - el login de Airflow, que funciona;
+    - que quedó detenido con stop, sin borrar los datos;
+    - la imagen del profe verificada: es la misma versión que está publicada
+      (construida el 08/11, subida el 11/11 a las 20:11 y descargada a las
+      20:57);
+    - versiones, estructura de carpetas, cómo se usa examen.sh, y que todavía
+      falta la carpeta data/.
+  - En "Listo": los 7 repos de referencia, la corrida de DE-DW (dbt test
+    PASS=92) y las dos librerías nuevas en el entorno final.
+  - Pendiente: esperando el enunciado del 12/11.
+  - Nueva sección "Al llegar el enunciado", en este orden:
+    a. comparar la imagen con la de Docker Hub y descargarla de nuevo si el
+       profe la cambió;
+    b. leer el enunciado, hacerte un plan corto y esperar tu OK;
+    c. levantar el entorno y correr check.
+
+  Quedo esperando tu aviso.
+
+✻ Worked for 19s · done Wednesday 9:08 PM
+
+❯ /remote-control 
+
+❯ listo ya cargue el enunciado                                                  
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Lo primero, según lo acordado: comparo la imagen con Docker Hub mientras leo
+  el enunciado.
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Docker Desktop no está disponible en WSL, y el digest de la imagen en Docker
+  Hub sigue igual, así que necesito que Docker esté abierto para el punto 2.
+  Mientras tanto clono los dos repos del enunciado. · summary
+
+  Ran 4 shell commands (ctrl+o to expand)
+
+● Ya leí el enunciado completo: son 2 puntos, cada uno en su repo. Abajo va el
+  plan. Espero tu OK antes de desplegar nada.
+
+  Punto 1 (3.0): Entregas, en AWS (S3 + Glue con partition projection + Athena)
+
+  Paso: Infra
+  Qué hago: infraestructura/{principal,variables,salidas}.tf: bucket privado con
+
+    bloqueo público y force_destroy, base Glue, tabla externa (5 columnas, fecha
+
+    string como partición, OpenCSVSerde o LazySimpleSerDe con
+    skip.header.line.count=1, proyección date yyyy-MM-dd 2026-10-01..2026-10-03
+    con intervalo de 1 día, storage.location.template = 
+    s3://<bucket>/entregas/fecha=${fecha}/), workgroup Athena con salida a
+    resultados-athena/ y outputs
+  Base: plantillas/s3_datalake (ya pasó plan)
+  ────────────────────────────────────────
+  Paso: Etapa inicial
+  Qué hago: apply → evidencias/aplicacion_terraform.txt + outputs.json; subo
+  solo
+    los días 1 y 2, archivo por archivo con aws s3 cp; 3 consultas →
+    resultados/inicial/*.csv, comparadas con diff contra las referencias
+  Base: —
+  ────────────────────────────────────────
+  Paso: Etapa final
+  Qué hago: subo solo el día 3, sin tocar la infra; verificacion_tercer_dia.sql
+    (6 registros, conteo por estado y total 18); vuelvo a correr las 2 agregadas
+
+    → resultados/final/, con diff
+  Base: —
+  ────────────────────────────────────────
+  Paso: Evidencias
+  Qué hago: ejecuciones_athena.csv (etapa, archivo_sql, id_ejecucion,
+    archivo_resultado) generado por un script que corre cada .sql y baja el CSV
+    de Athena
+  Base: —
+  ────────────────────────────────────────
+  Paso: Cierre
+  Qué hago: respuestas.md, README reproducible y destroy →
+    evidencias/eliminacion_terraform.txt + verificar_cuenta_limpia.sh
+  Base: —
+
+  Costo: centavos. No necesita capturas de consola: el enunciado pide .txt,
+  .json y .csv.
+
+  Punto 2 (2.0): Ventas, local en Docker (dbt freshness + Airflow)
+
+  Solo modifico 3 archivos, como exige el enunciado:
+  1. ventas_diarias.sql: group by fecha_venta con count(*), sum(cantidad) y
+     sum(cantidad*precio_unitario). Ya verifiqué a mano que da 46.00, 51.25 y
+     12.40.
+  2. sources.yml: loaded_at_field: _loaded_at, con aviso después de 12 h y error
+     después de 24 h, al nivel de la tabla y fuera de config.
+  3. examen_ventas.py: tarea comprobar_frescura con run_dbt y
+     ["source","freshness"], que corre antes de construir_resumen.
+
+  Después: dbt build; escenario actualizada y Trigger; captura, resumen y
+  escenario desactualizada en una ejecución nueva; captura, log del fallo,
+  resumen y respuestas.
+
+  Corre desde el clon enunciado/DE-Final-Ventas, con el .env del ZIP copiado
+  como pide el README. El compose es idéntico y comparte los mismos volúmenes.
+  Capturas: las de Airflow en localhost:8080 las toma Cowork (o tú con
+  Win+Shift+S), y yo escribo CAPTURAS.md antes.
+
+  Antes de empezar
+
+  1. Docker no responde en WSL ahora. Abre Docker Desktop y revisa que la
+     integración con Ubuntu esté activa. Sin eso no hay punto 2.
+  2. Penalización de 0.5: hay que adjuntar los chats. Este hilo es
+     https://claude.ai/code/session_01EycHxF1W36KqrAdeHc6xPS; además puedes
+     exportarlo con /export al final.
+
+  ¿Me das el OK para arrancar con este plan (punto 1 y punto 2 en paralelo
+  mientras despliega AWS)? Te dejo dos preguntas:
+
+● User answered Claude's questions:
+  ⎿  · El punto 1 exige una estructura fija en la raíz del repo de entrega 
+     (README, infraestructura/, consultas/, resultados/, evidencias/, 
+     respuestas.md). ¿Dónde va el punto 2 (Ventas)? → Un solo repositorio con 2 
+     carpetas una para punto 1 y una para punto 2
+     · ¿Arranco ya con el plan? → Sí, arranca
+
+● Armo la estructura de entrega/ con punto1_entregas/ y punto2_ventas/. Empiezo
+  por el punto 1, que depende de AWS y tarda más, y reviso Docker en paralelo. 
+  · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Docker ya responde (29.9.2). Escribo el Terraform del punto 1:
+
+  Ran 1 shell command (ctrl+o to expand)
+  ⎿  Not run · permission denied
+     │ Reason: Permission for this command was denied by a built-in Claude Code safety check
+
+● El comando no tenía ningún rm. El verificador no pudo analizar el heredoc por
+  los $${fecha} y bloqueó todo, así que no se ejecutó nada. Escribo los archivos
+  con la herramienta Write:
+
+● Write(punto1_entregas/infraestructura/principal.tf)
+  ⎿  Wrote 160 lines to punto1_entregas/infraestructura/principal.tf
+       1 # Punto 1 — Entregas: S3 + Glue Data Catalog (tabla externa con 
+         partition projection) + Athena.
+       2 # No se crean particiones individuales: Athena calcula fecha y u
+         bicación con las propiedades projection.*.
+       3 
+       4 terraform {
+       5   required_version = ">= 1.9.0"
+       6   required_providers {
+       7     aws = {
+       8       source  = "hashicorp/aws"
+     … +152 lines (ctrl+o to expand)
+
+● Write(punto1_entregas/infraestructura/variables.tf)
+  ⎿  Wrote 59 lines to punto1_entregas/infraestructura/variables.tf
+       1 variable "region" {
+       2   description = "Región de AWS del ejercicio"
+       3   type        = string
+       4   default     = "us-east-2"
+       5 }
+       6 
+       7 variable "perfil_aws" {
+       8   description = "Perfil de AWS CLI con permisos sobre S3, Glue y
+          Athena"
+       9   type        = string
+     … +50 lines (ctrl+o to expand)
+
+● Write(punto1_entregas/infraestructura/salidas.tf)
+  ⎿  Wrote 37 lines to punto1_entregas/infraestructura/salidas.tf
+       1 output "bucket" {
+       2   description = "Bucket privado del ejercicio"
+       3   value       = aws_s3_bucket.entregas.bucket
+       4 }
+       5 
+       6 output "bucket_arn" {
+       7   value = aws_s3_bucket.entregas.arn
+       8 }
+       9 
+      10 output "ubicacion_datos" {
+     … +27 lines (ctrl+o to expand)
+
+● Bash(cd ~/ing_datos/Final/entrega/punto1_entregas/infraestructura && cp
+      ~/ing_datos/Final/plantillas/_providers/.terraform.lock.hcl . && export
+      AWS_PROFILE=taller AW…)  ⎿  - Reusing previous version of hashicorp/aws from the dependency lock f
+     ile
+     - Installed hashicorp/aws v6.72.0 (unauthenticated)
+     … +5 lines (ctrl+o to expand)
+  ⎿  Created punto1_entregas/infraestructura/.terraform.lock.hcl (+26 -0)
+       1 +# This file is maintained automatically by "terraform init".   
+       2 +# Manual edits may be lost in future updates.                  
+       3 +                                                               
+       4 +provider "registry.terraform.io/hashicorp/aws" {               
+       5 +  version     = "6.72.0"                                       
+       6 +  constraints = "6.72.0"                                       
+       7 +  hashes = [                                                   
+       8 +    "h1:v8OGTOUuY1sbRr4VDjYW7ypqV5NBB1cosUY5LrcwqTs=",         
+       9 +    "zh:2ffb6b2caaf320b61b406cff192d6e4303b64e32990b69384a056fe
+         +5af3d015b",                                                    
+      10 +    "zh:33cd70e1b3d0f80bfdf07480139142f81a3daec26ab0fd160d00793
+         +e819b807e",                                                    
+      11 +    "zh:37166439117b6ab889b02513e9cdc09b9ea4dd0b6e0733e83da47fc
+         +938acad35",                                                    
+      12 +    "zh:676fc5b60e270af38f94da63bb0caa80c3fb24c8c68c77ceb4df8c0
+         +9f5fd78f0",                                                    
+      13 +    "zh:7218399da8607fd00b948e817941d3e543a09347272ff9103d9cf37
+         +97ad697e0",                                                    
+      14 +    "zh:7fba55258fa19b283b465b2158141f8cffa23d4aa670cd9edfab9e4
+         +deaebc5d2",                                                    
+      15 +    "zh:81da89c4557a9fb2943f10e229b4e289852df94255b7186dc7e1dcb
+         +d36641a9f",                                                    
+      16 +    "zh:82b8dd415eb13a81e7e28fc29756e4639c77683534b0ffae6bf25c1
+         +0b693a374",                                                    
+      17 +    "zh:98fd4bbce8d01e99e983b09a824d0d76dacb9131c3d0d6246bc58f4
+         +a31ba1e51",                                                    
+      18 +    "zh:9b12af85486a96aedd8d7984b0ff811a4b42e3d88dad1a3fb4c0b58
+         +0d04fa425",                                                    
+      19 +    "zh:9f4805d74c8a217d5226c0a0432aac48bf78e1f1211ebd8e637ef03
+         +c371dfe39",                                                    
+      20 +    "zh:dea44ec068f2cf22d4c7de93c5639b494d37ae96afd030d930bfb52
+         +d5a56993b",                                                    
+      21 +    "zh:e36e6b40ecb21c5c11c901a278b3ff8cb16ef553b155d7d22a774d0
+         +51051803b",                                                    
+      22 +    "zh:ed50513dd885ae66c3be4b170931e44775886339027431135cd41aa
+         +885307280",                                                    
+      23 +    "zh:eefefe233dcb8934d4cdda1cb67e7e89b177a2717ee73822f4915cb
+         +3681cdc83",                                                    
+      24 +    "zh:f67a7f2d76347698874caab82da856cfd6b99c418b0401768be06c5
+         +cc10a488d",                                                    
+      25 +  ]                                                            
+      26 +}                                                              
+  ⎿  (timeout 5m)
+
+● Valida bien y el nombre del bucket está libre (404). Ahora el plan, y el apply
+  del plan guardado con la salida a evidencias/aplicacion_terraform.txt:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Bash(cd ~/ing_datos/Final/entrega/punto1_entregas/infraestructura && export
+      AWS_PROFILE=taller AWS_REGION=us-east-2 &&
+      E=../evidencias/aplicacion_terraform.txt && {…)
+  ⎿  aws_s3_bucket.entregas: Creation complete after 3s [id=final-entregas-
+     pedro-rueda-466494951615]
+     aws_s3_bucket_ownership_controls.entregas: Creating...
+     … +22 lines (ctrl+o to expand)
+  ⎿  Created punto1_entregas/evidencias/aplicacion_terraform.txt (+269 -0)
+        1 +# terraform apply entregas.tfplan  |  2026-11-12 06:30:47 -05 
+          + |  región us-east-2  |  arn:aws:iam::466494951615:user/PedroR
+          +uedaNubeIngData                                               
+        2 +                                                              
+        3 +$ terraform plan -out=entregas.tfplan                         
+        4 +                                                              
+        5 +Terraform used the selected providers to generate the followin
+          +g execution                                                   
+        6 +plan. Resource actions are indicated with the following symbol
+          +s:                                                            
+        7 +  + create                                                    
+        8 +                                                              
+        9 +Terraform will perform the following actions:                 
+       10 +                                                              
+       11 +  # aws_athena_workgroup.entregas will be created             
+       12 +  + resource "aws_athena_workgroup" "entregas" {              
+       13 +      + arn           = (known after apply)                   
+       14 +      + description   = "Consultas del ejercicio de entregas" 
+       15 +      + force_destroy = true                                  
+       16 +      + id            = (known after apply)                   
+       17 +      + name          = "final-entregas-wg"                   
+       18 +      + region        = "us-east-2"                           
+       19 +      + state         = "ENABLED"                             
+       20 +      + tags_all      = {                                     
+       21 +          + "Modulo"   = "punto1-entregas"                    
+       22 +          + "Owner"    = "pedro"                              
+       23 +          + "Proyecto" = "final"                              
+       24 +        }                                                     
+       25 +                                                              
+       26 +      + configuration {                                       
+       27 +          + bytes_scanned_cutoff_per_query          = 10485760
+          +0                                                             
+       28 +          + enable_minimum_encryption_configuration = (known a
+          +fter apply)                                                   
+       29 +          + enforce_workgroup_configuration         = true    
+       30 +          + publish_cloudwatch_metrics_enabled      = false   
+       31 +          + requester_pays_enabled                  = false   
+       32 +                                                              
+       33 +          + result_configuration {                            
+       34 +              + output_location = "s3://final-entregas-pedro-r
+          +ueda-466494951615/resultados-athena/"                         
+       35 +                                                              
+       36 +              + encryption_configuration {                    
+       37 +                  + encryption_option = "SSE_S3"              
+       38 +                }                                             
+       39 +            }                                                 
+       40 +        }                                                     
+     … 229 more lines (ctrl+o to expand)
+  ⎿  (timeout 5m)
+
+● Desplegado (7 recursos). Guardo outputs.json, compruebo las propiedades de
+  proyección en Glue y subo solo los días 1 y 2, archivo por archivo:
+
+● Bash(cd ~/ing_datos/Final/entrega/punto1_entregas && export AWS_PROFILE=taller
+      AWS_REGION=us-east-2 && (cd infraestructura && terraform output -json
+      -no-color) > evi…)
+  ⎿  {
+       "base_datos_glue": "final_entregas_db",
+       "bucket": "final-entregas-pedro-rueda-466494951615",
+     … +24 lines (ctrl+o to expand)
+  ⎿  Created punto1_entregas/evidencias/outputs.json (+47 -0)
+       1 +{                                                              
+       2 +  "base_datos_glue": {                                         
+       3 +    "sensitive": false,                                        
+       4 +    "type": "string",                                          
+       5 +    "value": "final_entregas_db"                               
+       6 +  },                                                           
+       7 +  "bucket": {                                                  
+       8 +    "sensitive": false,                                        
+       9 +    "type": "string",                                          
+      10 +    "value": "final-entregas-pedro-rueda-466494951615"         
+      11 +  },                                                           
+      12 +  "bucket_arn": {                                              
+      13 +    "sensitive": false,                                        
+      14 +    "type": "string",                                          
+      15 +    "value": "arn:aws:s3:::final-entregas-pedro-rueda-466494951
+         +615"                                                           
+      16 +  },                                                           
+      17 +  "region": {                                                  
+      18 +    "sensitive": false,                                        
+      19 +    "type": "string",                                          
+      20 +    "value": "us-east-2"                                       
+      21 +  },                                                           
+      22 +  "tabla_glue": {                                              
+      23 +    "sensitive": false,                                        
+      24 +    "type": "string",                                          
+      25 +    "value": "entregas"                                        
+      26 +  },                                                           
+      27 +  "tabla_glue_arn": {                                          
+      28 +    "sensitive": false,                                        
+      29 +    "type": "string",                                          
+      30 +    "value": "arn:aws:glue:us-east-2:466494951615:table/final_e
+         +ntregas_db/entregas"                                           
+      31 +  },                                                           
+      32 +  "ubicacion_datos": {                                         
+      33 +    "sensitive": false,                                        
+      34 +    "type": "string",                                          
+      35 +    "value": "s3://final-entregas-pedro-rueda-466494951615/entr
+         +egas/"                                                         
+      36 +  },                                                           
+      37 +  "ubicacion_resultados_athena": {                             
+      38 +    "sensitive": false,                                        
+      39 +    "type": "string",                                          
+      40 +    "value": "s3://final-entregas-pedro-rueda-466494951615/resu
+         +ltados-athena/"                                                
+     … 7 more lines (ctrl+o to expand)
+  ⎿  Created punto1_entregas/evidencias/tabla_glue.json (+45 -0)
+       1 +{                                                              
+       2 +    "params": {                                                
+       3 +        "skip.header.line.count": "1",                         
+       4 +        "projection.fecha.format": "yyyy-MM-dd",               
+       5 +        "projection.fecha.interval.unit": "DAYS",              
+       6 +        "EXTERNAL": "TRUE",                                    
+       7 +        "projection.fecha.range": "2026-10-01,2026-10-03",     
+       8 +        "classification": "csv",                               
+       9 +        "projection.enabled": "true",                          
+      10 +        "projection.fecha.interval": "1",                      
+      11 +        "projection.fecha.type": "date",                       
+      12 +        "storage.location.template": "s3://final-entregas-pedro
+         +-rueda-466494951615/entregas/fecha=${fecha}/"                  
+      13 +    },                                                         
+      14 +    "particion": [                                             
+      15 +        {                                                      
+      16 +            "Name": "fecha",                                   
+      17 +            "Type": "string",                                  
+      18 +            "Comment": "Fecha tomada de la carpeta fecha=yyyy-M
+         +M-dd",                                                         
+      19 +            "Parameters": {}                                   
+      20 +        }                                                      
+      21 +    ],                                                         
+      22 +    "cols": [                                                  
+      23 +        [                                                      
+      24 +            "id_envio",                                        
+      25 +            "string"                                           
+      26 +        ],                                                     
+      27 +        [                                                      
+      28 +            "ciudad",                                          
+      29 +            "string"                                           
+      30 +        ],                                                     
+      31 +        [                                                      
+      32 +            "transportadora",                                  
+      33 +            "string"                                           
+      34 +        ],                                                     
+      35 +        [                                                      
+      36 +            "estado",                                          
+      37 +            "string"                                           
+      38 +        ],                                                     
+      39 +        [                                                      
+      40 +            "duracion_minutos",                                
+     … 5 more lines (ctrl+o to expand)
+  ⎿  (timeout 2m)
+
+● Las propiedades de proyección ya están en Glue, pero el catálogo no tiene
+  particiones y S3 solo tiene los días 1 y 2. Ahora armo las consultas SQL y un
+  ejecutor que las lanza en el workgroup y registra cada ID en
+  ejecuciones_athena.csv. · summary
+
+● Write(punto1_entregas/consultas/intentos_por_fecha_estado.sql)
+  ⎿  Wrote 9 lines to
+     punto1_entregas/consultas/intentos_por_fecha_estado.sql
+      1 -- Cantidad de intentos por fecha y estado (todos los intentos), 
+        ordenado por fecha y estado ascendente.
+      2 -- Sin filtro de fechas: cubre todas las fechas con datos dentro 
+        de la proyección (inicial: días 1-2; final: días 1-3).
+      3 SELECT
+      4     fecha,
+      5     estado,
+      6     COUNT(*) AS total_intentos
+      7 FROM final_entregas_db.entregas
+      8 GROUP BY fecha, estado
+     … +1 line (ctrl+o to expand)
+
+● Write(punto1_entregas/consultas/porcentaje_exito_por_fecha_ciudad.sql)
+  ⎿  Wrote 13 lines to
+     punto1_entregas/consultas/porcentaje_exito_por_fecha_ciudad.sql
+       1 -- Porcentaje de entregas exitosas por fecha y ciudad: 100 * ent
+         regados / total de intentos del grupo.
+       2 -- El denominador incluye todos los estados. 100.0 (decimal) evi
+         ta la división entera;
+       3 -- el resultado se redondea y se presenta con exactamente dos de
+         cimales (DECIMAL(5,2)).
+       4 SELECT
+       5     fecha,
+       6     ciudad,
+       7     CAST(
+     … +6 lines (ctrl+o to expand)
+
+● Write(punto1_entregas/consultas/duracion_promedio_2026-10-02.sql)
+  ⎿  Wrote 10 lines to
+     punto1_entregas/consultas/duracion_promedio_2026-10-02.sql
+       1 -- Duración promedio (minutos) de las entregas EXITOSAS del 2026
+         -10-02, todas las ciudades y transportadoras.
+       2 -- Solo estado 'entregado': los intentos fallidos tienen duració
+         n 0 y no deben bajar el promedio.
+       3 -- El filtro por fecha usa la clave de partición (Athena solo le
+         e esa carpeta).
+       4 SELECT
+       5     fecha,
+       6     CAST(ROUND(AVG(duracion_minutos), 2) AS DECIMAL(10, 2)) AS d
+         uracion_promedio_minutos
+     … +4 lines (ctrl+o to expand)
+
+● Write(punto1_entregas/consultas/verificacion_tercer_dia.sql)
+  ⎿  Wrote 32 lines to
+     punto1_entregas/consultas/verificacion_tercer_dia.sql
+       1 -- Verificación del tercer día (2026-10-03), cargado solo subien
+         do el archivo: sin crawler, sin MSCK REPAIR,
+       2 -- sin ALTER TABLE ADD PARTITION y sin cambiar la tabla. Tres co
+         nsultas, una por resultado:
+       3 
+       4 -- 1) Los seis registros de 2026-10-03  ->  resultados/final/ver
+         ificacion_tercer_dia.csv
+       5 SELECT
+       6     fecha,
+       7     id_envio,
+     … +25 lines (ctrl+o to expand)
+
+● Write(punto1_entregas/consultas/verificacion_etapa_inicial.sql)
+  ⎿  Wrote 8 lines to
+     punto1_entregas/consultas/verificacion_etapa_inicial.sql
+      1 -- Verificación adicional de la etapa inicial: con solo los días 
+        1 y 2 en S3 deben verse 12 registros,
+      2 -- aunque la proyección ya incluye 2026-10-03 (esa fecha no tiene
+         objetos todavía).
+      3 -- -> resultados/inicial/verificacion_etapa_inicial.csv
+      4 SELECT
+      5     COUNT(*) AS total_registros,
+      6     COUNT(DISTINCT fecha) AS fechas_con_datos,
+      7     SUM(CASE WHEN fecha = '2026-10-03' THEN 1 ELSE 0 END) AS regi
+        stros_2026_10_03
+     … +1 line (ctrl+o to expand)
+
+● Write(punto1_entregas/scripts/ejecutar_athena.py)
+  ⎿  Wrote 75 lines to punto1_entregas/scripts/ejecutar_athena.py
+      1 """Ejecuta las sentencias de un archivo .sql en el workgroup del 
+        ejercicio y guarda cada resultado como CSV.
+      2 
+      3 Uso (desde punto1_entregas/):
+      4     python scripts/ejecutar_athena.py <etapa> <consultas/archivo.
+        sql> <resultados/.../salida1.csv> [salida2.csv ...]
+      5 
+      6 - Una salida por sentencia, en el mismo orden en que aparecen en 
+        el .sql (separadas por ';').
+      7 - Usa los nombres del workgroup y la base desde evidencias/output
+     … +69 lines (~3 KB) (ctrl+o to expand)
+
+● Ejecuto la etapa inicial y comparo con las referencias:
+
+● Bash(cd ~/ing_datos/Final/entrega/punto1_entregas && export AWS_PROFILE=taller
+      AWS_REGION=us-east-2 && P=~/miniconda3/envs/final/bin/python && $P
+      scripts/ejecutar_at…)
+  ⎿  [inicial] consultas/verificacion_etapa_inicial.sql -> resultados/inici
+     al/verificacion_etapa_inicial.csv  id=a28959b9-5fed-43ad-9a16-9dfeaa93
+     320b  (1 filas)
+     … +16 lines (ctrl+o to expand)
+  ⎿  Created punto1_entregas/evidencias/ejecuciones_athena.csv (+5 -0)
+      1 +etapa,archivo_sql,id_ejecucion,archivo_resultado                
+      2 +inicial,consultas/verificacion_etapa_inicial.sql,a28959b9-5fed-4
+        +3ad-9a16-9dfeaa93320b,resultados/inicial/verificacion_etapa_inic
+        +ial.csv                                                         
+      3 +inicial,consultas/intentos_por_fecha_estado.sql,62cabf4c-03d4-4c
+        +bb-89c1-e9925916639c,resultados/inicial/intentos_por_fecha_estad
+        +o.csv                                                           
+      4 +inicial,consultas/porcentaje_exito_por_fecha_ciudad.sql,0d41f016
+        +-4fb4-4f2b-8fab-d947ea179c2e,resultados/inicial/porcentaje_exito
+        +_por_fecha_ciudad.csv                                           
+      5 +inicial,consultas/duracion_promedio_2026-10-02.sql,d99c2cd4-a984
+        +-428c-b062-bdd2f9e5fd84,resultados/inicial/duracion_promedio_202
+        +6-10-02.csv                                                     
+  ⎿  Created
+     punto1_entregas/resultados/inicial/duracion_promedio_2026-10-02.csv
+     (+2 -0)
+      1 +fecha,duracion_promedio_minutos                                 
+      2 +2026-10-02,36.67                                                
+  ⎿  Created
+     punto1_entregas/resultados/inicial/intentos_por_fecha_estado.csv (+7 
+     -0)
+      1 +fecha,estado,total_intentos                                     
+      2 +2026-10-01,destinatario_ausente,2                               
+      3 +2026-10-01,direccion_incorrecta,1                               
+      4 +2026-10-01,entregado,3                                          
+      5 +2026-10-02,destinatario_ausente,1                               
+      6 +2026-10-02,direccion_incorrecta,2                               
+      7 +2026-10-02,entregado,3                                          
+  ⎿  Created punto1_entregas/resultados/inicial/porcentaje_exito_por_fecha_
+     ciudad.csv (+5 -0)
+      1 +fecha,ciudad,porcentaje_exito                                   
+      2 +2026-10-01,Bogota,66.67                                         
+      3 +2026-10-01,Medellin,33.33                                       
+      4 +2026-10-02,Bogota,33.33                                         
+      5 +2026-10-02,Medellin,66.67                                       
+  ⎿  Created
+     punto1_entregas/resultados/inicial/verificacion_etapa_inicial.csv (+2 
+     -0)
+      1 +total_registros,fechas_con_datos,registros_2026_10_03           
+      2 +12,2,0                                                          
+  ⎿  (timeout 5m)
+
+● Las 3 consultas iniciales coinciden con las referencias (12 registros, ninguno
+  del día 3). Ahora subo solo el día 3, tras comprobar que Terraform no tenga
+  cambios, y vuelvo a consultar. · summary
+
+● Bash(cd ~/ing_datos/Final/entrega/punto1_entregas && export AWS_PROFILE=taller
+      AWS_REGION=us-east-2 && P=~/miniconda3/envs/final/bin/python && (cd
+      infraestructura &&…)
+  ⎿  terraform plan antes del día 3: exit=0 (0 = sin cambios)
+     upload: data/entregas/fecha=2026-10-03/entregas.csv to s3://final-entr
+     egas-pedro-rueda-466494951615/entregas/fecha=2026-10-03/entregas.csv
+     … +30 lines (ctrl+o to expand)
+  ⎿  Updated punto1_entregas/evidencias/ejecuciones_athena.csv (+5 -0)
+       3  inicial,consultas/intentos_por_fecha_estado.sql,62cabf4c-03d4-4
+          cbb-89c1-e9925916639c,resultados/inicial/intentos_por_fecha_est
+          ado.csv
+       4  inicial,consultas/porcentaje_exito_por_fecha_ciudad.sql,0d41f01
+          6-4fb4-4f2b-8fab-d947ea179c2e,resultados/inicial/porcentaje_exi
+          to_por_fecha_ciudad.csv
+       5  inicial,consultas/duracion_promedio_2026-10-02.sql,d99c2cd4-a98
+          4-428c-b062-bdd2f9e5fd84,resultados/inicial/duracion_promedio_2
+          026-10-02.csv
+       6 +final,consultas/verificacion_tercer_dia.sql,6c10ca74-402e-47f4-
+         +9a9e-b0c4bb7a3154,resultados/final/verificacion_tercer_dia.csv 
+       7 +final,consultas/verificacion_tercer_dia.sql,0e474409-650a-4193-
+         +8f8c-faad51de377d,resultados/final/verificacion_tercer_dia_cont
+         +eo_estado.csv                                                  
+       8 +final,consultas/verificacion_tercer_dia.sql,b089ccd2-9deb-4b82-
+         +9d54-5c8bbcc664fa,resultados/final/verificacion_tercer_dia_tota
+         +l.csv                                                          
+       9 +final,consultas/intentos_por_fecha_estado.sql,4fff84aa-f0e9-4d3
+         +5-89a7-bcf14c97f8e0,resultados/final/intentos_por_fecha_estado.
+         +csv                                                            
+      10 +final,consultas/porcentaje_exito_por_fecha_ciudad.sql,138e99f1-
+         +78fa-4ec7-b74d-d0ee06c7eb80,resultados/final/porcentaje_exito_p
+         +or_fecha_ciudad.csv                                            
+  ⎿  Created punto1_entregas/resultados/final/intentos_por_fecha_estado.csv
+     (+10 -0)
+       1 +fecha,estado,total_intentos                                    
+       2 +2026-10-01,destinatario_ausente,2                              
+       3 +2026-10-01,direccion_incorrecta,1                              
+       4 +2026-10-01,entregado,3                                         
+       5 +2026-10-02,destinatario_ausente,1                              
+       6 +2026-10-02,direccion_incorrecta,2                              
+       7 +2026-10-02,entregado,3                                         
+       8 +2026-10-03,destinatario_ausente,3                              
+       9 +2026-10-03,direccion_incorrecta,1                              
+      10 +2026-10-03,entregado,2                                         
+  ⎿  Created
+     punto1_entregas/resultados/final/porcentaje_exito_por_fecha_ciudad.csv
+     (+7 -0)
+      1 +fecha,ciudad,porcentaje_exito                                   
+      2 +2026-10-01,Bogota,66.67                                         
+      3 +2026-10-01,Medellin,33.33                                       
+      4 +2026-10-02,Bogota,33.33                                         
+      5 +2026-10-02,Medellin,66.67                                       
+      6 +2026-10-03,Bogota,33.33                                         
+      7 +2026-10-03,Medellin,33.33                                       
+  ⎿  Created punto1_entregas/resultados/final/verificacion_tercer_dia.csv
+     (+7 -0)
+      1 +fecha,id_envio,ciudad,transportadora,estado,duracion_minutos    
+      2 +2026-10-03,ENV-013,Bogota,RutaNorte,entregado,15                
+      3 +2026-10-03,ENV-014,Bogota,RutaSur,destinatario_ausente,0        
+      4 +2026-10-03,ENV-015,Bogota,RutaNorte,destinatario_ausente,0      
+      5 +2026-10-03,ENV-016,Medellin,RutaSur,entregado,45                
+      6 +2026-10-03,ENV-017,Medellin,RutaNorte,destinatario_ausente,0    
+      7 +2026-10-03,ENV-018,Medellin,RutaSur,direccion_incorrecta,0      
+  ⎿  Created punto1_entregas/resultados/final/verificacion_tercer_dia_conte
+     o_estado.csv (+4 -0)
+      1 +fecha,estado,total_intentos                                     
+      2 +2026-10-03,destinatario_ausente,3                               
+      3 +2026-10-03,direccion_incorrecta,1                               
+      4 +2026-10-03,entregado,2                                          
+  ⎿  … 1 more file changed
+  ⎿  (timeout 5m)
+
+● Punto 1 quedó resuelto en AWS: el día 3 entró solo al subir el archivo, con 18
+  registros y consultas idénticas a las referencias. Ahora arranco el punto 2
+  conservando el .env del ZIP, como indica el README. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Entorno arriba y check OK. Escribo los 3 archivos permitidos:
+
+● Write(~/ing_datos/Final/enunciado/DE-Final-Ventas/dbt/models/ventas_diarias.sq
+       l)
+  ⎿  Added 8 lines, removed 1 line
+      1 -select TODO_COMPLETAR_RESUMEN_DIARIO                            
+      1 +-- Resumen diario de ventas: una fila por fecha_venta.          
+      2 +-- ingreso_total = suma de cantidad * precio_unitario; se mantie
+        +ne DECIMAL (sin pasar por float) para conservar la precisión.   
+      3 +select                                                          
+      4 +    fecha_venta,                                                
+      5 +    count(*) as numero_ventas,                                  
+      6 +    sum(cantidad) as unidades_vendidas,                         
+      7 +    cast(sum(cantidad * precio_unitario) as decimal(18, 2)) as i
+        +ngreso_total                                                    
+      8  from {{ ref('stg_ventas') }}
+      9 +group by fecha_venta                                            
+
+● Write(~/ing_datos/Final/enunciado/DE-Final-Ventas/dbt/models/sources.yml)
+  ⎿  Added 7 lines
+       4      schema: raw
+       5      tables:
+       6        - name: ventas
+       7 +        # Actualidad de la fuente (sintaxis dbt Core 1.9: propi
+         +edades de la tabla, fuera de config).                          
+       8 +        # Se mide con el instante de carga en raw (_loaded_at, 
+         +UTC), no con la fecha de negocio.                              
+       9 +        # <= 12 h: normal | > 12 h y <= 24 h: advertencia | > 2
+         +4 h: error.                                                    
+      10 +        loaded_at_field: _loaded_at                            
+      11 +        freshness:                                             
+      12 +          warn_after: {count: 12, period: hour}                
+      13 +          error_after: {count: 24, period: hour}               
+      14          columns:
+      15            - name: id_venta
+      16              tests: [unique, not_null]
+
+● Write(~/ing_datos/Final/enunciado/DE-Final-Ventas/airflow/dags/examen_ventas.p
+       y)
+  ⎿  Added 12 lines
+      14      default_args={"retries": 0},
+      15      tags=["examen"],
+      16  ) as dag:
+      17 +    # Control de actualidad de la fuente antes de reconstruir e
+         +l resumen.                                                     
+      18 +    # `dbt source freshness` sale con 0 si pasa o solo advierte
+         + (> 12 h) y con error si supera 24 h;                          
+      19 +    # run_dbt propaga ese error (check=True), la tarea queda fa
+         +iled y construir_resumen no se ejecuta                         
+      20 +    # (regla predeterminada all_success -> upstream_failed). As
+         +í se conserva el resumen anterior.                             
+      21 +    comprobar_frescura = PythonOperator(                       
+      22 +        task_id="comprobar_frescura",                          
+      23 +        python_callable=run_dbt,                               
+      24 +        op_args=[["source", "freshness"]],                     
+      25 +    )                                                          
+      26 +                                                               
+      27      construir_resumen = PythonOperator(
+      28          task_id="construir_resumen",
+      29          python_callable=run_dbt,
+      30          op_args=[["build"]],
+      31      )
+      32 +                                                               
+      33 +    comprobar_frescura >> construir_resumen                    
+
+● Comprobación del modelo, como indica el README. Primero cargo raw con el
+  escenario actualizada, porque build necesita la fuente:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● dbt build terminó con PASS=19, sin warnings ni errores, y los totales
+  coinciden con lo esperado (46.00, 51.25 y 12.40); la comprobación de frescura
+  también pasó. Ahora verifico que el DAG de Airflow ya incluya la nueva tarea
+  antes de dispararlo. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+● El DAG ya tiene comprobar_frescura → construir_resumen, sin errores de
+  importación y despausado. Ahora preparo el escenario de fuente actualizada y
+  disparo una ejecución manual. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Escenario 1 en success: freshness (11:36:01–11:36:10) corrió antes que build
+  (11:36:16–11:36:24). Guardo los logs de ambas tareas y el resumen:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Faltan las líneas de dbt (freshness of ...) en el log de la tarea. Lo reviso,
+  porque el log del fallo debe mostrar el motivo:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● El log de Airflow no muestra la salida de dbt, porque run_dbt la escribe
+  directo en la consola del contenedor; para el error usaré el log de la tarea,
+  el dbt.log y los artefactos de examen.sh. Ahora sigo con el escenario 2,
+  fuente desactualizada, en una ejecución nueva. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Freshness quedó en failed y build en upstream_failed, tal como se esperaba.
+  Ahora reúno las pruebas: log de freshness, ausencia de intento en build,
+  motivo en dbt y artifacts. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Build no tiene carpeta de logs en esta ejecución y su try_number es 0: nunca 
+  se ejecutó. Saco el motivo exacto que dio dbt y los artifacts:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Todo indica un bloqueo por frescura: dbt marca ventas_raw.ventas como STALE
+  con 30.0 h frente a un umbral de 24 h, y el último build es de las 11:36:23
+  del escenario 1, así que no hubo build en esta ejecución. Guardo ese resumen
+  para compararlo con el anterior. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Resumen conservado e idéntico. Ahora escribo CAPTURAS.md para las capturas
+  obligatorias de Airflow y lo copio a Windows para Cowork:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Pedro, ya puedes pedirle a Cowork las capturas: CAPTURAS.md tiene 8 capturas
+  de Airflow en localhost:8080 y ambas ejecuciones ya están hechas. Mientras
+  tanto copio los 3 archivos del punto 2 a la entrega y sigo escribiendo la
+  documentación. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● git status del repo del profe confirma que solo cambiaron los 3 archivos
+  permitidos (.env está en su .gitignore). Ahora los documentos:
+
+● Write(punto2_ventas/respuestas.md)
+  ⎿  Wrote 29 lines to punto2_ventas/respuestas.md
+       1 # Punto 2 — Respuestas conceptuales
+       2 
+       3 ## 1. ¿Por qué usar `_loaded_at` y no `fecha_venta` para este co
+         ntrol?
+       4 
+       5 Porque lo que queremos vigilar es si la **carga** está al día, n
+         o cuándo ocurrieron las ventas. `fecha_venta` es la fecha del
+       6 negocio: una venta del 10 de enero puede llegar hoy y eso no sig
+         nifica que la fuente esté atrasada. De hecho, en este ejercicio
+       7 las ventas son todas de enero de 2026 en los tres escenarios; si
+     … +23 lines (~2 KB) (ctrl+o to expand)
+
+● Write(punto2_ventas/README.md)
+  ⎿  Wrote 96 lines to punto2_ventas/README.md
+       1 # Punto 2 (2.0) — Ventas diarias con control de actualidad (dbt 
+         + Airflow)
+       2 
+       3 Enunciado: <https://github.com/smm-0216/DE-Final-Ventas>. Entorn
+         o local del docente (imagen `smendezm/examen-ventas:1.0`,
+       4 digest `sha256:c57ddf51…6842c77`): Airflow 2.10.5, dbt-core 1.9.
+         4, dbt-duckdb 1.9.2.
+       5 
+       6 ## Archivos modificados (solo los tres permitidos)
+       7 
+     … +89 lines (ctrl+o to expand)
+
+● Write(punto1_entregas/respuestas.md)
+  ⎿  Wrote 37 lines to punto1_entregas/respuestas.md
+       1 # Punto 1 — Respuestas conceptuales
+       2 
+       3 ## 1. ¿Por qué se pudo consultar el tercer día sin registrar una
+          partición nueva?
+       4 
+       5 Porque la tabla no depende de una lista de particiones guardada 
+         en el catálogo. Con partition projection, Glue guarda
+       6 **reglas** y Athena calcula las particiones en el momento de la 
+         consulta. En `infraestructura/principal.tf` la tabla
+       7 `final_entregas_db.entregas` tiene:
+     … +30 lines (ctrl+o to expand)
+
+● Verifico la afirmación de la pregunta 2 con una consulta real, sin subir nada:
+  ¿qué devuelve Athena para una fecha fuera del rango?
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● "WorkGroup is not found". Eso no cuadra: hace minutos funcionaba. Reviso qué
+  pasó:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Era una falsa alarma: el workgroup existe, pero llamé a Python sin activar el
+  entorno, así que boto3 usó la región del perfil. Repito la prueba con la
+  región explícita. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Confirmado: devuelve 0 filas y sin error (f09e7378…). Lo agrego como evidencia
+  en la respuesta 2 y escribo el README y el .gitignore del punto 1:
+
+● Update(punto1_entregas/respuestas.md)
+  ⎿  Added 4 lines, removed 2 lines
+      26  Se esperaría que **ese día no aparezca**. El archivo quedaría g
+          uardado en
+      27  `s3://<bucket>/entregas/fecha=2026-10-04/entregas.csv`, pero el
+           rango proyectado termina en `2026-10-03` (incluido), así que
+      28  Athena nunca genera el valor `2026-10-04` ni consulta ese prefi
+          jo. Las consultas agregadas seguirían devolviendo solo los
+      29 -tres días (los mismos resultados de `resultados/final/`) y un `
+         -WHERE fecha = '2026-10-04'` daría cero filas, sin error. La    
+      30 -proyección no descubre carpetas por su cuenta: solo considera f
+         -echas dentro de su regla.                                      
+      29 +tres días (los mismos resultados de `resultados/final/`) y un `
+         +WHERE fecha = '2026-10-04'` daría cero filas, sin error.       
+      30 +Esto se comprobó en el workgroup (sin subir ningún archivo del 
+         +día 4): `SELECT COUNT(*) ... WHERE fecha = '2026-10-04'`       
+      31 +terminó `SUCCEEDED` con `0` (ejecución `f09e7378-4ace-4252-89ba
+         +-27d6d291cc92`). La proyección no descubre carpetas por su     
+      32 +cuenta: solo considera fechas dentro de su regla.              
+      33  
+      34  Para incluirlo hay que **ampliar el rango de la proyección** en
+           la definición de la tabla, es decir, cambiar
+      35  `projection.fecha.range` a `2026-10-01,2026-10-04` (en este cód
+          igo, la variable `fecha_final = "2026-10-04"`) y aplicar con
+
+● Write(punto1_entregas/.gitignore)
+  ⎿  Wrote 17 lines to punto1_entregas/.gitignore
+       1 # Credenciales
+       2 .env
+       3 *.pem
+       4 *accessKeys*.csv
+       5 *credentials*.csv
+       6 .aws/
+       7 
+       8 # Terraform: estado, planes y carpeta local
+       9 *.tfstate
+      10 *.tfstate.*
+     … +7 lines (ctrl+o to expand)
+
+● Write(punto1_entregas/README.md)
+  ⎿  Wrote 149 lines to punto1_entregas/README.md
+       1 # Punto 1 (3.0) — Intentos de entrega: S3 + Glue (partition proj
+         ection) + Athena
+       2 
+       3 Enunciado: <https://github.com/smm-0216/DE-Final-Entregas>.
+       4 
+       5 ```mermaid
+       6 flowchart LR
+       7     CSV["data/entregas/*.csv"] -->|aws s3 cp, un archivo a la ve
+         z| S3["S3: entregas/fecha=yyyy-MM-dd/entregas.csv"]
+       8     S3 --> G["Glue: final_entregas_db.entregas<br/>partition pro
+     … +142 lines (~8 KB) (ctrl+o to expand)
+
+● README raíz que apunta a los dos puntos, y después commit y push antes del 
+  destroy (primero las evidencias, como pide el enunciado):
+
+● Write(README.md)  ⎿  Added 14 lines, removed 2 lines
+       1  # Final — Ingeniería de Datos (EIA 2026-2)
+       2  
+       3 -Pedro Rueda. Examen final: arquitectura de datos en AWS con Ter
+         -raform (región us-east-2).                                     
+       3 +Pedro Rueda. Examen final.                                     
+       4  
+       5 -> En construcción. El contenido de cada punto se agrega durante
+         - el examen.                                                    
+       5 +| Punto | Enunciado | Carpeta | Tecnología |                   
+       6 +|---|---|---|---|                                              
+       7 +| 1 (3.0) | [DE-Final-Entregas](https://github.com/smm-0216/DE-
+         +Final-Entregas) | [`punto1_entregas/`](punto1_entregas/) | AWS 
+         +us-east-2: S3 + Glue Data Catalog con partition projection + At
+         +hena, con Terraform |                                          
+       8 +| 2 (2.0) | [DE-Final-Ventas](https://github.com/smm-0216/DE-Fi
+         +nal-Ventas) | [`punto2_ventas/`](punto2_ventas/) | Local (Docke
+         +r del docente): dbt source freshness + Airflow |               
+       9 +                                                               
+      10 +Cada carpeta tiene su `README.md` con prerrequisitos, pasos rep
+         +roducibles, evidencias y un `respuestas.md`.                   
+      11 +`punto1_entregas/` sigue exactamente la estructura de entrega p
+         +edida en su enunciado.                                         
+      12 +                                                               
+      13 +## Uso de IA                                                   
+      14 +                                                               
+      15 +El examen se desarrolló con Claude Code (Anthropic). El hilo co
+         +mpleto se adjunta en [`chat_ia/`](chat_ia/).                   
+      16 +                                                               
+      17 +No se versionan credenciales, estado de Terraform (`*.tfstate`)
+         +, planes ni la carpeta `.terraform/`.                          
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Ya está el commit sin tfstate ni llaves; ahora confirmo el push y lanzo el
+  destroy del punto 1, que pedirá tu confirmación, dejando la salida en
+  evidencias/eliminacion_terraform.txt junto con la verificación por CLI. 
+  · summary
+
+● Bash(cd ~/ing_datos/Final/entrega && git status -sb | head -1; cd
+      punto1_entregas/infraestructura && export AWS_PROFILE=taller
+      AWS_REGION=us-east-2 AWS_DEFAULT_REGIO…)
+  ⎿  ## main...origin/main
+     aws_athena_workgroup.entregas: Destruction complete after 0s
+     aws_s3_bucket_server_side_encryption_configuration.entregas: Destructi
+     … +17 lines (ctrl+o to expand)
+  ⎿  Created punto1_entregas/evidencias/eliminacion_terraform.txt (+301 -0)
+        1 +# terraform destroy  |  2026-11-12 06:41:07 -05  |  región us-
+          +east-2  |  arn:aws:iam::466494951615:user/PedroRuedaNubeIngDat
+          +a                                                             
+        2 +# Evidencias ya guardadas y versionadas (commit b048ce5). forc
+          +e_destroy=true vacía el bucket (entregas/ y resultados-athena/
+          +).                                                            
+        3 +                                                              
+        4 +$ terraform destroy -auto-approve                             
+        5 +aws_glue_catalog_database.entregas: Refreshing state... [id=46
+          +6494951615:final_entregas_db]                                 
+        6 +aws_s3_bucket.entregas: Refreshing state... [id=final-entregas
+          +-pedro-rueda-466494951615]                                    
+        7 +aws_s3_bucket_ownership_controls.entregas: Refreshing state...
+          + [id=final-entregas-pedro-rueda-466494951615]                 
+        8 +aws_s3_bucket_server_side_encryption_configuration.entregas: R
+          +efreshing state... [id=final-entregas-pedro-rueda-466494951615
+          +]                                                             
+        9 +aws_s3_bucket_public_access_block.entregas: Refreshing state..
+          +. [id=final-entregas-pedro-rueda-466494951615]                
+       10 +aws_athena_workgroup.entregas: Refreshing state... [id=final-e
+          +ntregas-wg]                                                   
+       11 +aws_glue_catalog_table.entregas: Refreshing state... [id=46649
+          +4951615:final_entregas_db:entregas]                           
+       12 +                                                              
+       13 +Terraform used the selected providers to generate the followin
+          +g execution                                                   
+       14 +plan. Resource actions are indicated with the following symbol
+          +s:                                                            
+       15 +  - destroy                                                   
+       16 +                                                              
+       17 +Terraform will perform the following actions:                 
+       18 +                                                              
+       19 +  # aws_athena_workgroup.entregas will be destroyed           
+       20 +  - resource "aws_athena_workgroup" "entregas" {              
+       21 +      - arn           = "arn:aws:athena:us-east-2:466494951615
+          +:workgroup/final-entregas-wg" -> null                         
+       22 +      - description   = "Consultas del ejercicio de entregas" 
+          +-> null                                                       
+       23 +      - force_destroy = true -> null                          
+       24 +      - id            = "final-entregas-wg" -> null           
+       25 +      - name          = "final-entregas-wg" -> null           
+       26 +      - region        = "us-east-2" -> null                   
+       27 +      - state         = "ENABLED" -> null                     
+       28 +      - tags          = {} -> null                            
+       29 +      - tags_all      = {                                     
+       30 +          - "Modulo"   = "punto1-entregas"                    
+       31 +          - "Owner"    = "pedro"                              
+       32 +          - "Proyecto" = "final"                              
+       33 +        } -> null                                             
+       34 +                                                              
+       35 +      - configuration {                                       
+       36 +          - bytes_scanned_cutoff_per_query          = 10485760
+          +0 -> null                                                     
+       37 +          - enable_minimum_encryption_configuration = false ->
+          + null                                                         
+       38 +          - enforce_workgroup_configuration         = true -> 
+          +null                                                          
+       39 +          - publish_cloudwatch_metrics_enabled      = false ->
+          + null                                                         
+       40 +          - requester_pays_enabled                  = false ->
+          + null                                                         
+     … 261 more lines (ctrl+o to expand)
+  ⎿  (timeout 10m)
+
+● Destroy completo: 7 recursos destruidos y la CLI confirma que no queda bucket,
+  base ni workgroup. Verificación general de la cuenta y costo:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● La cuenta está limpia y el gasto del mes es de 0.02 USD, aunque Athena y S3
+  aún no aparecen por el retraso de Cost Explorer. Ahora agrego esa verificación
+  a la evidencia de eliminación, hago commit y reviso si Cowork ya dejó
+  capturas. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Cowork ya capturó las 10 pantallas de la consola de AWS del punto 1 a las
+  06:39, antes del destroy, mientras las de Airflow del punto 2 aún no llegan;
+  ahora reviso si las del punto 1 sirven. · summary
+
+  Read 2 files, ran 1 shell command (ctrl+o to expand)
+
+● Las capturas del punto 1 están bien: las propiedades projection.* aparecen y
+  los IDs de Athena coinciden con ejecuciones_athena.csv. Cowork aún no ha leído
+  el CAPTURAS.md nuevo, así que copio las del punto 1 a la entrega como
+  respaldo y las enlazo en el README. · summary
+
+● Bash(cd ~/ing_datos/Final/entrega/punto1_entregas && mkdir -p
+      evidencias/capturas && cp "/mnt/c/Users/pedro/Universidad EIA/Semestre
+      6/Ingenieria De Datos/Final/capt…)
+  ⎿  p1_01_s3_bucket_final_entregas.jpg
+     p1_02_s3_prefijo_entregas_parte1.jpg
+     p1_02_s3_prefijo_entregas_parte2.jpg
+     … +8 lines (ctrl+o to expand)
+  ⎿  Updated punto1_entregas/README.md (+7 -0)
+      147  | `evidencias/eliminacion_terraform.txt` | Destroy y verificac
+           ión de limpieza |
+      148  | `scripts/ejecutar_athena.py` | Ejecutor de consultas y regis
+           tro de ejecuciones |
+      149  | `respuestas.md` | Respuestas conceptuales |
+      150 +                                                              
+      151 +## Capturas de respaldo (opcionales)                          
+      152 +                                                              
+      153 +Tomadas en la consola de AWS (us-east-2) después de la etapa f
+          +inal y antes del destroy, en `evidencias/capturas/`:          
+      154 +bucket y prefijos `entregas/fecha=...` (`p1_01`, `p1_02`), tab
+          +la de Glue con detalle, propiedades de proyección y esquema   
+      155 +(`p1_03` a `p1_05`), workgroup de Athena con su ubicación de r
+          +esultados (`p1_06`) e historial de consultas con los mismos   
+      156 +IDs de `evidencias/ejecuciones_athena.csv` (`p1_07`). La evide
+          +ncia exigida por el enunciado son los archivos de texto.      
+  ⎿  … 10 more files changed
+
+● Va así: el punto 1 está completo. El punto 2 está ejecutado y documentado;
+  solo le faltan las capturas de Airflow.
+
+  Punto 1 (Entregas, AWS):
+  - Infraestructura toda en Terraform, con 0 particiones registradas en el
+    catálogo.
+  - Etapa inicial: 12 registros, y las 3 consultas dan idéntico a las
+    referencias.
+  - Día 3: entró solo con subir el archivo, sin cambios en Terraform ni en la
+    tabla. Hay 18 registros, 6 del día 3, y las 2 consultas finales también dan
+    idéntico.
+  - Pregunta 2: comprobé en Athena que una fecha fuera del rango devuelve 0
+    filas sin error.
+  - Destroy: 7 recursos eliminados. La cuenta quedó limpia y el gasto va en
+    ~0.02 USD.
+
+  Punto 2 (Ventas, Docker):
+  - Solo cambié los 3 archivos permitidos.
+  - dbt build: PASS=19 y el resumen es exacto (46.00, 51.25 y 12.40).
+  - Escenario actualizada: freshness y build en success, freshness primero.
+  - Escenario desactualizada, en una ejecución nueva: freshness falló (ERROR 
+    STALE, carga de hace 30 h) y build quedó bloqueado. Build nunca se ejecutó y
+    el resumen se conservó idéntico.
+  - Logs, estados, artifacts, resúmenes, respuestas y README ya están en el
+    repo.
+
+  Repo: https://github.com/PedroRVGE/Final_Pedro_Rueda_IngenieriaDatos (último
+  commit 94523fb).
+
+  Lo que te toca
+
+  1. Dile a Cowork que vuelva a leer CAPTURAS.md. Su estado dice que tiene la
+     versión vieja. Son 8 capturas de Airflow en localhost:8080, que es lo único
+     obligatorio que falta. Docker sigue arriba para eso. Cuando termine, dime
+     "mueve las capturas".
+  2. Chat de IA, el enunciado lo castiga con −0.5 si no se adjunta: el README
+     raíz apunta a chat_ia/, que todavía no existe. Al final corre /export en
+     esta sesión y dime dónde quedó el archivo para copiarlo ahí, o dame el
+     enlace de la sesión
+     (https://claude.ai/code/session_01EycHxF1W36KqrAdeHc6xPS) para ponerlo.
+
+  Después de las capturas apago con docker compose stop (nunca down -v).
+
+✻ Churned for 16m 55s · done 6:45 AM
+
+❯ Bien que viste lo de las sesiones, al final hacemos el export del chat,       
+  tambien hare el de cowork para dejar las dos sesiones adjuntas.               
+
+● Perfecto. Dejo preparada la carpeta chat_ia/ con un índice de las dos
+  sesiones, para que al final solo falte copiar los exports:
+
+● Bash(cd ~/ing_datos/Final/entrega && mkdir -p chat_ia && cat >
+      chat_ia/README.md <<'EOF'
+      # Uso de IA en el examen…)
+  ⎿  0a6698f Carpeta chat_ia con el índice de las sesiones de IA
+  ⎿  Created chat_ia/README.md (+10 -0)
+       1 +# Uso de IA en el examen                                       
+       2 +                                                               
+       3 +El enunciado pide adjuntar los chats o hilos usados. Se usaron 
+         +dos sesiones de Claude:                                        
+       4 +                                                               
+       5 +| Sesión | Herramienta | Rol | Export |                        
+       6 +|---|---|---|---|                                              
+       7 +| WSL | Claude Code (terminal en WSL, Remote Control) | Todo el
+         + código, Terraform, AWS CLI, Python, dbt/Airflow y git | `claud
+         +e_code_wsl.*` (pendiente: `/export` al final) · enlace: https:/
+         +/claude.ai/code/session_01EycHxF1W36KqrAdeHc6xPS |             
+       8 +| Windows | Claude Cowork + extensión de Chrome | Solo capturas
+         + de la consola de AWS y de Airflow (lectura) | `cowork_capturas
+         +.*` (pendiente) |                                              
+       9 +                                                               
+      10 +La sesión de WSL incluye también la preparación previa (FASE 1:
+         + entorno, plantillas, scripts) y la verificación del entorno Do
+         +cker del docente.                                              
+
+❯ Las 8 capturas de Airflow están tomadas desde las 06:44. No hay que volver a  
+  hacerlas. Lo que pasó es que la sesión de WSL leyó ESTADO_COWORK.md pocos     
+  segundos antes de que yo lo actualizara.                                      
+                                                                                
+  Ahora CAPTURAS.md tiene las 8 casillas marcadas con [x], y cada una dice qué  
+  archivo le corresponde. Los archivos están en:                                
+                                                                                
+  Final\capturas_cowork\ (desde WSL: /mnt/c/Users/pedro/Universidad             
+  EIA/Semestre 6/Ingenieria De Datos/Final/capturas_cowork/)                    
+                                                                                
+  01-ventas-actualizada-grafo.jpg … 06-ventas-desactualizada-grilla.jpg         
+  07-ventas-desactualizada-log-freshness.jpg y _parte2.jpg                      
+  08-ventas-desactualizada-build-sin-ejecutar.jpg, _parte2.jpg y _parte3.jpg    
+                                                                                
+  Están en .jpg, no en .png como dice la lista, así que la sesión de WSL tiene  
+  que tenerlo en cuenta al renombrarlas y moverlas. Docker ya se puede detener  
+  (docker compose stop) cuando ellos terminen.                                  
+
+● El mensaje lo trae pegado Pedro. Las capturas están en .jpg y el script
+  empareja por nombre y conserva la extensión real, así que sirve tal cual.
+  Primero la vista previa:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Las 11 imágenes de las 8 capturas emparejan bien. Antes de moverlas reviso las
+  dos más críticas: el grafo del bloqueo y el build sin ejecutar.
+
+  Read 3 files (ctrl+o to expand)
+
+● Las capturas están bien: el grafo verde de la primera ejecución, el rojo y
+  naranja de la bloqueada, y el log del fallo. Las muevo a la entrega y apago
+  Docker después. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Un detalle: el README del punto 2 dice .png y las capturas son .jpg. Lo
+  corrijo y comparo la entrega con lo que pide cada enunciado:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Los dos puntos están completos y subidos. Solo falta adjuntar los dos chats
+  (WSL y Cowork) en chat_ia/.
+
+  Capturas del punto 2: las 8 obligatorias de Airflow (11 imágenes en .jpg)
+  están en punto2_ventas/evidencias/capturas/. Revisé las más importantes: la
+  ejecución "actualizada" con las dos tareas en verde, la "desactualizada" con
+  comprobar_frescura en failed y construir_resumen en upstream_failed, y el log
+  del fallo con INICIO dbt y la excepción. El CAPTURAS.md local y el de Windows
+  quedaron con las 8 casillas marcadas.
+
+  Docker está detenido con docker compose stop y los volúmenes
+  examen-ventas_state y examen-ventas_warehouse están intactos.
+
+  Revisión contra los enunciados:
+  - Punto 1: están los 20 archivos de la estructura exigida, todos con
+    contenido. Además hay 10 capturas de la consola de AWS como respaldo. Los
+    recursos ya se destruyeron, la cuenta quedó limpia y el costo va en unos
+    0.02 USD.
+  - Punto 2: están los 3 archivos modificados, las capturas, el log del fallo de
+    freshness, el resumen antes y después del bloqueo, y las respuestas.
+  - No hay tfstate, .terraform/, planes, .env ni llaves versionados.
+
+  Repo: https://github.com/PedroRVGE/Final_Pedro_Rueda_IngenieriaDatos,
+  sincronizado con GitHub.
+
+  Para cerrar:
+  1. Corre /export en esta sesión y haz el export de Cowork.
+  2. Dime dónde quedaron los dos archivos. Los copio a chat_ia/ como
+     claude_code_wsl.* y cowork_capturas.* (el índice chat_ia/README.md ya los
+     nombra así) y hago el último push.
+
+✻ Baked for 56s · done 6:48 AM
