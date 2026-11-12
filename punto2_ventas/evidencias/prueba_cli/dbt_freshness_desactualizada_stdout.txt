@@ -1,0 +1,6 @@
+11:37:19  Running with dbt=1.9.4
+11:37:20  Found 2 models, 17 data tests, 1 source, 426 macros
+11:37:20  1 of 1 START freshness of ventas_raw.ventas .................................... [RUN]
+11:37:20  1 of 1 ERROR STALE freshness of ventas_raw.ventas .............................. [ERROR STALE in 0.02s]
+11:37:20  Done.
+[2026-11-12T11:37:21.814+0000] {dagrun.py:823} ERROR - Marking run <DagRun examen_ventas @ 2026-11-12 11:37:13+00:00: manual__desactualizada_20261112T113710, state:running, queued_at: 2026-11-12 11:37:13.999160+00:00. externally triggered: True> failed

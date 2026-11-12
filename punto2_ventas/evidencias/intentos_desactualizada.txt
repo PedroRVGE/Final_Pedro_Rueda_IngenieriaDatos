@@ -1,2 +1,4 @@
-comprobar_frescura failed try_number= 1
-construir_resumen upstream_failed try_number= 0
+run_id: manual__2026-11-12T12:15:02.076887+00:00 | run_type: manual | external_trigger: True | state: failed
+comprobar_frescura   failed           try_number=1  start=12:15:06 end=12:15:09 UTC  duration=2.966547
+construir_resumen    upstream_failed  try_number=0  start=12:15:09 end=12:15:09 UTC  duration=0.0
+task_id=comprobar_frescura

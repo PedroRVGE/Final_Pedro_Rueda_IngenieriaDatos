@@ -26,19 +26,16 @@ bash scripts/examen.sh scenario actualizada
 bash scripts/examen.sh dbt build         # Done. PASS=19 WARN=0 ERROR=0 SKIP=0 TOTAL=19
 bash scripts/examen.sh query 'select * from analytics.ventas_diarias order by fecha_venta'
 
-# Escenario 1 (obligatorio): fuente actualizada  -> ejecución manual del DAG
+# Escenario 1 (obligatorio): sin tareas en ejecución
 bash scripts/examen.sh scenario actualizada
-#   Trigger DAG examen_ventas (run manual__actualizada_20261112T113547)
+#   Interfaz de Airflow: botón Trigger DAG en examen_ventas -> esperar a que termine
 
-# Escenario 2 (obligatorio): fuente desactualizada -> NUEVA ejecución, sin limpiar la anterior ni correr build a mano
+# Escenario 2 (obligatorio): sin build manual en medio, sin limpiar la ejecución anterior
 bash scripts/examen.sh scenario desactualizada
-#   Trigger DAG examen_ventas (run manual__desactualizada_20261112T113710)
+#   Interfaz de Airflow: botón Trigger DAG -> NUEVA ejecución
 
 docker compose stop                      # nunca docker compose down -v
 ```
-
-Los disparos se hicieron como ejecuciones manuales (`airflow dags trigger examen_ventas --run-id ...`, equivalente al botón
-**Trigger DAG**; `run_type = manual`).
 
 ## Resultados
 
@@ -52,60 +49,64 @@ Los disparos se hicieron como ejecuciones manuales (`airflow dags trigger examen
 
 Coincide con los resultados esperados del enunciado.
 
-### Escenario 1 — `actualizada` (run `manual__actualizada_20261112T113547`)
+### Escenario 1 — `actualizada` (run oficial `manual__2026-11-12T12:13:27.061735+00:00`)
 
-| Tarea | Estado | Inicio (UTC) | Fin (UTC) |
+`scenario actualizada` → `max_loaded_at = 2026-11-12T10:12:45Z` (~2 h). Ejecución creada con el botón **Trigger DAG**
+(`run_type = manual`, `external_trigger = True`).
+
+| Tarea | Estado | try_number | Inicio → fin (UTC) |
 |---|---|---|---|
-| `comprobar_frescura` | success | 11:36:01 | 11:36:10 |
-| `construir_resumen` | success | 11:36:16 | 11:36:24 |
+| `comprobar_frescura` | success | 1 | 12:13:31 → 12:13:34 |
+| `construir_resumen` | success | 1 | 12:13:38 → 12:13:42 |
 
-Freshness antes de build; ambos logs con `INICIO dbt` / `FIN dbt`.
-Evidencias: `estados_actualizada.txt`, `log_actualizada_*.log`, `resumen_antes_bloqueo.txt`, capturas 01–04.
+Freshness antes de build. dbt: `1 of 1 PASS freshness of ventas_raw.ventas` y luego `Done. PASS=19 WARN=0 ERROR=0`.
+Ambos logs con `INICIO dbt` / `FIN dbt`. Resumen guardado en `resumen_antes_bloqueo.txt`.
+Evidencias: `estados_actualizada.txt`, `log_actualizada_*.log`, `dbt_actualizada_stdout.txt`, `artifacts_tras_actualizada.txt`,
+capturas 01–04.
 
-### Escenario 2 — `desactualizada` (run `manual__desactualizada_20261112T113710`)
+### Escenario 2 — `desactualizada` (run oficial `manual__2026-11-12T12:15:02.076887+00:00`)
 
-| Tarea | Estado | try_number |
-|---|---|---|
-| `comprobar_frescura` | **failed** | 1 |
-| `construir_resumen` | **upstream_failed** (no se ejecutó) | 0 |
+`scenario desactualizada` → `max_loaded_at = 2026-11-11T06:14:20Z`. Nueva ejecución con el botón **Trigger DAG**, sin limpiar
+ni reutilizar la anterior y sin build manual entre la preparación y las evidencias.
 
-- Motivo (salida de dbt): `1 of 1 ERROR STALE freshness of ventas_raw.ventas ... [ERROR STALE]`; `max_loaded_at = 2026-11-11T05:37:09Z`,
-  **30.0 h** de antigüedad frente a `error_after` de 24 h (`sources.json`). En Airflow la tarea falla con
+| Tarea | Estado | try_number | Duración |
+|---|---|---|---|
+| `comprobar_frescura` | **failed** | 1 | 2.97 s |
+| `construir_resumen` | **upstream_failed** (no se ejecutó) | 0 | 0 s |
+
+- Motivo (salida de dbt): `1 of 1 ERROR STALE freshness of ventas_raw.ventas ... [ERROR STALE]`; según `sources.json`,
+  `status = error`, **30.0 h** de antigüedad frente a `error_after` de 24 h. En Airflow la tarea falla con
   `CalledProcessError: ... dbt source freshness ... returned non-zero exit status 1` (lo propaga `run_dbt`).
-- Build no corrió: sin intento (try_number 0), sin carpeta de log ni `INICIO dbt` para esa ejecución, y el último `build`
-  registrado en `run_results.json` es el del escenario 1 (`generated_at 2026-11-12T11:36:23Z`).
+- Build no corrió: try_number 0, duración 0, sin carpeta de log ni `INICIO dbt` para esa ejecución (solo existe
+  `task_id=comprobar_frescura`), y el último `build` en `run_results.json` es el del escenario 1 (`generated_at 2026-11-12T12:13:41Z`).
 - **Resumen conservado:** `resumen_antes_bloqueo.txt` y `resumen_despues_bloqueo.txt` son idénticos (diff vacío).
 
 Nota: `run_dbt` lanza dbt como subproceso sin capturar su salida, así que el detalle `ERROR STALE` aparece en la salida del
 contenedor y en `dbt.log`, no en el log de la tarea; ambos se guardaron (`dbt_freshness_desactualizada_stdout.txt`,
-`dbt_log_desactualizada.txt`).
+`dbt_log_desactualizada.txt`) y además se renderizó como imagen (`capturas/07-…-motivo-dbt_parte3.png`, marcada como salida de CLI).
 
-### Escenario opcional — `advertencia` (run `manual__2026-11-12T12:03:56+00:00`)
-
-`bash scripts/examen.sh scenario advertencia` → `max_loaded_at = 2026-11-11T18:03:52Z` (~18 h). Ejecución manual nueva
-(disparada sin `--run-id`, con el identificador por defecto `manual__<fecha>` que asigna Airflow, igual que el botón Trigger DAG).
-
-| Tarea | Estado | Inicio → fin (UTC) |
-|---|---|---|
-| `comprobar_frescura` | success | 12:03:59 → 12:04:02 |
-| `construir_resumen` | success | 12:04:05 → 12:04:08 |
-
-dbt informó `1 of 1 WARN freshness of ventas_raw.ventas ... [WARN]` y la tarea siguió con salida exitosa (sin `--warn-error`);
-el build corrió (`INICIO dbt ['build']`, `Done. PASS=19 WARN=0 ERROR=0`). El resumen sigue igual (`resumen_tras_advertencia.txt`).
-Evidencias: `escenario_advertencia.json`, `estados_advertencia.txt`, `log_advertencia_*.log`, `dbt_freshness_advertencia_stdout.txt`.
-
-## Evidencias (`evidencias/`)
+## Evidencias (`evidencias/`) — ejecuciones oficiales
 
 | Archivo | Qué demuestra |
 |---|---|
-| `capturas/01..08-*.jpg` | Grafo, grilla y logs de las dos ejecuciones obligatorias (ver índice en `capturas/CAPTURAS.md`) |
+| `capturas/01..08-*.jpg` | Grafo, grilla (Run ID y estados) y logs de las dos ejecuciones oficiales; índice en `capturas/CAPTURAS.md` |
+| `capturas/07-ventas-desactualizada-motivo-dbt_parte3.png` | Motivo `ERROR STALE` (30 h > 24 h) renderizado como imagen (**salida de CLI, no captura de la UI**) |
 | `escenario_*.json` | Salida de `scenario` (filas y `max_loaded_at`) |
-| `estados_*.txt` | `airflow tasks states-for-dag-run` de cada ejecución |
+| `estados_*.txt`, `intentos_desactualizada.txt` | Run ID, `run_type`, `external_trigger`, estado, try_number y horas de cada tarea; carpetas de log existentes |
 | `log_actualizada_*.log`, `log_desactualizada_comprobar_frescura.log` | Logs de Airflow de las tareas |
-| `dbt_freshness_desactualizada_stdout.txt`, `dbt_log_desactualizada.txt`, `motivo_error_freshness.txt` | Motivo del fallo según dbt (`ERROR STALE`, 30 h > 24 h) |
-| `capturas/07-ventas-desactualizada-motivo-dbt_parte3.png` | Ese motivo renderizado como imagen (**salida de CLI, no captura de la UI**): el log de la tarea en Airflow solo muestra `exit status 1` porque `run_dbt` no captura la salida de dbt |
-| `artifacts_tras_desactualizada.txt` | `sources.json` (status error, 30 h) y `run_results.json` (último build = escenario 1) |
-| `intentos_desactualizada.txt` | try_number de cada tarea en la ejecución bloqueada |
+| `dbt_actualizada_stdout.txt`, `dbt_freshness_desactualizada_stdout.txt`, `dbt_log_desactualizada.txt`, `motivo_error_freshness.txt` | Salida de dbt (`PASS` / `ERROR STALE`) |
+| `artifacts_tras_actualizada.txt`, `artifacts_tras_desactualizada.txt` | `sources.json` y `run_results.json` después de cada escenario |
 | `resumen_antes_bloqueo.txt`, `resumen_despues_bloqueo.txt` | El resumen se conserva tras el bloqueo |
 
 Respuestas conceptuales: [`respuestas.md`](respuestas.md).
+
+## Ejecuciones oficiales y prueba previa
+
+- **Oficiales** (las que se evalúan, creadas con el botón **Trigger DAG** como indica el enunciado):
+  `manual__2026-11-12T12:13:27.061735+00:00` (actualizada) y `manual__2026-11-12T12:15:02.076887+00:00` (desactualizada).
+  Son las de `evidencias/`.
+- **Prueba previa equivalente** (`evidencias/prueba_cli/`): antes se dispararon las mismas dos ejecuciones por CLI
+  (`airflow dags trigger`), con run_id `manual__actualizada_20261112T113547` y `manual__desactualizada_20261112T113710`, y un
+  escenario opcional `advertencia` (`manual__2026-11-12T12:03:56+00:00`: WARN por ~18 h, freshness y build en success).
+  Dieron los mismos estados y resultados; se repitieron con el botón para seguir el README al pie de la letra. Se conservan
+  como referencia y aparecen en la grilla de Airflow como las tres primeras columnas.

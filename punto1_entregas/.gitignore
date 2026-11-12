@@ -1,16 +1,21 @@
+# Se crea para dejar la entrega limpia: fuera credenciales, estado de Terraform y archivos locales.
+
 # Credenciales
 .env
+.env.*
 *.pem
+*.key
+.aws/
 *accessKeys*.csv
 *credentials*.csv
-.aws/
 
-# Terraform: estado, planes y carpeta local
+# Terraform: estado, planes y carpeta local (.terraform/)
 *.tfstate
 *.tfstate.*
 *.tfplan
 .terraform/
 crash.log
+crash.*.log
 
 # Python
 __pycache__/

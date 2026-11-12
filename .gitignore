@@ -1,10 +1,38 @@
-*.tfstate*
-.terraform/
-*.tfplan
+# Se crea para dejar la entrega limpia: fuera credenciales, estado de Terraform y archivos locales o temporales.
+
+# Credenciales (nunca se versionan)
 .env
-.local/
+.env.*
+*.pem
+*.key
+.aws/
 *accessKeys*.csv
 *credentials*.csv
+
+# Terraform: estado, planes y carpeta local de proveedores
+*.tfstate
+*.tfstate.*
+*.tfplan
+.terraform/
+crash.log
+crash.*.log
+
+# Locales y temporales
+.local/
 .build/
 __pycache__/
 *.pyc
+
+# Bases y artefactos locales (DuckDB / dbt)
+*.duckdb
+*.duckdb.wal
+dbt/target/
+dbt/logs/
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+*Zone.Identifier
+.vscode/
+.idea/

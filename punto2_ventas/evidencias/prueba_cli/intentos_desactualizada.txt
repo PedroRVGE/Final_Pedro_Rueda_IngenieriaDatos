@@ -1,0 +1,2 @@
+comprobar_frescura failed try_number= 1
+construir_resumen upstream_failed try_number= 0

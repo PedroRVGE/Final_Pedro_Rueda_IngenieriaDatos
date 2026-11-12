@@ -1,16 +1,16 @@
-[2026-11-12T11:37:17.648+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
-[2026-11-12T11:37:17.660+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: examen_ventas.comprobar_frescura manual__desactualizada_20261112T113710 [queued]>
-[2026-11-12T11:37:17.666+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: examen_ventas.comprobar_frescura manual__desactualizada_20261112T113710 [queued]>
-[2026-11-12T11:37:17.666+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
-[2026-11-12T11:37:17.692+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): comprobar_frescura> on 2026-11-12 11:37:13+00:00
-[2026-11-12T11:37:17.698+0000] {standard_task_runner.py:72} INFO - Started process 398 to run task
-[2026-11-12T11:37:17.702+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'examen_ventas', 'comprobar_frescura', 'manual__desactualizada_20261112T113710', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/examen_ventas.py', '--cfg-path', '/tmp/tmpiq77uquw']
-[2026-11-12T11:37:17.704+0000] {standard_task_runner.py:105} INFO - Job 6: Subtask comprobar_frescura
-[2026-11-12T11:37:17.755+0000] {task_command.py:467} INFO - Running <TaskInstance: examen_ventas.comprobar_frescura manual__desactualizada_20261112T113710 [running]> on host ad297ddc9e25
-[2026-11-12T11:37:17.841+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='examen_ventas' AIRFLOW_CTX_TASK_ID='comprobar_frescura' AIRFLOW_CTX_EXECUTION_DATE='2026-11-12T11:37:13+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__desactualizada_20261112T113710'
-[2026-11-12T11:37:17.841+0000] {taskinstance.py:732} INFO - ::endgroup::
-[2026-11-12T11:37:17.856+0000] {logging_mixin.py:190} INFO - INICIO dbt ['source', 'freshness']
-[2026-11-12T11:37:21.063+0000] {taskinstance.py:3313} ERROR - Task failed with exception
+[2026-11-12T12:15:06.056+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-11-12T12:15:06.067+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: examen_ventas.comprobar_frescura manual__2026-11-12T12:15:02.076887+00:00 [queued]>
+[2026-11-12T12:15:06.073+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: examen_ventas.comprobar_frescura manual__2026-11-12T12:15:02.076887+00:00 [queued]>
+[2026-11-12T12:15:06.074+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2026-11-12T12:15:06.092+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): comprobar_frescura> on 2026-11-12 12:15:02.076887+00:00
+[2026-11-12T12:15:06.096+0000] {standard_task_runner.py:72} INFO - Started process 367 to run task
+[2026-11-12T12:15:06.100+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'examen_ventas', 'comprobar_frescura', 'manual__2026-11-12T12:15:02.076887+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/examen_ventas.py', '--cfg-path', '/tmp/tmpzgtj4b0j']
+[2026-11-12T12:15:06.102+0000] {standard_task_runner.py:105} INFO - Job 13: Subtask comprobar_frescura
+[2026-11-12T12:15:06.146+0000] {task_command.py:467} INFO - Running <TaskInstance: examen_ventas.comprobar_frescura manual__2026-11-12T12:15:02.076887+00:00 [running]> on host ad297ddc9e25
+[2026-11-12T12:15:06.220+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='examen_ventas' AIRFLOW_CTX_TASK_ID='comprobar_frescura' AIRFLOW_CTX_EXECUTION_DATE='2026-11-12T12:15:02.076887+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-11-12T12:15:02.076887+00:00'
+[2026-11-12T12:15:06.220+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-11-12T12:15:06.233+0000] {logging_mixin.py:190} INFO - INICIO dbt ['source', 'freshness']
+[2026-11-12T12:15:09.021+0000] {taskinstance.py:3313} ERROR - Task failed with exception
 Traceback (most recent call last):
   File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
     result = _execute_callable(context=context, **execute_callable_kwargs)
@@ -38,9 +38,9 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
     raise CalledProcessError(retcode, process.args,
 subprocess.CalledProcessError: Command '['/opt/dbt/bin/dbt', 'source', 'freshness', '--project-dir', '/workspace/dbt', '--profiles-dir', '/workspace/dbt']' returned non-zero exit status 1.
-[2026-11-12T11:37:21.071+0000] {taskinstance.py:1226} INFO - Marking task as FAILED. dag_id=examen_ventas, task_id=comprobar_frescura, run_id=manual__desactualizada_20261112T113710, execution_date=20261112T113713, start_date=20261112T113717, end_date=20261112T113721
-[2026-11-12T11:37:21.099+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
-[2026-11-12T11:37:21.099+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 6 for task comprobar_frescura (Command '['/opt/dbt/bin/dbt', 'source', 'freshness', '--project-dir', '/workspace/dbt', '--profiles-dir', '/workspace/dbt']' returned non-zero exit status 1.; 398)
+[2026-11-12T12:15:09.035+0000] {taskinstance.py:1226} INFO - Marking task as FAILED. dag_id=examen_ventas, task_id=comprobar_frescura, run_id=manual__2026-11-12T12:15:02.076887+00:00, execution_date=20261112T121502, start_date=20261112T121506, end_date=20261112T121509
+[2026-11-12T12:15:09.072+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-11-12T12:15:09.072+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 13 for task comprobar_frescura (Command '['/opt/dbt/bin/dbt', 'source', 'freshness', '--project-dir', '/workspace/dbt', '--profiles-dir', '/workspace/dbt']' returned non-zero exit status 1.; 367)
 Traceback (most recent call last):
   File "/home/airflow/.local/lib/python3.11/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
     ret = args.func(args, dag=self.dag)
@@ -100,6 +100,6 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
     raise CalledProcessError(retcode, process.args,
 subprocess.CalledProcessError: Command '['/opt/dbt/bin/dbt', 'source', 'freshness', '--project-dir', '/workspace/dbt', '--profiles-dir', '/workspace/dbt']' returned non-zero exit status 1.
-[2026-11-12T11:37:21.127+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
-[2026-11-12T11:37:21.149+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
-[2026-11-12T11:37:21.161+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2026-11-12T12:15:09.111+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-11-12T12:15:09.133+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-11-12T12:15:09.147+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

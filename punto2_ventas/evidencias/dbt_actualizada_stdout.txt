@@ -1,0 +1,6 @@
+12:13:33  Running with dbt=1.9.4
+12:13:34  1 of 1 START freshness of ventas_raw.ventas .................................... [RUN]
+12:13:34  1 of 1 PASS freshness of ventas_raw.ventas ..................................... [PASS in 0.02s]
+12:13:34  Done.
+12:13:40  Running with dbt=1.9.4
+12:13:41  Done. PASS=19 WARN=0 ERROR=0 SKIP=0 TOTAL=19

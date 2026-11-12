@@ -10,7 +10,7 @@ siempre (meses de antigüedad) y el control fallaría incluso con una carga reci
 `_loaded_at` es el instante (UTC) en que el registro llegó a `raw`, así que `max(_loaded_at)` responde a la pregunta
 "¿cuándo fue la última vez que llegaron datos?". Es justo lo que cambió entre escenarios con los mismos datos de negocio:
 en la ejecución `actualizada` el máximo era de hace unas 2 h y freshness pasó; en `desactualizada` era
-`2026-11-11T05:37:09Z`, 30.0 h antes de la comprobación (`evidencias/artifacts_tras_desactualizada.txt`), y dbt reportó
+`2026-11-11T06:14:20Z`, 30.0 h antes de la comprobación (ejecución oficial `manual__2026-11-12T12:15:02.076887+00:00`) (`evidencias/artifacts_tras_desactualizada.txt`), y dbt reportó
 `ERROR STALE freshness of ventas_raw.ventas` (`evidencias/dbt_freshness_desactualizada_stdout.txt`).
 
 Aun así, este control mira solo la carga más reciente: no demuestra que hayan llegado **todas** las ventas esperadas.
